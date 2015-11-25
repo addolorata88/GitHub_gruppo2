@@ -1,5 +1,5 @@
 package it.uniclam.progettoOfficinaMeccanica.entity;
-
+// dip
 public class Dipendente {
 
 	private String nome;
