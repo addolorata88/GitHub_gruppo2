@@ -4,13 +4,13 @@ public class Dipendente {
 
 	private String nome;
 	private String cognome;
-	private int telefono;
+	private String telefono;
 	private String email;
 	private String dataAssunzione;
 	private String scadenzaContratto;
 
 
-	public Dipendente(String nome, String cognome, int telefono, String email, String dataAssunzione,
+	public Dipendente(String nome, String cognome, String telefono, String email, String dataAssunzione,
 			String scadenzaContratto) {
 		super();
 		this.nome = nome;
@@ -42,12 +42,12 @@ public class Dipendente {
 	}
 
 
-	public int getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 
 
-	public void setTelefono(int telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 

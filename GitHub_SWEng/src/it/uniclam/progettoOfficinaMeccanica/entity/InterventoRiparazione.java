@@ -1,18 +1,26 @@
 package it.uniclam.progettoOfficinaMeccanica.entity;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class InterventoRiparazione {
 
 	private String marcaVeicolo;
 	private String modelloVeicolo;
 	private String dataEntrataInOfficina;
 	private String dataImmatricolazione;
+	private String descrizioneIntervento;
 
-	public InterventoRiparazione(String marcaVeicolo, String modelloVeicolo, String dataEntrataInOfficina,
-			String dataImmatricolazione) {
+
+	public InterventoRiparazione(String marcaVeicolo, String modelloVeicolo, String dataImmatricolazione) {
 		super();
 		this.marcaVeicolo = marcaVeicolo;
 		this.modelloVeicolo = modelloVeicolo;
-		this.dataEntrataInOfficina = dataEntrataInOfficina;
+		// Valutare se questa data è la stessa di quella presente in Richiesta.java
+		Date today = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		this.dataEntrataInOfficina = sdf.format(today);
+		
 		this.dataImmatricolazione = dataImmatricolazione;
 	}
 
@@ -36,10 +44,6 @@ public class InterventoRiparazione {
 		return dataEntrataInOfficina;
 	}
 
-	public void setDataEntrataInOfficina(String dataEntrataInOfficina) {
-		this.dataEntrataInOfficina = dataEntrataInOfficina;
-	}
-
 	public String getDataImmatricolazione() {
 		return dataImmatricolazione;
 	}
@@ -48,5 +52,11 @@ public class InterventoRiparazione {
 		this.dataImmatricolazione = dataImmatricolazione;
 	}
 
+	public String getDescrizioneIntervento() {
+		return descrizioneIntervento;
+	}
 
+	public void setDescrizioneIntervento(String descrizioneIntervento) {
+		this.descrizioneIntervento = descrizioneIntervento;
+	}
 }
