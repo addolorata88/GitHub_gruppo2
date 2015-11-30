@@ -10,6 +10,6 @@ public interface DipendenteDAO {
 	public void updateDipendente(Dipendente d)  throws DAOException;
 	public List<Dipendente> getDipendenti(Dipendente d)  throws DAOException;
 	public List<Dipendente> getAllDipendenti()  throws DAOException;
-	public Dipendente findByMail(String mail)  throws DAOException;
+	public Dipendente findByMailDipendente(String email)  throws DAOException;
 	public void deleteDipendente(Dipendente d)  throws DAOException;
 }

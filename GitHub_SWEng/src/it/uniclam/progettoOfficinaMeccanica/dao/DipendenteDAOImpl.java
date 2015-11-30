@@ -6,6 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.uniclam.progettoOfficinaMeccanica.dao.DAOException;
 import it.uniclam.progettoOfficinaMeccanica.entity.Dipendente;
 
 public class DipendenteDAOImpl implements DipendenteDAO{
@@ -49,8 +50,33 @@ public class DipendenteDAOImpl implements DipendenteDAO{
 	
 
 	@Override
-	public void updateDipendente(Dipendente d) {
-		// TODO Auto-generated method stub
+	public void updateDipendente(Dipendente d) throws DAOException {
+		try {
+			if (	d.getNome() == null ||
+					d.getCognome() == null ||
+					d.getTelefono() == null ||
+					d.getEmail() == null ||
+					d.getDataAssunzione() == null ||
+					d.getScadenzaContratto() == null ) {
+				throw new DAOException("In updateDipendente: no one field can be empty");
+			}
+				
+			Statement stm = DAOSettings.getStatement();
+			
+			String sql_update = "UPDATE meccanico SET";
+					sql_update += "nome='" + d.getNome() + "',";
+					sql_update += "cognome='" + d.getCognome() + "',";
+					sql_update += "telefono='" + d.getTelefono() + "',";
+					sql_update += "email='" + d.getEmail() + "',";
+					sql_update += "data_assunzione='" + d.getDataAssunzione() + "',";
+					sql_update += "scadenza_contratto='" + d.getScadenzaContratto() + "'";
+							
+			ResultSet rs = stm.executeQuery(sql_update);
+			DAOSettings.closeStatement(stm);
+			
+		} catch (SQLException sqle) {
+			throw new DAOException("In updateDipendente: " + sqle);
+		}	
 		
 	}
 
@@ -91,22 +117,65 @@ public class DipendenteDAOImpl implements DipendenteDAO{
 	}
 
 	@Override
-	public List<Dipendente> getAllDipendenti() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Dipendente findByMail(String mail) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void deleteDipendente(Dipendente d) {
-		// TODO Auto-generated method stub
+	public List<Dipendente> getAllDipendenti() throws DAOException {
+		ArrayList<Dipendente> lista = new ArrayList<Dipendente>();
 		
+		try {
+			Statement stm=DAOSettings.getStatement();
+			String sql="SELECT * FROM meccanico";
+			ResultSet rs=stm.executeQuery(sql);
+					
+			while(rs.next()){
+				Dipendente a = new Dipendente(rs.getString("nome"), rs.getString("cognome"), 
+						rs.getString("telefono"), rs.getString("email"), rs.getString("data_assunzione"), 
+						rs.getString("scadenza_contratto"));
+				lista.add(a);
+			}
+			//return lista;
+			
+		} catch (SQLException sq) {
+			throw new DAOException(
+					"In getAllDipendenti" + sq.getMessage());
+		}	
+		return lista;
 	}
 
-	
+	@Override
+	public Dipendente findByMailDipendente(String email) throws DAOException {
+		try {
+			if (email.isEmpty()) {
+				throw new DAOException("In findByMail: email field can not be empty");
+			}
+				
+			Statement stm = DAOSettings.getStatement();
+			String 	sql_find = "SELECT * FROM meccanico WHERE ";
+					sql_find += "email='" + email + "%'";
+		
+			ResultSet rs = stm.executeQuery(sql_find);
+			DAOSettings.closeStatement(stm);
+			
+		} catch (SQLException sqle) {
+			throw new DAOException("In findByMailDipendente: " + sqle);
+		}			
+		return null;
+	}
+
+	@Override
+	public void deleteDipendente(Dipendente d) throws DAOException {	
+		try {
+			if (d.getEmail() == null) {
+				throw new DAOException("In deleteDipendente: email field can not be empty");
+			}
+				
+			Statement stm = DAOSettings.getStatement();
+			String sql_delete = "DELETE FROM meccanico WHERE email LIKE '";
+				sql_delete +=  d.getEmail() + "%'";
+			
+			ResultSet rs = stm.executeQuery(sql_delete);
+			DAOSettings.closeStatement(stm);
+			
+		} catch (SQLException sqle) {
+			throw new DAOException("In deleteDipendente: " + sqle);
+		}	
+	}	
 }
