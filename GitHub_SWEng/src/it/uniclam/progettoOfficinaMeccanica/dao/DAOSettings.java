@@ -16,7 +16,6 @@ public class DAOSettings {
 		try {
 			Class.forName(DRIVERNAME);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

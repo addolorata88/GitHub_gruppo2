@@ -38,7 +38,7 @@ public class DipendenteDAOImpl implements DipendenteDAO{
 			String sql_insert = "INSERT INTO meccanico VALUES ('', '";
 					sql_insert += d.getNome() + "', '" + d.getCognome() + "', '";
 					sql_insert += d.getTelefono() + "', '" + d.getEmail() + "', '";
-					sql_insert += d.getDataAssunzione() + "', '" + d.getScadenzaContratto() + "')";
+					sql_insert += d.getDataAssunzione() + "', '" + d.getScadenzaContratto() + "','')";
 							
 			ResultSet rs = stm.executeQuery(sql_insert);
 			DAOSettings.closeStatement(stm);

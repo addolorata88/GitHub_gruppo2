@@ -13,7 +13,7 @@ import it.uniclam.progettoEsame.*;
 
 public class SettingsPanel extends JPanel {
 	private JTextField host = new JTextField("localhost");
-	private JTextField port = new JTextField("3306", 20);
+	private JTextField port = new JTextField("5555", 20);
 	
 	private JButton salva = new JButton("Salva");
 	

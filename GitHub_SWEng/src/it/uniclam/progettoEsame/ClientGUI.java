@@ -1,8 +1,12 @@
 package it.uniclam.progettoEsame;
+import java.awt.BorderLayout;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+
+import it.uniclam.progettoOfficinaMeccanica.gui.*;
 
 public class ClientGUI extends JFrame{
 	JPanel lastPanel = null;

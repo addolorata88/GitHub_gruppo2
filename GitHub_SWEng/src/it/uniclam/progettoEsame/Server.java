@@ -73,7 +73,7 @@ public class Server {
 										
 				} catch (DAOException daoe){
 					System.out.println("Exception in connection (Query)");
-					out.println(response + " " + daoe);
+					out.println(response + " -> " + daoe);
 				}				
 				s.close();
 				
@@ -94,7 +94,7 @@ public class Server {
 					out.println(response);
 										
 				} catch (DAOException daoe){
-					System.out.println("Exception in connection (Insert)");
+					System.out.println("Exception in connection (Insert) " + daoe);
 					out.println(response + " " + daoe);
 				}				
 				s.close();
