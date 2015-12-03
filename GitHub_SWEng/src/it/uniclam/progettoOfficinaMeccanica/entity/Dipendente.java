@@ -8,6 +8,7 @@ public class Dipendente {
 	private String email;
 	private String dataAssunzione;
 	private String scadenzaContratto;
+	private int caricoLavoro;
 
 	public Dipendente(String nome, String cognome, String telefono, String email, String dataAssunzione,
 			String scadenzaContratto) {
@@ -18,6 +19,7 @@ public class Dipendente {
 		this.email = email;
 		this.dataAssunzione = dataAssunzione;
 		this.scadenzaContratto = scadenzaContratto;
+		this.caricoLavoro = 0;
 	}
 
 	public String getNome() {

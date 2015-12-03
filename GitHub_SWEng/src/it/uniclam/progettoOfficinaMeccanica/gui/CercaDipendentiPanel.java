@@ -24,8 +24,8 @@ public class CercaDipendentiPanel extends JPanel {
 	private JTextField cognome = new JTextField("c", 20);	
 	private JTextField telefono = new JTextField("t", 20);
 	private JTextField email = new JTextField("e", 20);
-	private JTextField data_assunzione = new JTextField("d", 20);
-	private JTextField scadenza_contratto = new JTextField("s", 20);
+	private JTextField data_assunzione = new JTextField("01-01-1970", 20);
+	private JTextField scadenza_contratto = new JTextField("xx-xx-xxxx", 20);
 	
 	private JButton cerca = new JButton("Cerca");
 	private JButton clear = new JButton("Clear");
@@ -83,35 +83,57 @@ public class CercaDipendentiPanel extends JPanel {
 		c.gridy = 3;
 		this.add(email, c);
 		
-		// Campo cerca
+		// Campo data assunzione
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 4;
+		this.add(new JLabel("data assunz.:"), c);
+		
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 2;
+		c.gridy = 4;
+		this.add(data_assunzione, c);
+		
+		// Campo data assunzione
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 0;
+		c.gridy = 5;
+		this.add(new JLabel("scad. contratto:"), c);
+		
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 2;
+		c.gridy = 5;
+		this.add(scadenza_contratto, c);
+		
+		// Campo cerca
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 1;
+		c.gridy = 6;
 		c.gridwidth = 4;   //2 columns wide
 		this.add(cerca, c);
 		
 		// Campo clear
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 4;
-		c.gridy = 4;
+		c.gridy = 6;
 		c.gridwidth = 4;   //2 columns wide
 		this.add(clear, c);
-		
+
 		// Campo risposta (label)
 		c.fill = GridBagConstraints.HORIZONTAL;
-		c.gridx = 0;
-		c.gridy = 5;
+		c.gridx = 1;
+		c.gridy = 7;
 		c.gridwidth = 4;   //2 columns wide
 		this.add(new JLabel("Risposta:"), c);
 		
-		// Campo risposta
+		// Campo risposta text area
 		c.fill = GridBagConstraints.HORIZONTAL;
-		c.gridx = 0;
-		c.gridy = 	6;
-		c.gridwidth = 8;   //2 columns wide
+		c.gridx = 1;
+		c.gridy = 	8;
+		c.gridwidth = 4;   //2 columns wide  era 8
 		JScrollPane jp = new JScrollPane(ta);
 		this.add(jp, c);
-		
+	
 		clear.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {

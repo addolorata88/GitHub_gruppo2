@@ -20,15 +20,12 @@ public class Server {
 	public static String DELETE_DIPENDENTI 	= "req_delete_dipendenti";
 	public static String UPDATE_DIPENDENTI 	= "req_update_dipendenti";
 	//public static String FIND_DIPENDENTE	= "req_find_by_email_dipendenti";
-	// TODO: altre voci per il protocollo
 
 	public static String LIST_DIPENDENTI 	= "res_list_dipendenti";
-	// TODO: altre voci per il protocollo
 			
 	public static String 	HOST = "localhost";
 	public static int 		PORT = 5555;
 
-	
 	public static void main(String[] args) throws Exception {
 		ServerSocket ss = new ServerSocket(PORT);
 		String response = null;
@@ -78,7 +75,6 @@ public class Server {
 				s.close();
 				
 			} else if (command.equals(INSERT_DIPENDENTI)){
-				
 				String nome = in.readLine().replace("nome:", "").replace("\n", "");
 				String cognome = in.readLine().replace("cognome:", "").replace("\n", "");		
 				String telefono = in.readLine().replace("telefono:", "").replace("\n", "");
@@ -86,8 +82,10 @@ public class Server {
 				String data_assunzione = in.readLine().replace("data_assunzione:", "").replace("\n", "");
 				String scadenza_contratto = in.readLine().replace("scadenza_contratto:", "").replace("\n", "");
 				
+				System.out.println("Debug insert dipendenti: " + nome + " " + cognome + " " + telefono + " " + email + " " + data_assunzione + " " + scadenza_contratto);
 				try{	
 					Dipendente nuovoDipendente = new Dipendente(nome, cognome, telefono, email, data_assunzione, scadenza_contratto);
+					System.out.println("oggetto: " + nuovoDipendente);
 					DipendenteDAOImpl.getInstance().insertDipendente(nuovoDipendente);
 					
 					response = "Ok\n";				
@@ -96,7 +94,7 @@ public class Server {
 				} catch (DAOException daoe){
 					System.out.println("Exception in connection (Insert) " + daoe);
 					out.println(response + " " + daoe);
-				}				
+				}
 				s.close();
 			
 			} else if (command.equals(DELETE_DIPENDENTI)){

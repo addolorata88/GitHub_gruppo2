@@ -26,8 +26,8 @@ public class InserisciDipendentiPanel extends JPanel{
 	private JTextField cognome = new JTextField("c", 20);	
 	private JTextField telefono = new JTextField("t", 20);
 	private JTextField email = new JTextField("e", 20);
-	private JTextField data_assunzione = new JTextField("d", 20);
-	private JTextField scadenza_contratto = new JTextField("s", 20);
+	private JTextField data_assunzione = new JTextField("01-01-1970", 20);
+	private JTextField scadenza_contratto = new JTextField("xx-xx-xxxx", 20);
 	
 	private JButton invia = new JButton("Inserisci");
 	private JButton clear = new JButton("Clear");
@@ -64,7 +64,6 @@ public class InserisciDipendentiPanel extends JPanel{
 		c.gridy = 1;
 		this.add(cognome, c);
 		
-		
 		// Campo telefono
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
@@ -76,7 +75,7 @@ public class InserisciDipendentiPanel extends JPanel{
 		c.gridy = 2;
 		this.add(telefono, c);
 
-		// Campo telefono
+		// Campo email
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 3;
@@ -86,33 +85,55 @@ public class InserisciDipendentiPanel extends JPanel{
 		c.gridx = 2;
 		c.gridy = 3;
 		this.add(email, c);
-	
-		// Campo invia
+
+		// Campo data assunzione
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 4;
-		c.gridwidth = 5;   //2 columns wide
+		this.add(new JLabel("data assunz.:"), c);
+		
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 2;
+		c.gridy = 4;
+		this.add(data_assunzione, c);
+		
+		// Campo scadenza_contratto
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 0;
+		c.gridy = 5;
+		this.add(new JLabel("scad. contratto:"), c);
+		
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 2;
+		c.gridy = 5;
+		this.add(scadenza_contratto, c);
+		
+		// Campo cerca
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 1;
+		c.gridy = 6;
+		c.gridwidth = 4;   //2 columns wide
 		this.add(invia, c);
 		
 		// Campo clear
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 4;
-		c.gridy = 4;
+		c.gridy = 6;
 		c.gridwidth = 4;   //2 columns wide
 		this.add(clear, c);
-		
+
 		// Campo risposta (label)
 		c.fill = GridBagConstraints.HORIZONTAL;
-		c.gridx = 0;
-		c.gridy = 5;
+		c.gridx = 1;
+		c.gridy = 7;
 		c.gridwidth = 4;   //2 columns wide
 		this.add(new JLabel("Risposta:"), c);
 		
-		// Campo risposta
+		// Campo risposta text area
 		c.fill = GridBagConstraints.HORIZONTAL;
-		c.gridx = 0;
-		c.gridy = 6;
-		c.gridwidth = 8;   //2 columns wide
+		c.gridx = 1;
+		c.gridy = 	8;
+		c.gridwidth = 4;   //2 columns wide  era 8
 		JScrollPane jp = new JScrollPane(ta);
 		this.add(jp, c);
 		
@@ -138,14 +159,13 @@ public class InserisciDipendentiPanel extends JPanel{
 							"email:" + email.getText() + "\n" +
 							"data_assunzione:01-01-2015\n" +
 							"scadenza_contratto:31-12-2015\n" + 
-							//"data_assunzione:" + data_assunzione.getText() + "\n" + 
-							//"scadenza_contratto:" + scadenza_contratto.getText() + "\n" + 
 							"\n";
 					
 					out.println(req);
-					//System.out.println("Inviato: " + req);
+					System.out.println("Debug Inviato dal Pannello: " + req);
 					String line = in.readLine();
-					if (line.equalsIgnoreCase("OK")){	//Forse qui possiamo usare Server.OK
+					System.out.println("Line. " + line);
+					if (line.equalsIgnoreCase("Ok")){	//ERA OK
 						line = in.readLine();
 						while(line.length() > 0){
 							ta.append(line + "\n");
@@ -154,6 +174,7 @@ public class InserisciDipendentiPanel extends JPanel{
 						ta.append("\n");
 					} else {
 						ta.append("Si è verificato un errore nel server!" + "\n");
+						ta.append(line);
 					}
 					s.close();
 				} catch (IOException ioe){
