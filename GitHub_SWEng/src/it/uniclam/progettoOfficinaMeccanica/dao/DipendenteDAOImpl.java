@@ -41,6 +41,7 @@ public class DipendenteDAOImpl implements DipendenteDAO{
 					sql_insert += d.getDataAssunzione() + "', '" + d.getScadenzaContratto() + "','')";
 							
 			ResultSet rs = stm.executeQuery(sql_insert);
+			//int rs = stm.executeUpdate(sql_insert);
 			DAOSettings.closeStatement(stm);
 			
 		} catch (SQLException sqle) {

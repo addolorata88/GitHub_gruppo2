@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import it.uniclam.progettoEsame.*;
+import it.uniclam.progettoOfficinaMeccanica.*;
 
 public class SettingsPanel extends JPanel {
 	private JTextField host = new JTextField("localhost");

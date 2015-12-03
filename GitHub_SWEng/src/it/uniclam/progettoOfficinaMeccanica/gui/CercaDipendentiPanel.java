@@ -1,6 +1,4 @@
 package it.uniclam.progettoOfficinaMeccanica.gui;
-import it.uniclam.progettoEsame.*;
-
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -18,6 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+
+import it.uniclam.progettoOfficinaMeccanica.*;
 
 public class CercaDipendentiPanel extends JPanel {
 	private JTextField nome = new JTextField("n", 20);

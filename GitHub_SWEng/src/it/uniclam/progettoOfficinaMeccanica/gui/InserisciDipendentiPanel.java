@@ -18,8 +18,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import it.uniclam.progettoEsame.ClientGUI;
-import it.uniclam.progettoEsame.Server;
+import it.uniclam.progettoOfficinaMeccanica.ClientGUI;
+import it.uniclam.progettoOfficinaMeccanica.Server;
 
 public class InserisciDipendentiPanel extends JPanel{
 	private JTextField nome = new JTextField("n", 20);
