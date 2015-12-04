@@ -69,4 +69,10 @@ public class Dipendente {
 	public void setScadenzaContratto(String scadenzaContratto) {
 		this.scadenzaContratto = scadenzaContratto;
 	}
+	
+	public String toString(){
+		return "Dipendente " + this.getNome() + ", " + this.getCognome() + ", " + 
+				this.getTelefono() + ", " + this.getEmail() + ", " + 
+				this.getDataAssunzione() + ", " + this.getScadenzaContratto();
+	}
 }

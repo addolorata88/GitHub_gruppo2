@@ -18,8 +18,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import it.uniclam.progettoOfficinaMeccanica.*;
+import it.uniclam.progettoOfficinaMeccanica.interfaces.getDataPanel;
 
 public class CercaDipendentiPanel extends JPanel {
+	
 	private JTextField nome = new JTextField("n", 20);
 	private JTextField cognome = new JTextField("c", 20);	
 	private JTextField telefono = new JTextField("t", 20);
@@ -141,8 +143,7 @@ public class CercaDipendentiPanel extends JPanel {
 			}
 		});
 		
-		cerca.addActionListener(new ActionListener() {
-			
+		cerca.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try{
@@ -157,12 +158,12 @@ public class CercaDipendentiPanel extends JPanel {
 							"cognome:" + cognome.getText() + "\n" + 							
 							"telefono:" + telefono.getText() + "\n" + 
 							"email:" + email.getText() + "\n" + 
-							//"data_assunzione:" + data_assunzione.getText() + "\n" + 
-							//"scadenza_contratto:" + scadenza_contratto.getText() + "\n" + 
+							"data_assunzione:" + data_assunzione.getText() + "\n" + 
+							"scadenza_contratto:" + scadenza_contratto.getText() + "\n" + 
 							"\n";
 					
 					out.println(req);
-					//System.out.println("Inviato: " + req);
+					System.out.println("DEBUG: req Inviata: " + req);
 					String line = in.readLine();
 					if (line.equalsIgnoreCase(Server.OK)){
 						line = in.readLine();
@@ -172,7 +173,7 @@ public class CercaDipendentiPanel extends JPanel {
 						}
 						ta.append("\n");
 					} else {
-						ta.append("Si è verificato un errore nel server!" + "\n");
+						ta.append("RICERCA: Si è verificato un errore nel server!" + "\n");
 					}
 					s.close();
 				} catch (IOException ioe){

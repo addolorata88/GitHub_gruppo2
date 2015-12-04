@@ -77,8 +77,7 @@ public class DipendenteDAOImpl implements DipendenteDAO{
 			
 		} catch (SQLException sqle) {
 			throw new DAOException("In updateDipendente: " + sqle);
-		}	
-		
+		}			
 	}
 
 	@Override

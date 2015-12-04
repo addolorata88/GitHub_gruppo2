@@ -50,7 +50,6 @@ public class Server {
 				String scadenza_contratto = in.readLine().replace("scadenza_contratto:", "").replace("\n", "");
 				
 				try{	
-					//List<Amico> lista = AmicoDAOImpl.getInstance().getAllAmici();	
 					Dipendente chiaveRicerca = new Dipendente(nome, cognome, telefono, email, data_assunzione, scadenza_contratto);
 					List<Dipendente> lista = DipendenteDAOImpl.getInstance().getDipendenti(chiaveRicerca);
 					

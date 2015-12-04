@@ -157,15 +157,14 @@ public class InserisciDipendentiPanel extends JPanel{
 							"cognome:" + cognome.getText() + "\n" + 
 							"telefono:" + telefono.getText() + "\n" + 
 							"email:" + email.getText() + "\n" +
-							"data_assunzione:01-01-2015\n" +
-							"scadenza_contratto:31-12-2015\n" + 
+							"data_assunzione:" + data_assunzione.getText() + "\n" +
+							"scadenza_contratto:" + scadenza_contratto.getText() + "\n" + 
 							"\n";
 					
 					out.println(req);
-					System.out.println("Debug Inviato dal Pannello: " + req);
+					System.out.println("DEBUG: Inviato dal Pannello: " + req);
 					String line = in.readLine();
-					System.out.println("Line. " + line);
-					if (line.equalsIgnoreCase("Ok")){	//ERA OK
+					if (line.equalsIgnoreCase(Server.OK)){
 						line = in.readLine();
 						while(line.length() > 0){
 							ta.append(line + "\n");
