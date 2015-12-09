@@ -2,15 +2,15 @@ package it.uniclam.progettoOfficinaMeccanica.entity;
 
 public class Ricambio {
 
+	private String nomeRicambio;
 	private boolean garanzia;
 	private float prezzo;
-	private boolean disponibilita;
 
-	public Ricambio(boolean garanzia, float prezzo, boolean disponibilita) {
+	public Ricambio(String nomeRicambio, boolean garanzia, float prezzo) {
 		super();
+		this.nomeRicambio = nomeRicambio;
 		this.garanzia = garanzia;
 		this.prezzo = prezzo;
-		this.disponibilita = disponibilita;
 	}
 
 	public boolean isGaranzia() {
@@ -29,12 +29,12 @@ public class Ricambio {
 		this.prezzo = prezzo;
 	}
 
-	public boolean isDisponibilita() {
-		return disponibilita;
+	public String getNomeRicambio() {
+		return nomeRicambio;
 	}
 
-	public void setDisponibilita(boolean disponibilita) {
-		this.disponibilita = disponibilita;
+	public void setNomeRicambio(String nomeRicambio) {
+		this.nomeRicambio = nomeRicambio;
 	}
 
 }

@@ -6,8 +6,9 @@ import it.uniclam.progettoOfficinaMeccanica.entity.InterventoRiparazione;
 
 public interface InterventoRiparazioneDAO {
 
-	public void insertInterventoRiparazione(InterventoRiparazione i);
-	public List<InterventoRiparazione> showInterventoRiparazione();
-	public void updateInterventoRiparazione(InterventoRiparazione i);
-	
+	public void insertInterventoRiparazione(InterventoRiparazione i) throws DAOException;
+	public void updateInterventoRiparazione(InterventoRiparazione i)  throws DAOException;
+	public List<InterventoRiparazione> showInterventoRiparazione(InterventoRiparazione i)  throws DAOException;
+	public List<InterventoRiparazione> showAllInterventiRiparazione()  throws DAOException;
+	public void deleteDipendente(InterventoRiparazione i)  throws DAOException;
 }
