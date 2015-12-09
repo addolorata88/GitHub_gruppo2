@@ -11,6 +11,7 @@ import it.uniclam.progettoOfficinaMeccanica.*;
 public class NavigationPanel extends JPanel {
 	private JButton cercaDipendenti = new JButton(ClientGUI.CERCA_DIPENDENTI_PANEL);
 	private JButton inserisciDipendenti = new JButton(ClientGUI.INSERISCI_DIPENDENTI_PANEL);
+	private JButton updateDipendenti = new JButton(ClientGUI.UPDATE_DIPENDENTI_PANEL);	
 	private JButton settings = new JButton(ClientGUI.SETTINGS_PANEL);
 	private ClientGUI clientGUI = null;
 	
@@ -18,6 +19,7 @@ public class NavigationPanel extends JPanel {
 		setLayout(new FlowLayout());
 		add(cercaDipendenti);
 		add(inserisciDipendenti);
+		add(updateDipendenti);
 		add(settings);
 		this.clientGUI = clientGUI;
 		
@@ -32,6 +34,13 @@ public class NavigationPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				clientGUI.changePanel(ClientGUI.INSERISCI_DIPENDENTI_PANEL);
+			}
+		});
+		
+		updateDipendenti.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				clientGUI.changePanel(ClientGUI.UPDATE_DIPENDENTI_PANEL);
 			}
 		});
 		

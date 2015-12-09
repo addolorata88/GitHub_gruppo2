@@ -13,10 +13,12 @@ public class ClientGUI extends JFrame{
 	
 	public static String CERCA_DIPENDENTI_PANEL = "Cerca Dipendenti";
 	public static String INSERISCI_DIPENDENTI_PANEL = "Inserisci Dipendenti";
+	public static String UPDATE_DIPENDENTI_PANEL = "Modifica Dipendenti";
 	public static String SETTINGS_PANEL = "Settings";
 	
 	private CercaDipendentiPanel CercaDipendentiPanel;
 	private InserisciDipendentiPanel InserisciDipendentiPanel;
+	private UpdateDipendentiPanel UpdateDipendentiPanel;
 	private NavigationPanel navigationPanel;
 	private SettingsPanel settingsPanel;
 
@@ -25,6 +27,7 @@ public class ClientGUI extends JFrame{
 	
 		CercaDipendentiPanel = new CercaDipendentiPanel(this);
 		InserisciDipendentiPanel = new InserisciDipendentiPanel(this);
+		UpdateDipendentiPanel = new UpdateDipendentiPanel(this);
 		navigationPanel = new NavigationPanel(this);
 		settingsPanel = new SettingsPanel(this);
 		
@@ -33,6 +36,7 @@ public class ClientGUI extends JFrame{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		pack();
 		setVisible(true);
+		setSize(800,600);		//aggiunto 04-12-2015
 	}
 	
 	public void changePanel(String panelName){
@@ -44,11 +48,14 @@ public class ClientGUI extends JFrame{
 		} else if (panelName.equals(ClientGUI.INSERISCI_DIPENDENTI_PANEL)){
 			InserisciDipendentiPanel = new InserisciDipendentiPanel(this);
 			lastPanel = InserisciDipendentiPanel;
+		} else if (panelName.equals(ClientGUI.UPDATE_DIPENDENTI_PANEL)){
+			UpdateDipendentiPanel = new UpdateDipendentiPanel(this);
+			lastPanel = UpdateDipendentiPanel;
 		} else if (panelName.equals(ClientGUI.SETTINGS_PANEL)){
 			settingsPanel = new SettingsPanel(this);
 			lastPanel = settingsPanel;
 		}
-
+		
 		navigationPanel = new NavigationPanel(this);
 		
 		getContentPane().add(lastPanel, BorderLayout.CENTER);
@@ -80,5 +87,4 @@ public class ClientGUI extends JFrame{
             }
         });
 	}
-
 }
