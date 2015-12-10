@@ -22,41 +22,7 @@ public class SchedaRipDAOImpl implements SchedaRipDAO{
 	}
 
 	@Override
-	public void insertInterventoRiparazione(SchedaRip i) throws DAOException{
-		try {
-			if (	i.getMarcaVeicolo() == null ||
-					i.getModelloVeicolo() == null ||
-					i.getDataEntrataInOfficina() == null ||
-					i.getDataImmatricolazione() == null ||
-					i.getDescrizioneIntervento() == null ||
-					i.getDataEvasioneRichiesta()== null ||
-					i.getNomeCliente() == null ||
-					i.getCognomeCliente() == null ||
-					i.getTelCliente()== null) {
-				throw new DAOException("In insertInterventoRiparazione: no one field can be empty");
-			}
-
-			Statement stm = DAOSettings.getStatement();
-
-			String sql_insert = "INSERT INTO intervento_riparazione (marca_veicolo, modello_veicolo, "
-					+ "data_entrata_officina, data_immatricolazione, descrizione_intervento, "
-					+ "data_evasione_richiesta, nome_cliente, cognome_cliente, tel_cliente) VALUES ('";
-			sql_insert += i.getMarcaVeicolo() + "', '" + i.getModelloVeicolo() + "', '";
-			sql_insert += i.getDataEntrataInOfficina() + "', '" + i.getDataImmatricolazione() + "', '";
-			sql_insert += i.getDescrizioneIntervento() + "', '" + i.getDataEvasioneRichiesta() + "', '";
-			sql_insert += i.getNomeCliente() + "', '" + i.getCognomeCliente() + "', '";
-			sql_insert += i.getTelCliente() + "')";
-
-			int inserimento = stm.executeUpdate(sql_insert);
-			DAOSettings.closeStatement(stm);
-
-		} catch (SQLException sqle) {
-			throw new DAOException("In insertInterventoRiparazione: " + sqle);
-		}	
-	}
-
-	@Override
-	public void updateInterventoRiparazione(SchedaRip i)  throws DAOException{
+	public void insertSchedaRip(SchedaRip i) throws DAOException{
 		try {
 			if (	i.getMarcaVeicolo() == null ||
 					i.getModelloVeicolo() == null ||
@@ -68,12 +34,47 @@ public class SchedaRipDAOImpl implements SchedaRipDAO{
 					i.getCognomeCliente() == null ||
 					i.getTelCliente()== null ||
 					i.getIdMeccanico() == 0){
-				throw new DAOException("In updateInterventoRiparazione: no one field can be empty");
+				throw new DAOException("In insertSchedaRip: no one field can be empty");
 			}
 
 			Statement stm = DAOSettings.getStatement();
 
-			String sql_update = "UPDATE intervento_riparazione SET";
+			String sql_insert = "INSERT INTO scheda_riparazione (marca_veicolo, modello_veicolo, "
+					+ "data_entrata_officina, data_immatricolazione, descrizione_intervento, "
+					+ "data_evasione_richiesta, nome_cliente, cognome_cliente, tel_cliente,idmeccanico) VALUES ('";
+			sql_insert += i.getMarcaVeicolo() + "', '" + i.getModelloVeicolo() + "', '";
+			sql_insert += i.getDataEntrataInOfficina() + "', '" + i.getDataImmatricolazione() + "', '";
+			sql_insert += i.getDescrizioneIntervento() + "', '" + i.getDataEvasioneRichiesta() + "', '";
+			sql_insert += i.getNomeCliente() + "', '" + i.getCognomeCliente() + "', '";
+			sql_insert += i.getTelCliente() + "', '" + i.getIdMeccanico() + "')";
+
+			int inserimento = stm.executeUpdate(sql_insert);
+			DAOSettings.closeStatement(stm);
+
+		} catch (SQLException sqle) {
+			throw new DAOException("In insertSchedaRip: " + sqle);
+		}	
+	}
+
+	@Override
+	public void updateSchedaRip(SchedaRip i)  throws DAOException{
+		try {
+			if (	i.getMarcaVeicolo() == null ||
+					i.getModelloVeicolo() == null ||
+					i.getDataEntrataInOfficina() == null ||
+					i.getDataImmatricolazione() == null ||
+					i.getDescrizioneIntervento() == null ||
+					i.getDataEvasioneRichiesta()== null ||
+					i.getNomeCliente() == null ||
+					i.getCognomeCliente() == null ||
+					i.getTelCliente()== null ||
+					i.getIdMeccanico() == 0){
+				throw new DAOException("In updateSchedaRip: no one field can be empty");
+			}
+
+			Statement stm = DAOSettings.getStatement();
+
+			String sql_update = "UPDATE scheda_riparazione SET";
 			sql_update += "marca_veicolo='" + i.getMarcaVeicolo() + "',";
 			sql_update += "modello_veicolo='" + i.getModelloVeicolo() + "',";
 			sql_update += "data_entrata_officina='" + i.getDataEntrataInOfficina() + "',";
@@ -83,18 +84,18 @@ public class SchedaRipDAOImpl implements SchedaRipDAO{
 			sql_update += "nome_cliente='" + i.getNomeCliente() + "'";
 			sql_update += "cognome_cliente='" + i.getCognomeCliente() + "'";
 			sql_update += "tel_cliente='" + i.getTelCliente() + "'";
-			sql_update += "id_meccanico='" + i.getIdMeccanico() + "'";
+			sql_update += "idmeccanico='" + i.getIdMeccanico() + "'";
 
 			int aggiornamento = stm.executeUpdate(sql_update);  //come in insert. Modificare anche in DipDAOImpl(ResultSet->int)
 			DAOSettings.closeStatement(stm);
 
 		} catch (SQLException sqle) {
-			throw new DAOException("In updateInterventoRiparazione: " + sqle);
+			throw new DAOException("In updateSchedaRip: " + sqle);
 		}			
 	}
 
 	@Override
-	public List<SchedaRip> showInterventoRiparazione(SchedaRip i)  throws DAOException{
+	public List<SchedaRip> showSchedaRip(SchedaRip i)  throws DAOException{
 		ArrayList<SchedaRip> elenco = new ArrayList<SchedaRip>();
 
 		try {
@@ -108,11 +109,11 @@ public class SchedaRipDAOImpl implements SchedaRipDAO{
 					i.getCognomeCliente() == null ||
 					i.getTelCliente()== null ||
 					i.getIdMeccanico() == 0) {
-				throw new DAOException("In showInterventoRiparazione: no one field can be empty");
+				throw new DAOException("In showSchedaRip: no one field can be empty");
 			}
 
 			Statement stm = DAOSettings.getStatement();
-			String sql_find = "SELECT * FROM intervento_riparazione WHERE marca_veicolo LIKE '";
+			String sql_find = "SELECT * FROM scheda_riparazione WHERE marca_veicolo LIKE '";
 			sql_find += i.getMarcaVeicolo() + "%' AND modello_veicolo LIKE '" + i.getModelloVeicolo();
 			sql_find += "%' AND data_entrata_officina LIKE '" + i.getDataEntrataInOfficina();
 			sql_find += "%' AND data_immatricolazione LIKE '" + i.getDataImmatricolazione();
@@ -133,23 +134,23 @@ public class SchedaRipDAOImpl implements SchedaRipDAO{
 						rs.getString("nome_cliente"),
 						rs.getString("cognome_cliente"),
 						rs.getString("tel_cognome"),
-						rs.getInt("idMeccanico")));
+						rs.getInt("idmeccanico")));
 			}
 			DAOSettings.closeStatement(stm);
 
 		} catch (SQLException sqle) {
-			throw new DAOException("In showInterventoRiparazione: " + sqle);
+			throw new DAOException("In showSchedaRip: " + sqle);
 		}	
 		return elenco;
 	}
 
 	@Override
-	public List<SchedaRip> showAllInterventiRiparazione()  throws DAOException{
+	public List<SchedaRip> showAllSchedeRip()  throws DAOException{
 		ArrayList<SchedaRip> elenco = new ArrayList<SchedaRip>();
 
 		try {
 			Statement stm = DAOSettings.getStatement();
-			String sql="SELECT * FROM intervento_riparazione";
+			String sql="SELECT * FROM scheda_riparazione";
 			ResultSet rs=stm.executeQuery(sql);
 
 			while(rs.next()){
@@ -161,32 +162,32 @@ public class SchedaRipDAOImpl implements SchedaRipDAO{
 						rs.getString("nome_cliente"),
 						rs.getString("cognome_cliente"),
 						rs.getString("tel_cognome"),
-						rs.getInt("idMeccanico"));
+						rs.getInt("idmeccanico"));
 				elenco.add(i);
 			}	
 		} catch (SQLException sq) {
 			throw new DAOException(
-					"In showAllInterventiRiparazione" + sq.getMessage());
+					"In showAllSchedeRip" + sq.getMessage());
 		}	
 		return elenco;
 	}
 
 	@Override
-	public void deleteDipendente(SchedaRip i)  throws DAOException{
+	public void deleteSchedaRip(SchedaRip i)  throws DAOException{
 		try {
 			if (i.getCognomeCliente() == null) {
-				throw new DAOException("In deleteInterventoRiparazione: cognomeCliente field can not be empty");
+				throw new DAOException("In deleteSchedaRip: cognomeCliente field can not be empty");
 			}
 
 			Statement stm = DAOSettings.getStatement();
-			String sql_delete = "DELETE FROM intervento_riparazione WHERE cognome_cliente LIKE '";
+			String sql_delete = "DELETE FROM scheda_riparazione WHERE cognome_cliente LIKE '";
 			sql_delete +=  i.getCognomeCliente() + "%'";
 
 			ResultSet rs = stm.executeQuery(sql_delete);
 			DAOSettings.closeStatement(stm);
 
 		} catch (SQLException sqle) {
-			throw new DAOException("In deleteInterventoRiparazione: " + sqle);
+			throw new DAOException("In deleteSchedaRip: " + sqle);
 		}	
 	}
 }

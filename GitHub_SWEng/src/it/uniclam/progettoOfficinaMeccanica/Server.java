@@ -167,7 +167,7 @@ public class Server {
 							cognome_cliente,tel_cliente,Integer.parseInt(id_meccanico));
 					System.out.println("Debug oggetto: " + nuovaSchedaRip);
 					
-					SchedaRipDAOImpl.getInstance().insertInterventoRiparazione(nuovaSchedaRip);
+					SchedaRipDAOImpl.getInstance().insertSchedaRip(nuovaSchedaRip);
 					
 					response = "Ok\n";				
 					out.println(response);

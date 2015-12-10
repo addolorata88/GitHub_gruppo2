@@ -35,6 +35,7 @@ public class DipendenteDAOImpl implements DipendenteDAO{
 			}
 				
 			Statement stm = DAOSettings.getStatement();
+			
 			String sql_insert = "INSERT INTO meccanico (nome, cognome, telefono, email, data_assunzione, scadenza_contratto) VALUES ('";
 					sql_insert += d.getNome() + "', '" + d.getCognome() + "', '";
 					sql_insert += d.getTelefono() + "', '" + d.getEmail() + "', '";
@@ -49,7 +50,6 @@ public class DipendenteDAOImpl implements DipendenteDAO{
 		}	
 	}
 	
-
 	@Override
 	public void updateDipendente(Dipendente d) throws DAOException {
 		try {

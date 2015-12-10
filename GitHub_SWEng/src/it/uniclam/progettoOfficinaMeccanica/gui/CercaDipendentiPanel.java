@@ -18,7 +18,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import it.uniclam.progettoOfficinaMeccanica.*;
-import it.uniclam.progettoOfficinaMeccanica.interfaces.getDataPanel;
+//import it.uniclam.progettoOfficinaMeccanica.interfaces.getDataPanel;
 
 public class CercaDipendentiPanel extends JPanel {
 	

@@ -6,9 +6,9 @@ import it.uniclam.progettoOfficinaMeccanica.entity.SchedaRip;
 
 public interface SchedaRipDAO {
 
-	public void insertInterventoRiparazione(SchedaRip i) throws DAOException;
-	public void updateInterventoRiparazione(SchedaRip i)  throws DAOException;
-	public List<SchedaRip> showInterventoRiparazione(SchedaRip i)  throws DAOException;
-	public List<SchedaRip> showAllInterventiRiparazione()  throws DAOException;
-	public void deleteDipendente(SchedaRip i)  throws DAOException;
+	public void insertSchedaRip(SchedaRip i) throws DAOException;
+	public void updateSchedaRip(SchedaRip i)  throws DAOException;
+	public List<SchedaRip> showSchedaRip(SchedaRip i)  throws DAOException;
+	public List<SchedaRip> showAllSchedeRip()  throws DAOException;
+	public void deleteSchedaRip(SchedaRip i)  throws DAOException;
 }

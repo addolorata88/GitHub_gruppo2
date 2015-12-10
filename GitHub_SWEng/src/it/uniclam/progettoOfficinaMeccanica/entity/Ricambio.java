@@ -4,7 +4,8 @@ public class Ricambio {
 
 	private String nomeRicambio;
 	private boolean garanzia;
-	private float prezzo;
+	private float prezzo; 
+	private int idSchedaRip;
 
 	public Ricambio(String nomeRicambio, boolean garanzia, float prezzo) {
 		super();
@@ -37,4 +38,11 @@ public class Ricambio {
 		this.nomeRicambio = nomeRicambio;
 	}
 
+	public int getIdSchedaRip() {
+		return idSchedaRip;
+	}
+
+	public void setIdSchedaRip(int idSchedaRip) {
+		this.idSchedaRip = idSchedaRip;
+	}
 }
