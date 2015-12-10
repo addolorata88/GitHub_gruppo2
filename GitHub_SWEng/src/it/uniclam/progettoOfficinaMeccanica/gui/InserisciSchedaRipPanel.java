@@ -158,7 +158,7 @@ public class InserisciSchedaRipPanel extends JPanel{
 		c.gridy = 9;
 		this.add(id_meccanico, c);
 		
-		// Campo cerca
+		// Campo inserisci
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 1;
 		c.gridy = 10;
@@ -174,9 +174,9 @@ public class InserisciSchedaRipPanel extends JPanel{
 
 		// Campo risposta (label)
 		c.fill = GridBagConstraints.HORIZONTAL;
-		c.gridx = 1;
+		c.gridx = 0;
 		c.gridy = 11;
-		c.gridwidth = 4;   //2 columns wide
+		c.gridwidth = 4;   //2 columns wide          
 		this.add(new JLabel("Risposta:"), c);
 		
 		// Campo risposta text area
@@ -218,7 +218,7 @@ public class InserisciSchedaRipPanel extends JPanel{
 					out.println(req);
 					System.out.println("DEBUG: Inviato dal Pannello: " + req);
 					String line = in.readLine();
-					if (line.equalsIgnoreCase(Server.OK)){
+					if (line.equalsIgnoreCase("Ok!")){
 						line = in.readLine();
 						while(line.length() > 0){
 							ta.append(line + "\n");

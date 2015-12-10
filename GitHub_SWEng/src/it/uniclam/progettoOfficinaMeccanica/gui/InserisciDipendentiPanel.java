@@ -131,7 +131,7 @@ public class InserisciDipendentiPanel extends JPanel{
 		
 		// Campo risposta text area
 		c.fill = GridBagConstraints.HORIZONTAL;
-		c.gridx = 1;
+		c.gridx = 0;
 		c.gridy = 	8;
 		c.gridwidth = 4;   //2 columns wide  era 8
 		JScrollPane jp = new JScrollPane(ta);

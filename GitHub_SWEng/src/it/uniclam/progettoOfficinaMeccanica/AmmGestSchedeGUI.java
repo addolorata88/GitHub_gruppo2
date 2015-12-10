@@ -23,7 +23,7 @@ public class AmmGestSchedeGUI extends JFrame{
 	public AmmGestSchedeGUI(){
 		super();
 	
-		//CercaSchedaRipPanel = new CercaSchedaRipPanel(this);
+		CercaSchedaRipPanel = new CercaSchedaRipPanel(this);
 		InserisciSchedaRipPanel = new InserisciSchedaRipPanel(this);
 		//UpdateSchedaRipPanel = new UpdateSchedaRipPanel(this);
 		
@@ -41,18 +41,18 @@ public class AmmGestSchedeGUI extends JFrame{
 		if (panelName.equals(AmmGestSchedeGUI.INSERISCI_SCHEDA_PANEL)){
 			InserisciSchedaRipPanel = new InserisciSchedaRipPanel(this);
 			lastPanel = InserisciSchedaRipPanel;
-		}/* else if (panelName.equals(AmmGestSchedeGUI.CERCA_SCHEDA_PANEL)){
+		} else if (panelName.equals(AmmGestSchedeGUI.CERCA_SCHEDA_PANEL)){
 			CercaSchedaRipPanel = new CercaSchedaRipPanel(this);
 			lastPanel = CercaSchedaRipPanel;
-		} else if (panelName.equals(AmmGestSchedeGUI.UPDATE_SCHEDA_PANEL)){
+		} /*else if (panelName.equals(AmmGestSchedeGUI.UPDATE_SCHEDA_PANEL)){
 			UpdateSchedaRipPanel = new UpdateSchedaRipPanel(this);
 			lastPanel = UpdateSchedaRipPanel;
 		}*/
 		
-		//navigationPanel = new NavigationPanel(this);
+		navigationPanel = new NavigationPanel(this);
 		
 		getContentPane().add(lastPanel, BorderLayout.CENTER);
-		//getContentPane().add(navigationPanel, BorderLayout.SOUTH);
+		getContentPane().add(navigationPanel, BorderLayout.SOUTH);
 		
 		getContentPane().revalidate();
 	
