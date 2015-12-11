@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 import it.uniclam.progettoOfficinaMeccanica.ClientGUI;
 import it.uniclam.progettoOfficinaMeccanica.Server;
 
-public class UpdateDipendentiPanel extends JPanel{
+public class DeleteDipendentiPanel extends JPanel{
 	private JTextField emailDipendenteDaMod = new JTextField("", 20);
 	
 	private JTextField nome = new JTextField("", 20);
@@ -31,24 +31,24 @@ public class UpdateDipendentiPanel extends JPanel{
 	private JTextField data_assunzione = new JTextField("", 20);
 	private JTextField scadenza_contratto = new JTextField("", 20);
 	
-	private JButton modifica = new JButton("Modifica");//Pulsante per modificare i dati
+	private JButton cancella = new JButton("Cancella");//Pulsante per Cancellare il dipendente
 	private JButton cerca = new JButton("Cerca");
 	private JButton clear = new JButton("Clear");
 	
 	private JTextArea ta = new JTextArea(12, 12);
 	
-	public UpdateDipendentiPanel(ClientGUI clientGUI){ 
+	public DeleteDipendentiPanel(ClientGUI clientGUI){ 
 
 		// Definisci un oggetto gridbagconstraints per la specifica 
 		// dei vincoli dell'interfaccia
 		GridBagConstraints c = new GridBagConstraints();
 		this.setLayout(new GridBagLayout());
 		
-		// Campo email da modificare
+		// Campo cerca per email da Cancellare
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 0;
-		this.add(new JLabel("email Dipendente da Modificare:"), c);
+		this.add(new JLabel("email Dipendente da Cancellare:"), c);
 		
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 3;
@@ -73,6 +73,7 @@ public class UpdateDipendentiPanel extends JPanel{
 		c.gridx = 2;
 		c.gridy = 1;
 		this.add(nome, c);
+		nome.setEnabled(false);
 		
 		// Campo cognome
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -83,7 +84,8 @@ public class UpdateDipendentiPanel extends JPanel{
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 2;
 		c.gridy = 2;
-		this.add(cognome, c);		
+		this.add(cognome, c);	
+		cognome.setEnabled(false);
 		
 		// Campo telefono
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -95,6 +97,7 @@ public class UpdateDipendentiPanel extends JPanel{
 		c.gridx = 2;
 		c.gridy = 3;
 		this.add(telefono, c);
+		telefono.setEnabled(false);
 
 		// Campo email
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -118,6 +121,7 @@ public class UpdateDipendentiPanel extends JPanel{
 		c.gridx = 2;
 		c.gridy = 5;
 		this.add(data_assunzione, c);
+		data_assunzione.setEnabled(false);
 		
 		// Campo data assunzione
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -129,13 +133,14 @@ public class UpdateDipendentiPanel extends JPanel{
 		c.gridx = 2;
 		c.gridy = 6;
 		this.add(scadenza_contratto, c);
+		scadenza_contratto.setEnabled(false);
 		
-		// Campo Modifica
+		// Campo Cancella
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 2;
 		c.gridy = 7;
 		c.gridwidth = 4;   //4 columns wide
-		this.add(modifica, c);		
+		this.add(cancella, c);		
 		
 		// Campo clear
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -210,12 +215,12 @@ public class UpdateDipendentiPanel extends JPanel{
 					}
 					s.close();
 				} catch (IOException ioe){
-					JOptionPane.showMessageDialog(UpdateDipendentiPanel.this, "Error in communication with server!", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(DeleteDipendentiPanel.this, "Error in communication with server!", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
 		
-		modifica.addActionListener(new ActionListener() {			
+		cancella.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try{
@@ -224,7 +229,7 @@ public class UpdateDipendentiPanel extends JPanel{
 					BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
 					PrintWriter out = new PrintWriter(s.getOutputStream(), true);
 					
-					String req = Server.UPDATE_DIPENDENTI + "\n" + 
+					String req = Server.DELETE_DIPENDENTI + "\n" + 
 							"nome:" + nome.getText() + "\n" +
 							"cognome:" + cognome.getText() + "\n" + 
 							"telefono:" + telefono.getText() + "\n" + 
@@ -234,19 +239,19 @@ public class UpdateDipendentiPanel extends JPanel{
 							"\n";
 					
 					out.println(req);
-					System.out.println("DEBUG: req Update Inviata: " + req);
+					System.out.println("DEBUG: req Cancella Inviata: " + req);
 					String line = in.readLine();
 					if (line.equalsIgnoreCase(Server.OK)){
-						ta.append("Modifica Effettuata con Successo:\n");
+						ta.append("Cancellazione Effettuata con Successo:\n");
 						line = in.readLine();
 						ta.append(line);
 						ta.append("\n");
 					} else {
-						ta.append("CHIAMATA UPDATE: Si è verificato un errore nel server!" + "\n");
+						ta.append("CHIAMATA DELETE: Si è verificato un errore nel server!" + "\n");
 					}
 					s.close();
 				} catch (IOException ioe){
-					JOptionPane.showMessageDialog(UpdateDipendentiPanel.this, "Error in communication with server!", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(DeleteDipendentiPanel.this, "Error in communication with server!", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

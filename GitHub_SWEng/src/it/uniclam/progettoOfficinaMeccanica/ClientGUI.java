@@ -19,11 +19,13 @@ public class ClientGUI extends JFrame{
 	public static String CERCA_DIPENDENTI_PANEL = "Cerca Dipendenti";
 	public static String INSERISCI_DIPENDENTI_PANEL = "Inserisci Dipendenti";
 	public static String UPDATE_DIPENDENTI_PANEL = "Modifica Dipendenti";
+	public static String DELETE_DIPENDENTI_PANEL = "Cancella Dipendenti";
 	public static String SETTINGS_PANEL = "Settings";
 
 	private CercaDipendentiPanel CercaDipendentiPanel;
 	private InserisciDipendentiPanel InserisciDipendentiPanel;
 	private UpdateDipendentiPanel UpdateDipendentiPanel;
+	private DeleteDipendentiPanel DeleteDipendentiPanel;
 	private NavigationPanel navigationPanel;
 	private SettingsPanel settingsPanel;
 
@@ -33,6 +35,7 @@ public class ClientGUI extends JFrame{
 		CercaDipendentiPanel = new CercaDipendentiPanel(this);
 		InserisciDipendentiPanel = new InserisciDipendentiPanel(this);
 		UpdateDipendentiPanel = new UpdateDipendentiPanel(this);
+		DeleteDipendentiPanel = new DeleteDipendentiPanel(this);
 		navigationPanel = new NavigationPanel(this);
 		settingsPanel = new SettingsPanel(this);
 
@@ -56,6 +59,9 @@ public class ClientGUI extends JFrame{
 		} else if (panelName.equals(ClientGUI.UPDATE_DIPENDENTI_PANEL)){
 			UpdateDipendentiPanel = new UpdateDipendentiPanel(this);
 			lastPanel = UpdateDipendentiPanel;
+		} else if (panelName.equals(ClientGUI.DELETE_DIPENDENTI_PANEL)){
+			DeleteDipendentiPanel = new DeleteDipendentiPanel(this);
+			lastPanel = DeleteDipendentiPanel;
 		} else if (panelName.equals(ClientGUI.SETTINGS_PANEL)){
 			settingsPanel = new SettingsPanel(this);
 			lastPanel = settingsPanel;

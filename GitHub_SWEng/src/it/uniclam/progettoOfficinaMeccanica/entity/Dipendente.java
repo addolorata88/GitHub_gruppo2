@@ -71,8 +71,8 @@ public class Dipendente {
 	}
 	
 	public String toString(){
-		return "Dipendente " + this.getNome() + ", " + this.getCognome() + ", " + 
-				this.getTelefono() + ", " + this.getEmail() + ", " + 
-				this.getDataAssunzione() + ", " + this.getScadenzaContratto();
+		return "Dipendente: " + this.getNome() + "," + this.getCognome() + "," + 
+				this.getTelefono() + "," + this.getEmail() + "," + 
+				this.getDataAssunzione() + "," + this.getScadenzaContratto();
 	}
 }

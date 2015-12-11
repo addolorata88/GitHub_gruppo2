@@ -133,10 +133,16 @@ public class Server {
 				String email = in.readLine().replace("email:", "").replace("\n", "");
 				String data_assunzione = in.readLine().replace("data_assunzione:", "").replace("\n", "");
 				String scadenza_contratto = in.readLine().replace("scadenza_contratto:", "").replace("\n", "");
-
+				/* Per Debug, si può cancellare:
+				System.out.println("nome: " + nome);
+				System.out.println("cognome: " + cognome);
+				System.out.println("telefono: " + telefono);
+				System.out.println("email: " + email);
+				System.out.println("data_assunzione: " + data_assunzione);
+				System.out.println("scadenza_contratto: " + scadenza_contratto); */
 				try{	
-					Dipendente nuovoDipendente = new Dipendente(nome, cognome, telefono, email, data_assunzione, scadenza_contratto);
-					DipendenteDAOImpl.getInstance().updateDipendente(nuovoDipendente);
+					Dipendente updateDipendente = new Dipendente(nome, cognome, telefono, email, data_assunzione, scadenza_contratto);
+					DipendenteDAOImpl.getInstance().updateDipendente(updateDipendente);
 
 					response = "Ok\n";				
 					out.println(response);

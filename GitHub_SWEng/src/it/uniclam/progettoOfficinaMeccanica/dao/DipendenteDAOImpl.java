@@ -63,16 +63,20 @@ public class DipendenteDAOImpl implements DipendenteDAO{
 			}
 				
 			Statement stm = DAOSettings.getStatement();
+			System.out.println("UPDATE: " + d);
 			
-			String sql_update = "UPDATE meccanico SET";
+			String sql_update = "UPDATE meccanico SET ";
 					sql_update += "nome='" + d.getNome() + "',";
 					sql_update += "cognome='" + d.getCognome() + "',";
 					sql_update += "telefono='" + d.getTelefono() + "',";
-					sql_update += "email='" + d.getEmail() + "',";
 					sql_update += "data_assunzione='" + d.getDataAssunzione() + "',";
 					sql_update += "scadenza_contratto='" + d.getScadenzaContratto() + "'";
-							
-			ResultSet rs = stm.executeQuery(sql_update);
+					sql_update += " WHERE email='" + d.getEmail() + "'";
+			
+			System.out.println("DEBUG Query Update: " + sql_update);
+			//ResultSet rs = stm.executeQuery(sql_update);
+			int t = stm.executeUpdate(sql_update);
+
 			DAOSettings.closeStatement(stm);
 			
 		} catch (SQLException sqle) {
