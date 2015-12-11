@@ -8,14 +8,19 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import it.uniclam.progettoOfficinaMeccanica.gui.*;
 
+/*Di seguito è stato sviluppato il codice per il Client che avvia le interfacce che permettono 
+ * la gestione della tabella "meccanico" del db creato in MySql, "officina_meccanica". 
+ * In seguito all'avvio del Server, si avvia il presente Client e comparirà l'interfaccia 
+ * riferita alla tabella "meccanico"*/
+
 public class ClientGUI extends JFrame{
 	JPanel lastPanel = null;
-	
+
 	public static String CERCA_DIPENDENTI_PANEL = "Cerca Dipendenti";
 	public static String INSERISCI_DIPENDENTI_PANEL = "Inserisci Dipendenti";
 	public static String UPDATE_DIPENDENTI_PANEL = "Modifica Dipendenti";
 	public static String SETTINGS_PANEL = "Settings";
-	
+
 	private CercaDipendentiPanel CercaDipendentiPanel;
 	private InserisciDipendentiPanel InserisciDipendentiPanel;
 	private UpdateDipendentiPanel UpdateDipendentiPanel;
@@ -24,13 +29,13 @@ public class ClientGUI extends JFrame{
 
 	public ClientGUI(){
 		super();
-	
+
 		CercaDipendentiPanel = new CercaDipendentiPanel(this);
 		InserisciDipendentiPanel = new InserisciDipendentiPanel(this);
 		UpdateDipendentiPanel = new UpdateDipendentiPanel(this);
 		navigationPanel = new NavigationPanel(this);
 		settingsPanel = new SettingsPanel(this);
-		
+
 		changePanel(ClientGUI.CERCA_DIPENDENTI_PANEL);
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -38,10 +43,10 @@ public class ClientGUI extends JFrame{
 		setVisible(true);
 		setSize(800,600);		//aggiunto 04-12-2015
 	}
-	
+
 	public void changePanel(String panelName){
 		getContentPane().removeAll();
-		
+
 		if (panelName.equals(ClientGUI.CERCA_DIPENDENTI_PANEL)){
 			CercaDipendentiPanel = new CercaDipendentiPanel(this);
 			lastPanel = CercaDipendentiPanel;
@@ -55,36 +60,36 @@ public class ClientGUI extends JFrame{
 			settingsPanel = new SettingsPanel(this);
 			lastPanel = settingsPanel;
 		}
-		
+
 		navigationPanel = new NavigationPanel(this);
-		
+
 		getContentPane().add(lastPanel, BorderLayout.CENTER);
 		getContentPane().add(navigationPanel, BorderLayout.SOUTH);
-		
+
 		getContentPane().revalidate();
-	
+
 	}	
 	public static void main(String[] args) {
 		try {
-            UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-        } catch (UnsupportedLookAndFeelException ex) {
-            ex.printStackTrace();
-        } catch (IllegalAccessException ex) {
-            ex.printStackTrace();
-        } catch (InstantiationException ex) {
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
-        /* Turn off metal's use of bold fonts */
-        UIManager.put("swing.boldMetal", Boolean.FALSE);
-         
-        //Schedule a job for the event dispatch thread:
-        //creating and showing this application's GUI.
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-            	ClientGUI frame = new ClientGUI();
-            }
-        });
+			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+		} catch (UnsupportedLookAndFeelException ex) {
+			ex.printStackTrace();
+		} catch (IllegalAccessException ex) {
+			ex.printStackTrace();
+		} catch (InstantiationException ex) {
+			ex.printStackTrace();
+		} catch (ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		/* Turn off metal's use of bold fonts */
+		UIManager.put("swing.boldMetal", Boolean.FALSE);
+
+		//Schedule a job for the event dispatch thread:
+		//creating and showing this application's GUI.
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				ClientGUI frame = new ClientGUI();
+			}
+		});
 	}
 }

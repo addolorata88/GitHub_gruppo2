@@ -8,10 +8,15 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import it.uniclam.progettoOfficinaMeccanica.gui.*;
 
+/*Di seguito è stato sviluppato il codice per il Client che avvia le interfacce che permettono 
+ * la gestione della tabella "schede_riparazione" del db creato in MySql, "officina_meccanica". 
+ * In seguito all'avvio del Server, si avvia il presente Client e comparirà l'interfaccia 
+ * riferita alla tabella "scheda di riparazione"*/
+
 public class AmmGestSchedeGUI extends JFrame{
 	JPanel lastPanel = null;
 	
-	public static String INSERISCI_SCHEDA_PANEL = "Inserisci Scheda Rip.";
+	public static String INSERISCI_SCHEDA_PANEL = "Inserisci Scheda Rip.";   
 	public static String CERCA_SCHEDA_PANEL = "Ricerca Scheda Rip.";
 	public static String UPDATE_SCHEDA_PANEL = "Modifica Scheda Rip.";
 	

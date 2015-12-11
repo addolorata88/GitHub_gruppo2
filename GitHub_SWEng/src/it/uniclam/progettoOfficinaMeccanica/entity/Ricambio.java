@@ -1,12 +1,17 @@
 package it.uniclam.progettoOfficinaMeccanica.entity;
 
+/*Entità riferita alla tabella "ricambio" in cui si tiene traccia 
+ * di tutti i pezzi di ricambio presenti in magazzino che verranno 
+ * utilizzati dai meccanici per effettuare la riparazione*/
+
 public class Ricambio {
 
 	private String nomeRicambio;
-	private boolean garanzia;
+	private boolean garanzia;   //Questo attributo riporta la validità o meno 
+	                            //della garanzia sul pezzo di ricambio
 	private float prezzo; 
-	private int idSchedaRip;
 
+	//COSTRUTTORE
 	public Ricambio(String nomeRicambio, boolean garanzia, float prezzo) {
 		super();
 		this.nomeRicambio = nomeRicambio;
@@ -16,7 +21,7 @@ public class Ricambio {
 
 	public boolean isGaranzia() {
 		return garanzia;
-	}
+	}					
 
 	public void setGaranzia(boolean garanzia) {
 		this.garanzia = garanzia;
@@ -36,13 +41,5 @@ public class Ricambio {
 
 	public void setNomeRicambio(String nomeRicambio) {
 		this.nomeRicambio = nomeRicambio;
-	}
-
-	public int getIdSchedaRip() {
-		return idSchedaRip;
-	}
-
-	public void setIdSchedaRip(int idSchedaRip) {
-		this.idSchedaRip = idSchedaRip;
 	}
 }

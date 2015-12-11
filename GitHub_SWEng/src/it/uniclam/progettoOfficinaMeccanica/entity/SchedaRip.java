@@ -3,6 +3,8 @@ package it.uniclam.progettoOfficinaMeccanica.entity;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/*In questa classe è definita l'entità riferita alla scheda di 
+ * riparazione che viene creata all'entrata del veicolo in officina*/
 public class SchedaRip {
 
 	private String marcaVeicolo;
