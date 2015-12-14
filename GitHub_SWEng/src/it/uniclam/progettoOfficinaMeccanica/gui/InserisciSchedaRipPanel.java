@@ -102,7 +102,7 @@ public class InserisciSchedaRipPanel extends JPanel{
 		c.gridy = 3;
 		this.add(data_immatricolazione, c);
 
-		// Campo desc_intervento
+		// Campo descrizione_intervento
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 4;
@@ -231,13 +231,13 @@ public class InserisciSchedaRipPanel extends JPanel{
 					out.println(req);
 					System.out.println("DEBUG: Inviato dal Pannello: " + req);
 					String line = in.readLine();
-					if (line.equalsIgnoreCase("Ok!")){
+					if (line.equalsIgnoreCase(Server.OK)){
 						line = in.readLine();
 						while(line.length() > 0){
 							ta.append(line + "\n");
 							line = in.readLine();
 						}
-						ta.append("\n");
+						ta.append("Dati inseriti correttamente nella scheda!");
 					} else {
 						ta.append("Si è verificato un errore nel server!" + "\n");
 						ta.append(line);

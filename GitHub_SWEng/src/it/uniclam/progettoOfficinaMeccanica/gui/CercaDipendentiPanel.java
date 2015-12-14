@@ -26,8 +26,8 @@ public class CercaDipendentiPanel extends JPanel {
 	private JTextField cognome = new JTextField("c", 20);	
 	private JTextField telefono = new JTextField("t", 20);
 	private JTextField email = new JTextField("e", 20);
-	private JTextField data_assunzione = new JTextField("01-01-1970", 20);
-	private JTextField scadenza_contratto = new JTextField("xx-xx-xxxx", 20);
+	private JTextField data_assunzione = new JTextField("1970-01-01", 20);
+	private JTextField scadenza_contratto = new JTextField("xxxx-xx-xx", 20);
 	
 	private JButton cerca = new JButton("Cerca");
 	private JButton clear = new JButton("Clear");
@@ -96,7 +96,7 @@ public class CercaDipendentiPanel extends JPanel {
 		c.gridy = 4;
 		this.add(data_assunzione, c);
 		
-		// Campo data assunzione
+		// Campo data scadenza contratto
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 5;
@@ -128,7 +128,7 @@ public class CercaDipendentiPanel extends JPanel {
 		c.gridwidth = 4;   //2 columns wide
 		this.add(new JLabel("Risposta:"), c);
 		
-		// Campo risposta text area
+		// Campo risposta (text area)
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 1;
 		c.gridy = 	8;
@@ -152,6 +152,7 @@ public class CercaDipendentiPanel extends JPanel {
 					BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
 					PrintWriter out = new PrintWriter(s.getOutputStream(), true);
 					
+					/*Viene adesso riportata la query sql che che permetterà la ricerca dei dati considerati di interesse all'interno della tabella*/
 					String req = 
 							Server.QUERY_DIPENDENTI + "\n" + 
 							"nome:" + nome.getText() + "\n" + 
@@ -163,17 +164,17 @@ public class CercaDipendentiPanel extends JPanel {
 							"\n";
 					
 					out.println(req);
-					System.out.println("DEBUG: req Inviata: " + req);
+					System.out.println("DEBUG: req Inviata: " + req);  //sulla console riceviamo conferma dell'invio dell'istruzione
 					String line = in.readLine();
 					if (line.equalsIgnoreCase(Server.OK)){
 						line = in.readLine();
 						while(line.length() > 0){
 							ta.append(line + "\n");
-							line = in.readLine();
+							line = in.readLine(); //se l'operazione va a buon fine nella text area compariranno i dati di interesse;
 						}
 						ta.append("\n");
 					} else {
-						ta.append("RICERCA: Si è verificato un errore nel server!" + "\n");
+						ta.append("RICERCA: Si è verificato un errore nel server!" + "\n"); //in caso contrario viene restituito un messaggio di errore
 					}
 					s.close();
 				} catch (IOException ioe){
