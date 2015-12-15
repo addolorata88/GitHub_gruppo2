@@ -6,23 +6,23 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.uniclam.progettoOfficinaMeccanica.entity.SchedaRip;
+import it.uniclam.progettoOfficinaMeccanica.entity.SchedaRiparazione;
 
-public class SchedaRipDAOImpl implements SchedaRipDAO{
+public class SchedaRiparazioneDAOImpl implements SchedaRiparazioneDAO{
 
-	private SchedaRipDAOImpl(){};
+	private SchedaRiparazioneDAOImpl(){};
 
-	private static SchedaRipDAO dao = null;
+	private static SchedaRiparazioneDAO dao = null;
 
-	public static SchedaRipDAO getInstance(){
+	public static SchedaRiparazioneDAO getInstance(){
 		if (dao == null){
-			dao = new SchedaRipDAOImpl();
+			dao = new SchedaRiparazioneDAOImpl();
 		}
 		return dao;
 	}
 
 	@Override
-	public void insertSchedaRip(SchedaRip i) throws DAOException{
+	public void insertSchedaRiparazione(SchedaRiparazione i) throws DAOException{
 		try {
 			if (	i.getMarcaVeicolo() == null ||
 					i.getModelloVeicolo() == null ||
@@ -57,7 +57,7 @@ public class SchedaRipDAOImpl implements SchedaRipDAO{
 	}
 
 	@Override
-	public void updateSchedaRip(SchedaRip i)  throws DAOException{
+	public void updateSchedaRiparazione(SchedaRiparazione i)  throws DAOException{
 		try {
 			if (	i.getMarcaVeicolo() == null ||
 					i.getModelloVeicolo() == null ||
@@ -95,8 +95,8 @@ public class SchedaRipDAOImpl implements SchedaRipDAO{
 	}
 
 	@Override
-	public List<SchedaRip> showSchedaRip(SchedaRip i)  throws DAOException{
-		ArrayList<SchedaRip> elenco = new ArrayList<SchedaRip>();
+	public List<SchedaRiparazione> showSchedaRiparazione(SchedaRiparazione i)  throws DAOException{
+		ArrayList<SchedaRiparazione> elenco = new ArrayList<SchedaRiparazione>();
 
 		try {
 			if (	i.getMarcaVeicolo() == null ||
@@ -126,7 +126,7 @@ public class SchedaRipDAOImpl implements SchedaRipDAO{
 
 			ResultSet rs = stm.executeQuery(sql_find);
 			while(rs.next()){
-				elenco.add(new SchedaRip(rs.getString("marca_veicolo"),
+				elenco.add(new SchedaRiparazione(rs.getString("marca_veicolo"),
 						rs.getString("modello_veicolo"),
 						rs.getString("data_immatricolazione"),
 						rs.getString("descrizione_intervento"),
@@ -145,8 +145,8 @@ public class SchedaRipDAOImpl implements SchedaRipDAO{
 	}
 
 	@Override
-	public List<SchedaRip> showAllSchedeRip()  throws DAOException{
-		ArrayList<SchedaRip> elenco = new ArrayList<SchedaRip>();
+	public List<SchedaRiparazione> showAllSchedeRiparazione()  throws DAOException{
+		ArrayList<SchedaRiparazione> elenco = new ArrayList<SchedaRiparazione>();
 
 		try {
 			Statement stm = DAOSettings.getStatement();
@@ -154,7 +154,7 @@ public class SchedaRipDAOImpl implements SchedaRipDAO{
 			ResultSet rs=stm.executeQuery(sql);
 
 			while(rs.next()){
-				SchedaRip i = new SchedaRip(rs.getString("marca_veicolo"),
+				SchedaRiparazione i = new SchedaRiparazione(rs.getString("marca_veicolo"),
 						rs.getString("modello_veicolo"),
 						rs.getString("data_immatricolazione"),
 						rs.getString("descrizione_intervento"),
@@ -173,7 +173,7 @@ public class SchedaRipDAOImpl implements SchedaRipDAO{
 	}
 
 	@Override
-	public void deleteSchedaRip(SchedaRip i)  throws DAOException{
+	public void deleteSchedaRiparazione(SchedaRiparazione i)  throws DAOException{
 		try {
 			if (i.getCognomeCliente() == null) {
 				throw new DAOException("In deleteSchedaRip: cognomeCliente field can not be empty");

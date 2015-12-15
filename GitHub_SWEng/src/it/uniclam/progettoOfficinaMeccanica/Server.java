@@ -1,7 +1,7 @@
 package it.uniclam.progettoOfficinaMeccanica;
 import it.uniclam.progettoOfficinaMeccanica.dao.DAOException;
 import it.uniclam.progettoOfficinaMeccanica.dao.DipendenteDAOImpl;
-import it.uniclam.progettoOfficinaMeccanica.dao.SchedaRipDAOImpl;
+import it.uniclam.progettoOfficinaMeccanica.dao.SchedaRiparazioneDAOImpl;
 import it.uniclam.progettoOfficinaMeccanica.entity.*;
 
 import java.io.BufferedReader;
@@ -133,13 +133,7 @@ public class Server {
 				String email = in.readLine().replace("email:", "").replace("\n", "");
 				String data_assunzione = in.readLine().replace("data_assunzione:", "").replace("\n", "");
 				String scadenza_contratto = in.readLine().replace("scadenza_contratto:", "").replace("\n", "");
-				/* Per Debug, si può cancellare:
-				System.out.println("nome: " + nome);
-				System.out.println("cognome: " + cognome);
-				System.out.println("telefono: " + telefono);
-				System.out.println("email: " + email);
-				System.out.println("data_assunzione: " + data_assunzione);
-				System.out.println("scadenza_contratto: " + scadenza_contratto); */
+			
 				try{	
 					Dipendente updateDipendente = new Dipendente(nome, cognome, telefono, email, data_assunzione, scadenza_contratto);
 					DipendenteDAOImpl.getInstance().updateDipendente(updateDipendente);
@@ -153,7 +147,7 @@ public class Server {
 				}				
 				s.close();
 
-				// Inizio sessione SCHEDA RIP
+				// Inizio sessione SCHEDA RIPARAZIONE
 			} else if (command.equals(INSERT_SCHEDA)){
 				String marca_veicolo = in.readLine().replace("marca_veicolo:", "").replace("\n", "");
 				String modello_veicolo = in.readLine().replace("modello_veicolo:", "").replace("\n", "");
@@ -172,12 +166,12 @@ public class Server {
 						" " + id_meccanico);
 
 				try{	
-					SchedaRip nuovaSchedaRip = new SchedaRip(marca_veicolo,modello_veicolo,
+					SchedaRiparazione nuovaSchedaRip = new SchedaRiparazione(marca_veicolo,modello_veicolo,
 							data_immatricolazione,desc_intervento,data_evasione,nome_cliente,
 							cognome_cliente,tel_cliente,Integer.parseInt(id_meccanico));
 					System.out.println("Debug oggetto: " + nuovaSchedaRip);
 
-					SchedaRipDAOImpl.getInstance().insertSchedaRip(nuovaSchedaRip);
+					SchedaRiparazioneDAOImpl.getInstance().insertSchedaRiparazione(nuovaSchedaRip);
 
 					response = "Ok\n";				
 					out.println(response);

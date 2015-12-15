@@ -22,7 +22,7 @@ import it.uniclam.progettoOfficinaMeccanica.ClientGUI;
 import it.uniclam.progettoOfficinaMeccanica.Server;
 
 public class UpdateDipendentiPanel extends JPanel{
-	private JTextField emailDipendenteDaMod = new JTextField("", 20);
+	private JTextField emailDipendenteDaModificare = new JTextField("", 20);
 	
 	private JTextField nome = new JTextField("", 20);
 	private JTextField cognome = new JTextField("", 20);	
@@ -53,7 +53,7 @@ public class UpdateDipendentiPanel extends JPanel{
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 3;
 		c.gridy = 0;
-		this.add(emailDipendenteDaMod, c);
+		this.add(emailDipendenteDaModificare, c);
 
 		// Campo cerca
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -119,7 +119,7 @@ public class UpdateDipendentiPanel extends JPanel{
 		c.gridy = 5;
 		this.add(data_assunzione, c);
 		
-		// Campo data assunzione
+		// Campo scadenza contratto
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 6;
@@ -130,7 +130,7 @@ public class UpdateDipendentiPanel extends JPanel{
 		c.gridy = 6;
 		this.add(scadenza_contratto, c);
 		
-		// Campo Modifica
+		// Campo modifica
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 2;
 		c.gridy = 7;
@@ -180,7 +180,7 @@ public class UpdateDipendentiPanel extends JPanel{
 							"nome:\n" + 
 							"cognome:\n" + 							
 							"telefono:\n" + 
-							"email:" + emailDipendenteDaMod.getText() + "\n" + 
+							"email:" + emailDipendenteDaModificare.getText() + "\n" + 
 							"data_assunzione:\n" + 
 							"scadenza_contratto:\n" + 
 							"\n";

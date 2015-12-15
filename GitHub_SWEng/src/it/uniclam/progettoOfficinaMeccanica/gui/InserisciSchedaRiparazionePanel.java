@@ -28,12 +28,12 @@ import it.uniclam.progettoOfficinaMeccanica.Server;
  * scopo si è provveduto a introdurre un campo di testo per ognuno degli attributi della 
  * entità "SchedaRip" e, dunque, presente nella tabella di riferimento*/
 
-public class InserisciSchedaRipPanel extends JPanel{
+public class InserisciSchedaRiparazionePanel extends JPanel{
 	private JTextField marca_veicolo		= new JTextField("", 20);
 	private JTextField modello_veicolo		= new JTextField("", 20);
 	private JTextField data_entrata			= new JTextField("", 20);
 	private JTextField data_immatricolazione= new JTextField("", 20);
-	private JTextField desc_intervento		= new JTextField("", 20);
+	private JTextField descrizione_intervento		= new JTextField("", 20);
 	private JTextField data_evasione		= new JTextField("", 20);
 	private JTextField nome_cliente			= new JTextField("", 20);
 	private JTextField cognome_cliente		= new JTextField("", 20);
@@ -51,7 +51,7 @@ public class InserisciSchedaRipPanel extends JPanel{
 	//appena effettuata, o, in caso contrario, 
 	//il corrispondente messaggio di errore.
 
-	public InserisciSchedaRipPanel(AmmGestSchedeGUI ammGestSchedeGUI){
+	public InserisciSchedaRiparazionePanel(AmmGestSchedeGUI ammGestSchedeGUI){
 
 		// Si definisce un oggetto gridbagconstraints per  
 		// la specifica dei vincoli dell'interfaccia
@@ -106,12 +106,12 @@ public class InserisciSchedaRipPanel extends JPanel{
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 4;
-		this.add(new JLabel("desc_intervento:"), c);
+		this.add(new JLabel("descrizione_intervento:"), c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 2;
 		c.gridy = 4;
-		this.add(desc_intervento, c);
+		this.add(descrizione_intervento, c);
 
 		// Campo data_evasione
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -220,7 +220,7 @@ public class InserisciSchedaRipPanel extends JPanel{
 							"modello_veicolo:" + modello_veicolo.getText() + "\n" +
 							"data_entrata:" + data_entrata.getText() + "\n" +
 							"data_immatricolazione:" + data_immatricolazione.getText() + "\n" +
-							"desc_intervento:" + desc_intervento.getText() + "\n" +
+							"descrizione_intervento:" + descrizione_intervento.getText() + "\n" +
 							"data_evasione:" + data_evasione.getText() + "\n" +
 							"nome_cliente:" + nome_cliente.getText() + "\n" +
 							"cognome_cliente:" + cognome_cliente.getText() + "\n" +
@@ -244,7 +244,7 @@ public class InserisciSchedaRipPanel extends JPanel{
 					}
 					s.close();
 				} catch (IOException ioe){
-					JOptionPane.showMessageDialog(InserisciSchedaRipPanel.this, "Error in communication with server!", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(InserisciSchedaRiparazionePanel.this, "Error in communication with server!", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});	

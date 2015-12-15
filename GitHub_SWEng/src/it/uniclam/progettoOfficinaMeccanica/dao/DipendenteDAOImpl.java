@@ -137,7 +137,7 @@ public class DipendenteDAOImpl implements DipendenteDAO{
 						rs.getString("scadenza_contratto"));
 				lista.add(a);
 			}
-			//return lista;
+			
 			
 		} catch (SQLException sq) {
 			throw new DAOException(

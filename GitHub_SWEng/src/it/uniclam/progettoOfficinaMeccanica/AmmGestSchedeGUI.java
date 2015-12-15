@@ -20,17 +20,17 @@ public class AmmGestSchedeGUI extends JFrame{
 	public static String CERCA_SCHEDA_PANEL = "Ricerca Scheda Rip.";
 	public static String UPDATE_SCHEDA_PANEL = "Modifica Scheda Rip.";
 	
-	private CercaSchedaRipPanel CercaSchedaRipPanel;
-	private InserisciSchedaRipPanel InserisciSchedaRipPanel;
-	//private UpdateSchedaRipPanel UpdateSchedaRipPanel;
+	private CercaSchedaRiparazionePanel cercaSchedaRiparazionePanel;
+	private InserisciSchedaRiparazionePanel inserisciSchedaRiparazionePanel;
+	//private UpdateSchedaRiparazionePanel updateSchedaRiparazionePanel;
 	private NavigationPanel navigationPanel;
 
 	public AmmGestSchedeGUI(){
 		super();
 	
-		CercaSchedaRipPanel = new CercaSchedaRipPanel(this);
-		InserisciSchedaRipPanel = new InserisciSchedaRipPanel(this);
-		//UpdateSchedaRipPanel = new UpdateSchedaRipPanel(this);
+		cercaSchedaRiparazionePanel = new CercaSchedaRiparazionePanel(this);
+		inserisciSchedaRiparazionePanel = new InserisciSchedaRiparazionePanel(this);
+		//updateSchedaRiparazionePanel = new UpdateSchedaRiparazionePanel(this);
 		
 		changePanel(AmmGestSchedeGUI.INSERISCI_SCHEDA_PANEL);
 
@@ -44,14 +44,14 @@ public class AmmGestSchedeGUI extends JFrame{
 		getContentPane().removeAll();
 		
 		if (panelName.equals(AmmGestSchedeGUI.INSERISCI_SCHEDA_PANEL)){
-			InserisciSchedaRipPanel = new InserisciSchedaRipPanel(this);
-			lastPanel = InserisciSchedaRipPanel;
+			inserisciSchedaRiparazionePanel = new InserisciSchedaRiparazionePanel(this);
+			lastPanel = inserisciSchedaRiparazionePanel;
 		} else if (panelName.equals(AmmGestSchedeGUI.CERCA_SCHEDA_PANEL)){
-			CercaSchedaRipPanel = new CercaSchedaRipPanel(this);
-			lastPanel = CercaSchedaRipPanel;
+			cercaSchedaRiparazionePanel = new CercaSchedaRiparazionePanel(this);
+			lastPanel = cercaSchedaRiparazionePanel;
 		} /*else if (panelName.equals(AmmGestSchedeGUI.UPDATE_SCHEDA_PANEL)){
-			UpdateSchedaRipPanel = new UpdateSchedaRipPanel(this);
-			lastPanel = UpdateSchedaRipPanel;
+			updateSchedaRipPanel = new UpdateSchedaRipPanel(this);
+			lastPanel = updateSchedaRiparazionePanel;
 		}*/
 		
 		navigationPanel = new NavigationPanel(this);
