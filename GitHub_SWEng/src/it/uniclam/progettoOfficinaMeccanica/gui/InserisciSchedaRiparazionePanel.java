@@ -18,7 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import it.uniclam.progettoOfficinaMeccanica.AmmGestSchedeGUI;
+import it.uniclam.progettoOfficinaMeccanica.GestioneSchedeGUI;
 import it.uniclam.progettoOfficinaMeccanica.ClientGUI;
 import it.uniclam.progettoOfficinaMeccanica.Server;
 
@@ -51,7 +51,7 @@ public class InserisciSchedaRiparazionePanel extends JPanel{
 	//appena effettuata, o, in caso contrario, 
 	//il corrispondente messaggio di errore.
 
-	public InserisciSchedaRiparazionePanel(AmmGestSchedeGUI ammGestSchedeGUI){
+	public InserisciSchedaRiparazionePanel(GestioneSchedeGUI ammGestSchedeGUI){
 
 		// Si definisce un oggetto gridbagconstraints per  
 		// la specifica dei vincoli dell'interfaccia

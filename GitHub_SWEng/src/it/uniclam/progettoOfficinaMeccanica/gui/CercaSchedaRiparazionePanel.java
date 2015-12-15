@@ -50,7 +50,7 @@ public class CercaSchedaRiparazionePanel extends JPanel {
 	//appena effettuata, o, in caso contrario, 
 	//il corrispondente messaggio di errore.
 
-	public CercaSchedaRiparazionePanel(AmmGestSchedeGUI ammGestSchedeGUI){ 
+	public CercaSchedaRiparazionePanel(GestioneSchedeGUI ammGestSchedeGUI){ 
 
 		// Definisci un oggetto gridbagconstraints per la specifica 
 		// dei vincoli dell'interfaccia

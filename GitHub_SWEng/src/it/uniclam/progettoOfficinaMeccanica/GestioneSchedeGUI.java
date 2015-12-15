@@ -13,7 +13,7 @@ import it.uniclam.progettoOfficinaMeccanica.gui.*;
  * In seguito all'avvio del Server, si avvia il presente Client e comparirà l'interfaccia 
  * riferita alla tabella "scheda di riparazione"*/
 
-public class AmmGestSchedeGUI extends JFrame{
+public class GestioneSchedeGUI extends JFrame{
 	JPanel lastPanel = null;
 	
 	public static String INSERISCI_SCHEDA_PANEL = "Inserisci Scheda Rip.";   
@@ -25,14 +25,14 @@ public class AmmGestSchedeGUI extends JFrame{
 	//private UpdateSchedaRiparazionePanel updateSchedaRiparazionePanel;
 	private NavigationPanel navigationPanel;
 
-	public AmmGestSchedeGUI(){
+	public GestioneSchedeGUI(){
 		super();
 	
 		cercaSchedaRiparazionePanel = new CercaSchedaRiparazionePanel(this);
 		inserisciSchedaRiparazionePanel = new InserisciSchedaRiparazionePanel(this);
 		//updateSchedaRiparazionePanel = new UpdateSchedaRiparazionePanel(this);
 		
-		changePanel(AmmGestSchedeGUI.INSERISCI_SCHEDA_PANEL);
+		changePanel(GestioneSchedeGUI.INSERISCI_SCHEDA_PANEL);
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		pack();
@@ -43,10 +43,10 @@ public class AmmGestSchedeGUI extends JFrame{
 	public void changePanel(String panelName){
 		getContentPane().removeAll();
 		
-		if (panelName.equals(AmmGestSchedeGUI.INSERISCI_SCHEDA_PANEL)){
+		if (panelName.equals(GestioneSchedeGUI.INSERISCI_SCHEDA_PANEL)){
 			inserisciSchedaRiparazionePanel = new InserisciSchedaRiparazionePanel(this);
 			lastPanel = inserisciSchedaRiparazionePanel;
-		} else if (panelName.equals(AmmGestSchedeGUI.CERCA_SCHEDA_PANEL)){
+		} else if (panelName.equals(GestioneSchedeGUI.CERCA_SCHEDA_PANEL)){
 			cercaSchedaRiparazionePanel = new CercaSchedaRiparazionePanel(this);
 			lastPanel = cercaSchedaRiparazionePanel;
 		} /*else if (panelName.equals(AmmGestSchedeGUI.UPDATE_SCHEDA_PANEL)){
@@ -81,7 +81,7 @@ public class AmmGestSchedeGUI extends JFrame{
         //creating and showing this application's GUI.
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-            	AmmGestSchedeGUI frame = new AmmGestSchedeGUI();
+            	GestioneSchedeGUI frame = new GestioneSchedeGUI();
             }
         });
 	}

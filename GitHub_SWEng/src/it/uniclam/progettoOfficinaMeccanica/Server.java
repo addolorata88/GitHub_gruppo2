@@ -49,6 +49,7 @@ public class Server {
 
 			String command = in.readLine();
 
+			//inizio sessione DIPENDENTE
 			if (command.equals(QUERY_DIPENDENTI)){
 
 				String nome = in.readLine().replace("nome:", "").replace("\n", "");
@@ -146,14 +147,15 @@ public class Server {
 					out.println(response + " " + daoe);
 				}				
 				s.close();
-
+				//fine sessione DIPENDENTE
+				
 				// Inizio sessione SCHEDA RIPARAZIONE
 			} else if (command.equals(INSERT_SCHEDA)){
 				String marca_veicolo = in.readLine().replace("marca_veicolo:", "").replace("\n", "");
 				String modello_veicolo = in.readLine().replace("modello_veicolo:", "").replace("\n", "");
 				String data_entrata = in.readLine().replace("data_entrata:", "").replace("\n", "");
 				String data_immatricolazione = in.readLine().replace("data_immatricolazione:", "").replace("\n", "");
-				String desc_intervento = in.readLine().replace("desc_intervento:", "").replace("\n", "");
+				String desc_intervento = in.readLine().replace("descrizione_intervento:", "").replace("\n", "");
 				String data_evasione = in.readLine().replace("data_evasione:", "").replace("\n", "");
 				String nome_cliente = in.readLine().replace("nome_cliente:", "").replace("\n", "");
 				String cognome_cliente = in.readLine().replace("cognome_cliente:", "").replace("\n", "");		
@@ -181,7 +183,7 @@ public class Server {
 					out.println(response + " " + daoe);
 				}
 				s.close();		
-				// Fine sessione SCHEDA RIP
+				// Fine sessione SCHEDA RIPARAZIONE
 
 			} else {
 				response = "Messaggio di protocollo non valido\n";				
