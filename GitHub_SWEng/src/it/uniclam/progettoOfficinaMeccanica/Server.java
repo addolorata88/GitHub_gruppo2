@@ -160,17 +160,18 @@ public class Server {
 				String nome_cliente = in.readLine().replace("nome_cliente:", "").replace("\n", "");
 				String cognome_cliente = in.readLine().replace("cognome_cliente:", "").replace("\n", "");		
 				String tel_cliente = in.readLine().replace("tel_cliente:", "").replace("\n", "");
+				String email_cliente = in.readLine().replace("email_cliente:", "").replace("\n", "");
 				String id_meccanico = in.readLine().replace("id_meccanico:", "").replace("\n", "");
 
 				System.out.println("Debug insert SCHEDA: " + marca_veicolo + " " + modello_veicolo + 
 						" " + data_entrata + " " + data_immatricolazione + " " + descrizione_intervento + 
 						" " + data_evasione + " " + nome_cliente + " " + cognome_cliente + " " + tel_cliente +
-						" " + id_meccanico);
+						" " + email_cliente + " " + id_meccanico);
 
 				try{	
 					SchedaRiparazione nuovaSchedaRiparazione = new SchedaRiparazione(marca_veicolo,modello_veicolo,
 							data_entrata, data_immatricolazione,descrizione_intervento,data_evasione,nome_cliente,
-							cognome_cliente,tel_cliente,Integer.parseInt(id_meccanico));
+							cognome_cliente,tel_cliente,email_cliente,Integer.parseInt(id_meccanico));
 					System.out.println("Debug oggetto: " + nuovaSchedaRiparazione);
 
 					SchedaRiparazioneDAOImpl.getInstance().insertSchedaRiparazione(nuovaSchedaRiparazione);
@@ -194,17 +195,18 @@ public class Server {
 				String nome_cliente = in.readLine().replace("nome_cliente:", "").replace("\n", "");
 				String cognome_cliente = in.readLine().replace("cognome_cliente:", "").replace("\n", "");		
 				String tel_cliente = in.readLine().replace("tel_cliente:", "").replace("\n", "");
+				String email_cliente = in.readLine().replace("email_cliente:", "").replace("\n", "");
 				String id_meccanico = in.readLine().replace("id_meccanico:", "").replace("\n", "");
 				
 				System.out.println("Debug QUERY SCHEDA: " + marca_veicolo + " " + modello_veicolo + 
 						" " + data_entrata + " " + data_immatricolazione + " " + descrizione_intervento + 
 						" " + data_evasione + " " + nome_cliente + " " + cognome_cliente + " " + tel_cliente +
-						" " + id_meccanico);
+						" " + email_cliente + " " + id_meccanico);
 
 				try{	
 					SchedaRiparazione nuovaSchedaRiparazione = new SchedaRiparazione(marca_veicolo,modello_veicolo, data_entrata,
 							data_immatricolazione,descrizione_intervento,data_evasione,nome_cliente,
-							cognome_cliente,tel_cliente,Integer.parseInt(id_meccanico));
+							cognome_cliente,tel_cliente,email_cliente,Integer.parseInt(id_meccanico));
 					List<SchedaRiparazione> lista = SchedaRiparazioneDAOImpl.getInstance().showSchedaRiparazione(nuovaSchedaRiparazione);
 
 					response = "Ok\n";

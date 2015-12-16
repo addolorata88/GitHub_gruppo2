@@ -16,11 +16,12 @@ public class SchedaRiparazione {
 	private String nomeCliente;
 	private String cognomeCliente;
 	private String telCliente;
+	private String emailCliente;
 	private int idMeccanico;
 
 	public SchedaRiparazione(String marcaVeicolo, String modelloVeicolo, String dataEntrataInOfficina,
 			String dataImmatricolazione, String descrizioneIntervento, String dataEvasioneRichiesta, 
-			String nomeCliente, String cognomeCliente, String telCliente, int idMeccanico) {
+			String nomeCliente, String cognomeCliente, String telCliente, String emailCliente, int idMeccanico) {
 		super();
 		this.marcaVeicolo = marcaVeicolo;
 		this.modelloVeicolo = modelloVeicolo;
@@ -37,8 +38,17 @@ public class SchedaRiparazione {
 		this.cognomeCliente = cognomeCliente;
 		this.telCliente = telCliente;
 		this.idMeccanico = idMeccanico;
+		this.emailCliente = emailCliente;
 	}
 	
+	public String getEmailCliente() {
+		return emailCliente;
+	}
+
+	public void setEmailCliente(String emailCliente) {
+		this.emailCliente = emailCliente;
+	}
+
 	public int getIdMeccanico() {
 		return idMeccanico;
 	}
@@ -120,7 +130,7 @@ public class SchedaRiparazione {
 				this.getDataEntrataInOfficina() + "," + this.getDataImmatricolazione() + "," + 
 				this.getDescrizioneIntervento() + "," + this.getDataEvasioneRichiesta() + "," + 
 				this.getNomeCliente() + "," + this.getCognomeCliente() + "," +
-				this.getTelCliente() + "," + this.getIdMeccanico();
+				this.getTelCliente() + "," + this.getEmailCliente() + "," + this.getIdMeccanico();
 	}
 	
 }

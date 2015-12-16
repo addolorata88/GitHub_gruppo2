@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -29,17 +31,26 @@ import it.uniclam.progettoOfficinaMeccanica.Server;
  * entità "SchedaRip" e, dunque, presente nella tabella di riferimento*/
 
 public class InserisciSchedaRiparazionePanel extends JPanel{
-	private JTextField marca_veicolo		 = new JTextField("", 20);
-	private JTextField modello_veicolo		 = new JTextField("", 20);
-	private JTextField data_entrata			 = new JTextField("", 20);
-	private JTextField data_immatricolazione = new JTextField("", 20);
-	private JTextField descrizione_intervento= new JTextField("", 20);
-	private JTextField data_evasione		 = new JTextField("", 20);
-	private JTextField nome_cliente			 = new JTextField("", 20);
-	private JTextField cognome_cliente		 = new JTextField("", 20);
-	private JTextField tel_cliente			 = new JTextField("", 20);
-	private JTextField id_meccanico			 = new JTextField("", 20);
+	Date today = new Date();
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	
+	private JTextField marca_veicolo		 	= new JTextField("", 20);
+	private JTextField modello_veicolo		 	= new JTextField("", 20);
+	private JTextField data_entrata			 	= new JTextField(sdf.format(today), 20);
+	private JTextField data_immatricolazione 	= new JTextField("", 20);
+	private JTextField descrizione_intervento	= new JTextField("", 20);
+	private JTextField data_evasione		 	= new JTextField("", 20);
+	private JTextField nome_cliente			 	= new JTextField("", 20);
+	private JTextField cognome_cliente		 	= new JTextField("", 20);
+	private JTextField tel_cliente			 	= new JTextField("", 20);
+	private JTextField email_cliente			= new JTextField("", 20);
+	private JTextField id_meccanico				= new JTextField("", 20);
 
+	//Date today = new Date();
+	//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	//sdf.format(today)
+	//data_entrata.setText("test data"); 
+	
 	private JButton invia = new JButton("Inserisci");//Pulsante che permette di confermare 
 	//l'operazione di inserimento dei valori 
 	//all'interno della tabella
@@ -169,31 +180,42 @@ public class InserisciSchedaRiparazionePanel extends JPanel{
 		c.gridy = 9;
 		this.add(id_meccanico, c);
 
+		// Campo email_cliente
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 0;
+		c.gridy = 10;
+		this.add(new JLabel("email_cliente:"), c);
+
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 2;
+		c.gridy = 10;
+		this.add(email_cliente, c);
+		
 		// Campo inserisci
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 1;
-		c.gridy = 10;
+		c.gridy = 11;
 		c.gridwidth = 4;   //2 columns wide
 		this.add(invia, c);
 
 		// Campo clear
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 4;
-		c.gridy = 10;
+		c.gridy = 11;
 		c.gridwidth = 4;   //2 columns wide
 		this.add(clear, c);
 
 		// Campo risposta (label)
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
-		c.gridy = 11;
+		c.gridy = 12;
 		c.gridwidth = 4;   //2 columns wide          
 		this.add(new JLabel("Risposta:"), c);
 
 		// Campo risposta text area
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 1;
-		c.gridy = 	11;
+		c.gridy = 	12;
 		c.gridwidth = 4;   //2 columns wide  era 8
 		JScrollPane jp = new JScrollPane(ta);
 		this.add(jp, c);
@@ -225,6 +247,7 @@ public class InserisciSchedaRiparazionePanel extends JPanel{
 							"nome_cliente:" + nome_cliente.getText() + "\n" +
 							"cognome_cliente:" + cognome_cliente.getText() + "\n" +
 							"tel_cliente:" + tel_cliente.getText() + "\n" +
+							"email_cliente:" + email_cliente.getText() + "\n" +
 							"id_meccanico:" + id_meccanico.getText() + "\n" + 
 							"\n";
 

@@ -32,7 +32,8 @@ public class SchedaRiparazioneDAOImpl implements SchedaRiparazioneDAO{
 					i.getDataEvasioneRichiesta()== null ||
 					i.getNomeCliente() == null ||
 					i.getCognomeCliente() == null ||
-					i.getTelCliente()== null ||
+					i.getTelCliente() == null ||
+					i.getEmailCliente() == null ||
 					i.getIdMeccanico() == 0){
 				throw new DAOException("In insertSchedaRip: no one field can be empty");
 			}
@@ -41,13 +42,14 @@ public class SchedaRiparazioneDAOImpl implements SchedaRiparazioneDAO{
 
 			String sql_insert = "INSERT INTO scheda_riparazione (marca_veicolo, modello_veicolo, "
 					+ "data_entrata_officina, data_immatricolazione, descrizione_intervento, "
-					+ "data_evasione_richiesta, nome_cliente, cognome_cliente, tel_cliente,id_meccanico) VALUES ('";
+					+ "data_evasione_richiesta, nome_cliente, cognome_cliente, tel_cliente, email_cliente, id_meccanico) VALUES ('";
 			sql_insert += i.getMarcaVeicolo() + "', '" + i.getModelloVeicolo() + "', '";
 			sql_insert += i.getDataEntrataInOfficina() + "', '" + i.getDataImmatricolazione() + "', '";
 			sql_insert += i.getDescrizioneIntervento() + "', '" + i.getDataEvasioneRichiesta() + "', '";
 			sql_insert += i.getNomeCliente() + "', '" + i.getCognomeCliente() + "', '";
-			sql_insert += i.getTelCliente() + "', '" + i.getIdMeccanico() + "')";
+			sql_insert += i.getTelCliente() + "', '" + i.getEmailCliente() + "', '" + i.getIdMeccanico() + "')";
 
+			System.out.println("Query Inserimento: " + sql_insert);
 			int inserimento = stm.executeUpdate(sql_insert);
 			DAOSettings.closeStatement(stm);
 
@@ -67,7 +69,8 @@ public class SchedaRiparazioneDAOImpl implements SchedaRiparazioneDAO{
 					i.getDataEvasioneRichiesta()== null ||
 					i.getNomeCliente() == null ||
 					i.getCognomeCliente() == null ||
-					i.getTelCliente()== null ||
+					i.getTelCliente() == null ||
+					i.getEmailCliente() == null ||
 					i.getIdMeccanico() == 0){
 				throw new DAOException("In updateSchedaRip: no one field can be empty");
 			}
@@ -84,6 +87,7 @@ public class SchedaRiparazioneDAOImpl implements SchedaRiparazioneDAO{
 			sql_update += "nome_cliente='" + i.getNomeCliente() + "'";
 			sql_update += "cognome_cliente='" + i.getCognomeCliente() + "'";
 			sql_update += "tel_cliente='" + i.getTelCliente() + "'";
+			sql_update += "email_cliente='" + i.getEmailCliente() + "'";
 			sql_update += "id_meccanico='" + i.getIdMeccanico() + "'";
 
 			int aggiornamento = stm.executeUpdate(sql_update);  //come in insert. Modificare anche in DipDAOImpl(ResultSet->int)
@@ -109,6 +113,7 @@ public class SchedaRiparazioneDAOImpl implements SchedaRiparazioneDAO{
 					i.getNomeCliente() == null ||
 					i.getCognomeCliente() == null ||
 					i.getTelCliente()== null ||
+					i.getEmailCliente()== null ||
 					i.getIdMeccanico() == 0) {
 				throw new DAOException("In showSchedaRiparazione: no one field can be empty");
 			}
@@ -124,6 +129,7 @@ public class SchedaRiparazioneDAOImpl implements SchedaRiparazioneDAO{
 			sql_find += "%' AND nome_cliente LIKE '" + i.getNomeCliente();
 			sql_find += "%' AND cognome_cliente LIKE '" + i.getCognomeCliente();
 			sql_find += "%' AND tel_cliente LIKE '" + i.getTelCliente();
+			sql_find += "%' AND email_cliente LIKE '" + i.getEmailCliente();
 			sql_find += "%' AND id_meccanico LIKE "+ i.getIdMeccanico();
 			
 			System.out.println("Query Generata: " + sql_find);
@@ -139,6 +145,7 @@ public class SchedaRiparazioneDAOImpl implements SchedaRiparazioneDAO{
 						rs.getString("nome_cliente"),
 						rs.getString("cognome_cliente"),
 						rs.getString("tel_cliente"),
+						rs.getString("email_cliente"),
 						rs.getInt("id_meccanico"))
 						);
 			}
@@ -169,6 +176,7 @@ public class SchedaRiparazioneDAOImpl implements SchedaRiparazioneDAO{
 						rs.getString("nome_cliente"),
 						rs.getString("cognome_cliente"),
 						rs.getString("tel_cognome"),
+						rs.getString("email_cognome"),
 						rs.getInt("id_meccanico"));
 				elenco.add(i);
 			}	
