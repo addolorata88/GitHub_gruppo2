@@ -5,7 +5,7 @@ import java.util.Date;
 
 /*In questa classe è definita l'entità riferita alla scheda di 
  * riparazione che viene creata all'entrata del veicolo in officina*/
-public class SchedaRip {
+public class SchedaRiparazione {
 
 	private String marcaVeicolo;
 	private String modelloVeicolo;
@@ -18,16 +18,17 @@ public class SchedaRip {
 	private String telCliente;
 	private int idMeccanico;
 
-	public SchedaRip(String marcaVeicolo, String modelloVeicolo, String dataImmatricolazione,
-			String descrizioneIntervento, String dataEvasioneRichiesta, String nomeCliente, String cognomeCliente,
-			String telCliente, int idMeccanico) {
+	public SchedaRiparazione(String marcaVeicolo, String modelloVeicolo, String dataEntrataInOfficina,
+			String dataImmatricolazione, String descrizioneIntervento, String dataEvasioneRichiesta, 
+			String nomeCliente, String cognomeCliente, String telCliente, int idMeccanico) {
 		super();
 		this.marcaVeicolo = marcaVeicolo;
 		this.modelloVeicolo = modelloVeicolo;
 		
-		Date today = new Date();
+		/*Date today = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		this.dataEntrataInOfficina = sdf.format(today);
+		this.dataEntrataInOfficina = sdf.format(today); */
+		this.dataEntrataInOfficina = dataEntrataInOfficina;
 		
 		this.dataImmatricolazione = dataImmatricolazione;
 		this.descrizioneIntervento = descrizioneIntervento;
@@ -114,4 +115,12 @@ public class SchedaRip {
 		this.telCliente = telCliente;
 	}
 
+	public String toString(){
+		return this.getMarcaVeicolo() + "," + this.getModelloVeicolo() + "," + 
+				this.getDataEntrataInOfficina() + "," + this.getDataImmatricolazione() + "," + 
+				this.getDescrizioneIntervento() + "," + this.getDataEvasioneRichiesta() + "," + 
+				this.getNomeCliente() + "," + this.getCognomeCliente() + "," +
+				this.getTelCliente() + "," + this.getIdMeccanico();
+	}
+	
 }

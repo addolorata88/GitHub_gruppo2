@@ -133,7 +133,7 @@ public class InserisciDipendentiPanel extends JPanel{
 		c.gridwidth = 4;   //2 columns wide
 		this.add(new JLabel("Risposta:"), c);
 		
-		// Campo risposta text area
+		// Campo risposta (text area)
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 	8;
@@ -176,8 +176,9 @@ public class InserisciDipendentiPanel extends JPanel{
 							ta.append(line + "\n");
 							line = in.readLine();
 						}
-						ta.append("\n");
-					} else {
+						ta.append("Dati dipendente inseriti con successo!");
+					} 
+					else {
 						ta.append("Si è verificato un errore nel server!" + "\n");
 						ta.append(line);
 					}

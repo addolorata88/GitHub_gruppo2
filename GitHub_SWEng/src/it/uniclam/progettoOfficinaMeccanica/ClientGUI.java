@@ -22,20 +22,20 @@ public class ClientGUI extends JFrame{
 	public static String DELETE_DIPENDENTI_PANEL = "Cancella Dipendenti";
 	public static String SETTINGS_PANEL = "Settings";
 
-	private CercaDipendentiPanel CercaDipendentiPanel;
-	private InserisciDipendentiPanel InserisciDipendentiPanel;
-	private UpdateDipendentiPanel UpdateDipendentiPanel;
-	private DeleteDipendentiPanel DeleteDipendentiPanel;
+	private CercaDipendentiPanel cercaDipendentiPanel;
+	private InserisciDipendentiPanel inserisciDipendentiPanel;
+	private UpdateDipendentiPanel updateDipendentiPanel;
+	private DeleteDipendentiPanel deleteDipendentiPanel;
 	private NavigationPanel navigationPanel;
 	private SettingsPanel settingsPanel;
 
 	public ClientGUI(){
 		super();
 
-		CercaDipendentiPanel = new CercaDipendentiPanel(this);
-		InserisciDipendentiPanel = new InserisciDipendentiPanel(this);
-		UpdateDipendentiPanel = new UpdateDipendentiPanel(this);
-		DeleteDipendentiPanel = new DeleteDipendentiPanel(this);
+		cercaDipendentiPanel = new CercaDipendentiPanel(this);
+		inserisciDipendentiPanel = new InserisciDipendentiPanel(this);
+		updateDipendentiPanel = new UpdateDipendentiPanel(this);
+		deleteDipendentiPanel = new DeleteDipendentiPanel(this);
 		navigationPanel = new NavigationPanel(this);
 		settingsPanel = new SettingsPanel(this);
 
@@ -51,17 +51,17 @@ public class ClientGUI extends JFrame{
 		getContentPane().removeAll();
 
 		if (panelName.equals(ClientGUI.CERCA_DIPENDENTI_PANEL)){
-			CercaDipendentiPanel = new CercaDipendentiPanel(this);
-			lastPanel = CercaDipendentiPanel;
+			cercaDipendentiPanel = new CercaDipendentiPanel(this);
+			lastPanel = cercaDipendentiPanel;
 		} else if (panelName.equals(ClientGUI.INSERISCI_DIPENDENTI_PANEL)){
-			InserisciDipendentiPanel = new InserisciDipendentiPanel(this);
-			lastPanel = InserisciDipendentiPanel;
+			inserisciDipendentiPanel = new InserisciDipendentiPanel(this);
+			lastPanel = inserisciDipendentiPanel;
 		} else if (panelName.equals(ClientGUI.UPDATE_DIPENDENTI_PANEL)){
-			UpdateDipendentiPanel = new UpdateDipendentiPanel(this);
-			lastPanel = UpdateDipendentiPanel;
+			updateDipendentiPanel = new UpdateDipendentiPanel(this);
+			lastPanel = updateDipendentiPanel;
 		} else if (panelName.equals(ClientGUI.DELETE_DIPENDENTI_PANEL)){
-			DeleteDipendentiPanel = new DeleteDipendentiPanel(this);
-			lastPanel = DeleteDipendentiPanel;
+			deleteDipendentiPanel = new DeleteDipendentiPanel(this);
+			lastPanel = deleteDipendentiPanel;
 		} else if (panelName.equals(ClientGUI.SETTINGS_PANEL)){
 			settingsPanel = new SettingsPanel(this);
 			lastPanel = settingsPanel;

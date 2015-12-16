@@ -6,23 +6,23 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.uniclam.progettoOfficinaMeccanica.entity.SchedaRip;
+import it.uniclam.progettoOfficinaMeccanica.entity.SchedaRiparazione;
 
-public class SchedaRipDAOImpl implements SchedaRipDAO{
+public class SchedaRiparazioneDAOImpl implements SchedaRiparazioneDAO{
 
-	private SchedaRipDAOImpl(){};
+	private SchedaRiparazioneDAOImpl(){};
 
-	private static SchedaRipDAO dao = null;
+	private static SchedaRiparazioneDAO dao = null;
 
-	public static SchedaRipDAO getInstance(){
+	public static SchedaRiparazioneDAO getInstance(){
 		if (dao == null){
-			dao = new SchedaRipDAOImpl();
+			dao = new SchedaRiparazioneDAOImpl();
 		}
 		return dao;
 	}
 
 	@Override
-	public void insertSchedaRip(SchedaRip i) throws DAOException{
+	public void insertSchedaRiparazione(SchedaRiparazione i) throws DAOException{
 		try {
 			if (	i.getMarcaVeicolo() == null ||
 					i.getModelloVeicolo() == null ||
@@ -41,7 +41,7 @@ public class SchedaRipDAOImpl implements SchedaRipDAO{
 
 			String sql_insert = "INSERT INTO scheda_riparazione (marca_veicolo, modello_veicolo, "
 					+ "data_entrata_officina, data_immatricolazione, descrizione_intervento, "
-					+ "data_evasione_richiesta, nome_cliente, cognome_cliente, tel_cliente,idmeccanico) VALUES ('";
+					+ "data_evasione_richiesta, nome_cliente, cognome_cliente, tel_cliente,id_meccanico) VALUES ('";
 			sql_insert += i.getMarcaVeicolo() + "', '" + i.getModelloVeicolo() + "', '";
 			sql_insert += i.getDataEntrataInOfficina() + "', '" + i.getDataImmatricolazione() + "', '";
 			sql_insert += i.getDescrizioneIntervento() + "', '" + i.getDataEvasioneRichiesta() + "', '";
@@ -52,12 +52,12 @@ public class SchedaRipDAOImpl implements SchedaRipDAO{
 			DAOSettings.closeStatement(stm);
 
 		} catch (SQLException sqle) {
-			throw new DAOException("In insertSchedaRip: " + sqle);
+			throw new DAOException("In insertSchedaRiparazione: " + sqle);
 		}	
 	}
 
 	@Override
-	public void updateSchedaRip(SchedaRip i)  throws DAOException{
+	public void updateSchedaRiparazione(SchedaRiparazione i)  throws DAOException{
 		try {
 			if (	i.getMarcaVeicolo() == null ||
 					i.getModelloVeicolo() == null ||
@@ -84,20 +84,21 @@ public class SchedaRipDAOImpl implements SchedaRipDAO{
 			sql_update += "nome_cliente='" + i.getNomeCliente() + "'";
 			sql_update += "cognome_cliente='" + i.getCognomeCliente() + "'";
 			sql_update += "tel_cliente='" + i.getTelCliente() + "'";
-			sql_update += "idmeccanico='" + i.getIdMeccanico() + "'";
+			sql_update += "id_meccanico='" + i.getIdMeccanico() + "'";
 
 			int aggiornamento = stm.executeUpdate(sql_update);  //come in insert. Modificare anche in DipDAOImpl(ResultSet->int)
 			DAOSettings.closeStatement(stm);
 
 		} catch (SQLException sqle) {
-			throw new DAOException("In updateSchedaRip: " + sqle);
+			throw new DAOException("In updateSchedaRiparazione: " + sqle);
 		}			
 	}
 
 	@Override
-	public List<SchedaRip> showSchedaRip(SchedaRip i)  throws DAOException{
-		ArrayList<SchedaRip> elenco = new ArrayList<SchedaRip>();
-
+	public List<SchedaRiparazione> showSchedaRiparazione(SchedaRiparazione i)  throws DAOException{
+		ArrayList<SchedaRiparazione> elenco = new ArrayList<SchedaRiparazione>();
+		
+		System.out.println("Oggetto Scheda Rip: " + i);
 		try {
 			if (	i.getMarcaVeicolo() == null ||
 					i.getModelloVeicolo() == null ||
@@ -109,10 +110,11 @@ public class SchedaRipDAOImpl implements SchedaRipDAO{
 					i.getCognomeCliente() == null ||
 					i.getTelCliente()== null ||
 					i.getIdMeccanico() == 0) {
-				throw new DAOException("In showSchedaRip: no one field can be empty");
+				throw new DAOException("In showSchedaRiparazione: no one field can be empty");
 			}
 
 			Statement stm = DAOSettings.getStatement();
+			
 			String sql_find = "SELECT * FROM scheda_riparazione WHERE marca_veicolo LIKE '";
 			sql_find += i.getMarcaVeicolo() + "%' AND modello_veicolo LIKE '" + i.getModelloVeicolo();
 			sql_find += "%' AND data_entrata_officina LIKE '" + i.getDataEntrataInOfficina();
@@ -120,33 +122,37 @@ public class SchedaRipDAOImpl implements SchedaRipDAO{
 			sql_find += "%' AND descrizione_intervento LIKE '" + i.getDescrizioneIntervento();
 			sql_find += "%' AND data_evasione_richiesta LIKE '" + i.getDataEvasioneRichiesta();
 			sql_find += "%' AND nome_cliente LIKE '" + i.getNomeCliente();
-			sql_find += "%'AND cognome_cliente LIKE '" + i.getCognomeCliente();
-			sql_find += "%'AND tel_cliente LIKE '" + i.getTelCliente();
-			sql_find += "%'AND id_meccanico LIKE' "+ i.getIdMeccanico() + "%'";
-
+			sql_find += "%' AND cognome_cliente LIKE '" + i.getCognomeCliente();
+			sql_find += "%' AND tel_cliente LIKE '" + i.getTelCliente();
+			sql_find += "%' AND id_meccanico LIKE "+ i.getIdMeccanico();
+			
+			System.out.println("Query Generata: " + sql_find);
 			ResultSet rs = stm.executeQuery(sql_find);
 			while(rs.next()){
-				elenco.add(new SchedaRip(rs.getString("marca_veicolo"),
+				elenco.add(new SchedaRiparazione(
+						rs.getString("marca_veicolo"),
 						rs.getString("modello_veicolo"),
+						rs.getString("data_entrata_officina"),
 						rs.getString("data_immatricolazione"),
 						rs.getString("descrizione_intervento"),
 						rs.getString("data_evasione_richiesta"),
 						rs.getString("nome_cliente"),
 						rs.getString("cognome_cliente"),
-						rs.getString("tel_cognome"),
-						rs.getInt("idmeccanico")));
+						rs.getString("tel_cliente"),
+						rs.getInt("id_meccanico"))
+						);
 			}
 			DAOSettings.closeStatement(stm);
 
 		} catch (SQLException sqle) {
-			throw new DAOException("In showSchedaRip: " + sqle);
+			throw new DAOException("In showSchedaRiparazione: " + sqle);
 		}	
 		return elenco;
 	}
 
 	@Override
-	public List<SchedaRip> showAllSchedeRip()  throws DAOException{
-		ArrayList<SchedaRip> elenco = new ArrayList<SchedaRip>();
+	public List<SchedaRiparazione> showAllSchedeRiparazione()  throws DAOException{
+		ArrayList<SchedaRiparazione> elenco = new ArrayList<SchedaRiparazione>();
 
 		try {
 			Statement stm = DAOSettings.getStatement();
@@ -154,26 +160,27 @@ public class SchedaRipDAOImpl implements SchedaRipDAO{
 			ResultSet rs=stm.executeQuery(sql);
 
 			while(rs.next()){
-				SchedaRip i = new SchedaRip(rs.getString("marca_veicolo"),
+				SchedaRiparazione i = new SchedaRiparazione(rs.getString("marca_veicolo"),
 						rs.getString("modello_veicolo"),
+						rs.getString("data_entrata"),
 						rs.getString("data_immatricolazione"),
 						rs.getString("descrizione_intervento"),
 						rs.getString("data_evasione_richiesta"),
 						rs.getString("nome_cliente"),
 						rs.getString("cognome_cliente"),
 						rs.getString("tel_cognome"),
-						rs.getInt("idmeccanico"));
+						rs.getInt("id_meccanico"));
 				elenco.add(i);
 			}	
 		} catch (SQLException sq) {
 			throw new DAOException(
-					"In showAllSchedeRip" + sq.getMessage());
+					"In showAllSchedeRiparazione" + sq.getMessage());
 		}	
 		return elenco;
 	}
 
 	@Override
-	public void deleteSchedaRip(SchedaRip i)  throws DAOException{
+	public void deleteSchedaRiparazione(SchedaRiparazione i)  throws DAOException{
 		try {
 			if (i.getCognomeCliente() == null) {
 				throw new DAOException("In deleteSchedaRip: cognomeCliente field can not be empty");

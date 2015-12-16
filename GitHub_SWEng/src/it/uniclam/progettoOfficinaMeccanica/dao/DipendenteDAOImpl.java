@@ -41,7 +41,6 @@ public class DipendenteDAOImpl implements DipendenteDAO{
 					sql_insert += d.getTelefono() + "', '" + d.getEmail() + "', '";
 					sql_insert += d.getDataAssunzione() + "', '" + d.getScadenzaContratto() + "')";
 							
-			//ResultSet rs = stm.executeQuery(sql_insert);
 			int t = stm.executeUpdate(sql_insert);
 			DAOSettings.closeStatement(stm);
 			
@@ -130,12 +129,15 @@ public class DipendenteDAOImpl implements DipendenteDAO{
 			ResultSet rs=stm.executeQuery(sql);
 					
 			while(rs.next()){
-				Dipendente a = new Dipendente(rs.getString("nome"), rs.getString("cognome"), 
-						rs.getString("telefono"), rs.getString("email"), rs.getString("data_assunzione"), 
+				Dipendente a = new Dipendente(rs.getString("nome"), 
+						rs.getString("cognome"), 
+						rs.getString("telefono"), 
+						rs.getString("email"), 
+						rs.getString("data_assunzione"), 
 						rs.getString("scadenza_contratto"));
 				lista.add(a);
 			}
-			//return lista;
+			
 			
 		} catch (SQLException sq) {
 			throw new DAOException(

@@ -1,7 +1,7 @@
 package it.uniclam.progettoOfficinaMeccanica;
 import it.uniclam.progettoOfficinaMeccanica.dao.DAOException;
 import it.uniclam.progettoOfficinaMeccanica.dao.DipendenteDAOImpl;
-import it.uniclam.progettoOfficinaMeccanica.dao.SchedaRipDAOImpl;
+import it.uniclam.progettoOfficinaMeccanica.dao.SchedaRiparazioneDAOImpl;
 import it.uniclam.progettoOfficinaMeccanica.entity.*;
 
 import java.io.BufferedReader;
@@ -49,6 +49,7 @@ public class Server {
 
 			String command = in.readLine();
 
+			//inizio sessione DIPENDENTE
 			if (command.equals(QUERY_DIPENDENTI)){
 
 				String nome = in.readLine().replace("nome:", "").replace("\n", "");
@@ -133,13 +134,7 @@ public class Server {
 				String email = in.readLine().replace("email:", "").replace("\n", "");
 				String data_assunzione = in.readLine().replace("data_assunzione:", "").replace("\n", "");
 				String scadenza_contratto = in.readLine().replace("scadenza_contratto:", "").replace("\n", "");
-				/* Per Debug, si può cancellare:
-				System.out.println("nome: " + nome);
-				System.out.println("cognome: " + cognome);
-				System.out.println("telefono: " + telefono);
-				System.out.println("email: " + email);
-				System.out.println("data_assunzione: " + data_assunzione);
-				System.out.println("scadenza_contratto: " + scadenza_contratto); */
+			
 				try{	
 					Dipendente updateDipendente = new Dipendente(nome, cognome, telefono, email, data_assunzione, scadenza_contratto);
 					DipendenteDAOImpl.getInstance().updateDipendente(updateDipendente);
@@ -152,14 +147,15 @@ public class Server {
 					out.println(response + " " + daoe);
 				}				
 				s.close();
-
-				// Inizio sessione SCHEDA RIP
+				//fine sessione DIPENDENTE
+				
+				// Inizio sessione SCHEDA RIPARAZIONE
 			} else if (command.equals(INSERT_SCHEDA)){
 				String marca_veicolo = in.readLine().replace("marca_veicolo:", "").replace("\n", "");
 				String modello_veicolo = in.readLine().replace("modello_veicolo:", "").replace("\n", "");
 				String data_entrata = in.readLine().replace("data_entrata:", "").replace("\n", "");
 				String data_immatricolazione = in.readLine().replace("data_immatricolazione:", "").replace("\n", "");
-				String desc_intervento = in.readLine().replace("desc_intervento:", "").replace("\n", "");
+				String descrizione_intervento = in.readLine().replace("descrizione_intervento:", "").replace("\n", "");
 				String data_evasione = in.readLine().replace("data_evasione:", "").replace("\n", "");
 				String nome_cliente = in.readLine().replace("nome_cliente:", "").replace("\n", "");
 				String cognome_cliente = in.readLine().replace("cognome_cliente:", "").replace("\n", "");		
@@ -167,17 +163,17 @@ public class Server {
 				String id_meccanico = in.readLine().replace("id_meccanico:", "").replace("\n", "");
 
 				System.out.println("Debug insert SCHEDA: " + marca_veicolo + " " + modello_veicolo + 
-						" " + data_entrata + " " + data_immatricolazione + " " + desc_intervento + 
+						" " + data_entrata + " " + data_immatricolazione + " " + descrizione_intervento + 
 						" " + data_evasione + " " + nome_cliente + " " + cognome_cliente + " " + tel_cliente +
 						" " + id_meccanico);
 
 				try{	
-					SchedaRip nuovaSchedaRip = new SchedaRip(marca_veicolo,modello_veicolo,
-							data_immatricolazione,desc_intervento,data_evasione,nome_cliente,
+					SchedaRiparazione nuovaSchedaRiparazione = new SchedaRiparazione(marca_veicolo,modello_veicolo,
+							data_entrata, data_immatricolazione,descrizione_intervento,data_evasione,nome_cliente,
 							cognome_cliente,tel_cliente,Integer.parseInt(id_meccanico));
-					System.out.println("Debug oggetto: " + nuovaSchedaRip);
+					System.out.println("Debug oggetto: " + nuovaSchedaRiparazione);
 
-					SchedaRipDAOImpl.getInstance().insertSchedaRip(nuovaSchedaRip);
+					SchedaRiparazioneDAOImpl.getInstance().insertSchedaRiparazione(nuovaSchedaRiparazione);
 
 					response = "Ok\n";				
 					out.println(response);
@@ -186,8 +182,56 @@ public class Server {
 					System.out.println("Exception in connection (Insert) " + daoe);
 					out.println(response + " " + daoe);
 				}
-				s.close();		
-				// Fine sessione SCHEDA RIP
+				s.close();	
+
+			} else if(command.equals(QUERY_SCHEDA)){
+				String marca_veicolo = in.readLine().replace("marca_veicolo:", "").replace("\n", "");
+				String modello_veicolo = in.readLine().replace("modello_veicolo:", "").replace("\n", "");
+				String data_entrata = in.readLine().replace("data_entrata:", "").replace("\n", "");
+				String data_immatricolazione = in.readLine().replace("data_immatricolazione:", "").replace("\n", "");
+				String descrizione_intervento = in.readLine().replace("descrizione_intervento:", "").replace("\n", "");
+				String data_evasione = in.readLine().replace("data_evasione:", "").replace("\n", "");
+				String nome_cliente = in.readLine().replace("nome_cliente:", "").replace("\n", "");
+				String cognome_cliente = in.readLine().replace("cognome_cliente:", "").replace("\n", "");		
+				String tel_cliente = in.readLine().replace("tel_cliente:", "").replace("\n", "");
+				String id_meccanico = in.readLine().replace("id_meccanico:", "").replace("\n", "");
+				
+				System.out.println("Debug QUERY SCHEDA: " + marca_veicolo + " " + modello_veicolo + 
+						" " + data_entrata + " " + data_immatricolazione + " " + descrizione_intervento + 
+						" " + data_evasione + " " + nome_cliente + " " + cognome_cliente + " " + tel_cliente +
+						" " + id_meccanico);
+
+				try{	
+					SchedaRiparazione nuovaSchedaRiparazione = new SchedaRiparazione(marca_veicolo,modello_veicolo, data_entrata,
+							data_immatricolazione,descrizione_intervento,data_evasione,nome_cliente,
+							cognome_cliente,tel_cliente,Integer.parseInt(id_meccanico));
+					List<SchedaRiparazione> lista = SchedaRiparazioneDAOImpl.getInstance().showSchedaRiparazione(nuovaSchedaRiparazione);
+
+					response = "Ok\n";
+
+					for(SchedaRiparazione item: lista){
+						response += item.getMarcaVeicolo() + ", ";
+						response += item.getModelloVeicolo() + ", ";						
+						response += item.getDataEntrataInOfficina() + ", ";
+						response += item.getDataImmatricolazione() + ", ";
+						response += item.getDescrizioneIntervento() + ", ";
+						response += item.getDataEvasioneRichiesta() + "\n";
+						response += item.getNomeCliente() + "\n";
+						response += item.getCognomeCliente() + "\n";
+						response += item.getTelCliente() + "\n";
+						response += item.getIdMeccanico() + "\n";
+					}
+
+					response += "\n";					
+					out.println(response);
+
+				} catch (DAOException daoe){
+					System.out.println("Exception in connection (Query)");
+					out.println(response + " -> " + daoe);
+				}		
+				s.close();
+				
+				// Fine sessione SCHEDA RIPARAZIONE
 
 			} else {
 				response = "Messaggio di protocollo non valido\n";				
