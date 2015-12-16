@@ -184,7 +184,8 @@ public class Server {
 				}
 				s.close();	
 				/*
-			} else if(command.equals(QUERY_SCHEDA)){
+			} 
+		else if(command.equals(QUERY_SCHEDA)){
 				String marca_veicolo = in.readLine().replace("marca_veicolo:", "").replace("\n", "");
 				String modello_veicolo = in.readLine().replace("modello_veicolo:", "").replace("\n", "");
 				String data_entrata = in.readLine().replace("data_entrata:", "").replace("\n", "");
