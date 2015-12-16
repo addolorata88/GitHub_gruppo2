@@ -21,7 +21,7 @@ public class NavigationPanel extends JPanel {
 	
 	/*Dichiarazione dei pulsanti necessari all'interfaccia che gestisce le operazione sulla tabella scheda_riparazione*/
 	
-	private JButton inserisciSchedaRip = new JButton(GestioneSchedeGUI.INSERISCI_SCHEDA_PANEL);
+	private JButton inserisciSchedaRiparazione = new JButton(GestioneSchedeGUI.INSERISCI_SCHEDA_PANEL);
 	private JButton cercaSchedaRiparazione = new JButton(GestioneSchedeGUI.CERCA_SCHEDA_PANEL);
 	private GestioneSchedeGUI ammGestSchedeGUI = null;
 	
@@ -74,23 +74,23 @@ public class NavigationPanel extends JPanel {
 
 	/*A questo punto si gestisce la navigazione fra i pannelli riferiti alle operazioni sulle schede di riparazione*/
 	
-	public NavigationPanel(GestioneSchedeGUI ammGestSchedeGUI) {
+	public NavigationPanel(GestioneSchedeGUI gestioneSchedeGUI) {
 		setLayout(new FlowLayout());
-		add(inserisciSchedaRip);
+		add(inserisciSchedaRiparazione);
 		add(cercaSchedaRiparazione);
-		this.ammGestSchedeGUI = ammGestSchedeGUI;
+		this.ammGestSchedeGUI = gestioneSchedeGUI;
 		
-		inserisciSchedaRip.addActionListener(new ActionListener() {
+		inserisciSchedaRiparazione.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ammGestSchedeGUI.changePanel(GestioneSchedeGUI.INSERISCI_SCHEDA_PANEL);
+				gestioneSchedeGUI.changePanel(GestioneSchedeGUI.INSERISCI_SCHEDA_PANEL);
 			}
 		});
 		
 		cercaSchedaRiparazione.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ammGestSchedeGUI.changePanel(GestioneSchedeGUI.CERCA_SCHEDA_PANEL);
+				gestioneSchedeGUI.changePanel(GestioneSchedeGUI.CERCA_SCHEDA_PANEL);
 			}
 		});
 	}

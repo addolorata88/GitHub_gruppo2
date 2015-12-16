@@ -52,7 +52,7 @@ public class SchedaRiparazioneDAOImpl implements SchedaRiparazioneDAO{
 			DAOSettings.closeStatement(stm);
 
 		} catch (SQLException sqle) {
-			throw new DAOException("In insertSchedaRip: " + sqle);
+			throw new DAOException("In insertSchedaRiparazione: " + sqle);
 		}	
 	}
 
@@ -90,7 +90,7 @@ public class SchedaRiparazioneDAOImpl implements SchedaRiparazioneDAO{
 			DAOSettings.closeStatement(stm);
 
 		} catch (SQLException sqle) {
-			throw new DAOException("In updateSchedaRip: " + sqle);
+			throw new DAOException("In updateSchedaRiparazione: " + sqle);
 		}			
 	}
 
@@ -109,7 +109,7 @@ public class SchedaRiparazioneDAOImpl implements SchedaRiparazioneDAO{
 					i.getCognomeCliente() == null ||
 					i.getTelCliente()== null ||
 					i.getIdMeccanico() == 0) {
-				throw new DAOException("In showSchedaRip: no one field can be empty");
+				throw new DAOException("In showSchedaRiparazione: no one field can be empty");
 			}
 
 			Statement stm = DAOSettings.getStatement();
@@ -139,7 +139,7 @@ public class SchedaRiparazioneDAOImpl implements SchedaRiparazioneDAO{
 			DAOSettings.closeStatement(stm);
 
 		} catch (SQLException sqle) {
-			throw new DAOException("In showSchedaRip: " + sqle);
+			throw new DAOException("In showSchedaRiparazione: " + sqle);
 		}	
 		return elenco;
 	}
@@ -167,7 +167,7 @@ public class SchedaRiparazioneDAOImpl implements SchedaRiparazioneDAO{
 			}	
 		} catch (SQLException sq) {
 			throw new DAOException(
-					"In showAllSchedeRip" + sq.getMessage());
+					"In showAllSchedeRiparazione" + sq.getMessage());
 		}	
 		return elenco;
 	}

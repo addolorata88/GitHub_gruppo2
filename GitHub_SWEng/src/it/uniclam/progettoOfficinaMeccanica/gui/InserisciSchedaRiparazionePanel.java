@@ -29,16 +29,16 @@ import it.uniclam.progettoOfficinaMeccanica.Server;
  * entità "SchedaRip" e, dunque, presente nella tabella di riferimento*/
 
 public class InserisciSchedaRiparazionePanel extends JPanel{
-	private JTextField marca_veicolo		= new JTextField("", 20);
-	private JTextField modello_veicolo		= new JTextField("", 20);
-	private JTextField data_entrata			= new JTextField("", 20);
-	private JTextField data_immatricolazione= new JTextField("", 20);
-	private JTextField descrizione_intervento		= new JTextField("", 20);
-	private JTextField data_evasione		= new JTextField("", 20);
-	private JTextField nome_cliente			= new JTextField("", 20);
-	private JTextField cognome_cliente		= new JTextField("", 20);
-	private JTextField tel_cliente			= new JTextField("", 20);
-	private JTextField id_meccanico			= new JTextField("", 20);
+	private JTextField marca_veicolo		 = new JTextField("", 20);
+	private JTextField modello_veicolo		 = new JTextField("", 20);
+	private JTextField data_entrata			 = new JTextField("", 20);
+	private JTextField data_immatricolazione = new JTextField("", 20);
+	private JTextField descrizione_intervento= new JTextField("", 20);
+	private JTextField data_evasione		 = new JTextField("", 20);
+	private JTextField nome_cliente			 = new JTextField("", 20);
+	private JTextField cognome_cliente		 = new JTextField("", 20);
+	private JTextField tel_cliente			 = new JTextField("", 20);
+	private JTextField id_meccanico			 = new JTextField("", 20);
 
 	private JButton invia = new JButton("Inserisci");//Pulsante che permette di confermare 
 	//l'operazione di inserimento dei valori 
@@ -51,7 +51,7 @@ public class InserisciSchedaRiparazionePanel extends JPanel{
 	//appena effettuata, o, in caso contrario, 
 	//il corrispondente messaggio di errore.
 
-	public InserisciSchedaRiparazionePanel(GestioneSchedeGUI ammGestSchedeGUI){
+	public InserisciSchedaRiparazionePanel(GestioneSchedeGUI gestioneSchedeGUI){
 
 		// Si definisce un oggetto gridbagconstraints per  
 		// la specifica dei vincoli dell'interfaccia
