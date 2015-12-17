@@ -1,5 +1,5 @@
 package it.uniclam.progettoOfficinaMeccanica.manager;
 
 public class ManagerRichieste {
-	// Da valurare se applicarlo oppure no...
+	// Da valutare se applicarlo oppure no...
 }
