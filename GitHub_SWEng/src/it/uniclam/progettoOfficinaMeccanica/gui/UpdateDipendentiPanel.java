@@ -22,34 +22,35 @@ import it.uniclam.progettoOfficinaMeccanica.ClientGUI;
 import it.uniclam.progettoOfficinaMeccanica.Server;
 
 public class UpdateDipendentiPanel extends JPanel{
+	// Usato per cercare via chiave primaria un dipendente (uso l'email)
 	private JTextField emailDipendenteDaModificare = new JTextField("", 20);
-	
+
 	private JTextField nome = new JTextField("", 20);
 	private JTextField cognome = new JTextField("", 20);	
 	private JTextField telefono = new JTextField("", 20);
 	private JTextField email = new JTextField("", 20);
 	private JTextField data_assunzione = new JTextField("", 20);
 	private JTextField scadenza_contratto = new JTextField("", 20);
-	
+
 	private JButton modifica = new JButton("Modifica");//Pulsante per modificare i dati
 	private JButton cerca = new JButton("Cerca");
 	private JButton clear = new JButton("Clear");
-	
+
 	private JTextArea ta = new JTextArea(12, 12);
-	
+
 	public UpdateDipendentiPanel(ClientGUI clientGUI){ 
 
 		// Definisci un oggetto gridbagconstraints per la specifica 
 		// dei vincoli dell'interfaccia
 		GridBagConstraints c = new GridBagConstraints();
 		this.setLayout(new GridBagLayout());
-		
+
 		// Campo email da modificare
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 0;
 		this.add(new JLabel("email Dipendente da Modificare:"), c);
-		
+
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 3;
 		c.gridy = 0;
@@ -61,36 +62,36 @@ public class UpdateDipendentiPanel extends JPanel{
 		c.gridy = 0;
 		c.gridwidth = 4;   //2 columns wide
 		this.add(cerca, c);		
-		
+
 		// ********************************
 		// Campo nome
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 1;
 		this.add(new JLabel("nome:"), c);
-		
+
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 2;
 		c.gridy = 1;
 		this.add(nome, c);
-		
+
 		// Campo cognome
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 2;
 		this.add(new JLabel("cognome:"), c);
-		
+
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 2;
 		c.gridy = 2;
 		this.add(cognome, c);		
-		
+
 		// Campo telefono
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 3;
 		this.add(new JLabel("telefono:"), c);
-		
+
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 2;
 		c.gridy = 3;
@@ -101,42 +102,42 @@ public class UpdateDipendentiPanel extends JPanel{
 		c.gridx = 0;
 		c.gridy = 4;
 		this.add(new JLabel("email (chiave primaria):"), c);
-		
+
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 2;
 		c.gridy = 4;
 		this.add(email, c);
 		email.setEnabled(false);
-		
+
 		// Campo data assunzione
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 5;
 		this.add(new JLabel("data assunz.:"), c);
-		
+
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 2;
 		c.gridy = 5;
 		this.add(data_assunzione, c);
-		
+
 		// Campo scadenza contratto
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 6;
 		this.add(new JLabel("scad. contratto:"), c);
-		
+
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 2;
 		c.gridy = 6;
 		this.add(scadenza_contratto, c);
-		
+
 		// Campo modifica
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 2;
 		c.gridy = 7;
 		c.gridwidth = 4;   //4 columns wide
 		this.add(modifica, c);		
-		
+
 		// Campo clear
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 4;
@@ -150,7 +151,7 @@ public class UpdateDipendentiPanel extends JPanel{
 		c.gridy = 8;
 		c.gridwidth = 4;   //2 columns wide
 		this.add(new JLabel("Risposta:"), c);
-		
+
 		// Campo risposta text area
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 1;
@@ -158,25 +159,24 @@ public class UpdateDipendentiPanel extends JPanel{
 		c.gridwidth = 4;   //2 columns wide  era 8
 		JScrollPane jp = new JScrollPane(ta);
 		this.add(jp, c);
-	
+
 		clear.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ta.setText("");
 			}
 		});
-		
+
 		cerca.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try{
 					Socket s = new Socket(Server.HOST, Server.PORT);
-					
+
 					BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
 					PrintWriter out = new PrintWriter(s.getOutputStream(), true);
-					
-					String req = 
-							Server.QUERY_DIPENDENTI + "\n" + 
+
+					String req = Server.QUERY_DIPENDENTI + "\n" + 
 							"nome:\n" + 
 							"cognome:\n" + 							
 							"telefono:\n" + 
@@ -184,7 +184,7 @@ public class UpdateDipendentiPanel extends JPanel{
 							"data_assunzione:\n" + 
 							"scadenza_contratto:\n" + 
 							"\n";
-					
+
 					out.println(req);
 					System.out.println("DEBUG: req Cerca Dip by email Inviata: " + req);
 					String line = in.readLine();
@@ -195,7 +195,7 @@ public class UpdateDipendentiPanel extends JPanel{
 							// Separo tutti i campi in un array, e successivamente popolo le JTextField
 							String delims = "[,]";
 							String[] arrayCampi = line.split(delims);
-							
+
 							// Uso il metodo .replaceAll("^\\s+", "") per eliminare eventuali spazi ad inizio stringa
 							nome.setText(arrayCampi[0].replaceAll("^\\s+", ""));
 							cognome.setText(arrayCampi[1].replaceAll("^\\s+", ""));
@@ -204,7 +204,6 @@ public class UpdateDipendentiPanel extends JPanel{
 							data_assunzione.setText(arrayCampi[4].replaceAll("^\\s+", ""));
 							scadenza_contratto.setText(arrayCampi[5].replaceAll("^\\s+", ""));
 						}
-						//ta.append("\n");
 					} else {
 						ta.append("CERCA Dip. da Update: Si è verificato un errore nel server!" + "\n");
 					}
@@ -214,16 +213,16 @@ public class UpdateDipendentiPanel extends JPanel{
 				}
 			}
 		});
-		
+
 		modifica.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try{
 					Socket s = new Socket(Server.HOST, Server.PORT);
-					
+
 					BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
 					PrintWriter out = new PrintWriter(s.getOutputStream(), true);
-					
+
 					String req = Server.UPDATE_DIPENDENTI + "\n" + 
 							"nome:" + nome.getText() + "\n" +
 							"cognome:" + cognome.getText() + "\n" + 
@@ -232,7 +231,7 @@ public class UpdateDipendentiPanel extends JPanel{
 							"data_assunzione:" + data_assunzione.getText() + "\n" +
 							"scadenza_contratto:" + scadenza_contratto.getText() + "\n" + 
 							"\n";
-					
+
 					out.println(req);
 					System.out.println("DEBUG: req Update Inviata: " + req);
 					String line = in.readLine();

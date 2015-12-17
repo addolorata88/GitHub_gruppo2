@@ -33,12 +33,13 @@ import it.uniclam.progettoOfficinaMeccanica.Server;
  * entità "SchedaRip" e, dunque, presente nella tabella di riferimento*/
 
 public class InserisciSchedaRiparazionePanel extends JPanel{
+	// Creo un oggetto data e lo setto alla data odierna
 	Date today = new Date();
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	
 	private JTextField marca_veicolo		 	= new JTextField("", 20);
 	private JTextField modello_veicolo		 	= new JTextField("", 20);
-	private JTextField data_entrata			 	= new JTextField(sdf.format(today), 20);
+	private JTextField data_entrata			 	= new JTextField(sdf.format(today), 20); // setto la data odierna di default
 	private JTextField data_immatricolazione 	= new JTextField("", 20);
 	private JTextField descrizione_intervento	= new JTextField("", 20);
 	private JTextField data_evasione		 	= new JTextField("", 20);
@@ -47,11 +48,6 @@ public class InserisciSchedaRiparazionePanel extends JPanel{
 	private JTextField tel_cliente			 	= new JTextField("", 20);
 	private JTextField email_cliente			= new JTextField("", 20);
 	private JTextField id_meccanico				= new JTextField("1", 20);
-
-	//Date today = new Date();
-	//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	//sdf.format(today)
-	//data_entrata.setText("test data"); 
 	
 	private JButton invia = new JButton("Inserisci");//Pulsante che permette di confermare 
 	//l'operazione di inserimento dei valori 
@@ -199,6 +195,7 @@ public class InserisciSchedaRiparazionePanel extends JPanel{
 		c.gridy = 11;
 		this.add(new JLabel("Sel. Meccanico:"), c);
 	
+		// PROVA di selezione meccanico via SelectBox --- Da Completare ---
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         model.addElement("Meccanico 1");
         model.addElement("Meccanico 2");

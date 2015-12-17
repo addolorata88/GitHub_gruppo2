@@ -49,9 +49,6 @@ public class CancellaSchedaRiparazionePanel extends JPanel{
 	//appena effettuata, o, in caso contrario, 
 	//il corrispondente messaggio di errore.
 
-	/**
-	 * @param gestioneSchedeGUI
-	 */
 	public CancellaSchedaRiparazionePanel(GestioneSchedeGUI gestioneSchedeGUI){
 
 		// Si definisce un oggetto gridbagconstraints per  
@@ -76,7 +73,7 @@ public class CancellaSchedaRiparazionePanel extends JPanel{
 		c.gridy = 0;
 		c.gridwidth = 4;
 		this.add(cerca, c);
-//***********************************************************************//
+		//***********************************************************************//
 		// Campo marca_veicolo
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
@@ -241,7 +238,7 @@ public class CancellaSchedaRiparazionePanel extends JPanel{
 		clear.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ta.setText("");
+				ta.setText("");	// pulisco la textarea
 			}
 		});
 
@@ -254,8 +251,7 @@ public class CancellaSchedaRiparazionePanel extends JPanel{
 					BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
 					PrintWriter out = new PrintWriter(s.getOutputStream(), true);
 
-					String req = 
-							Server.FIND_BY_EMAIL_SCHEDA + "\n" + 
+					String req = Server.FIND_BY_EMAIL_SCHEDA + "\n" + 
 									"email_cliente:" + emailSchedaDaCancellare.getText() + "\n" +
 									"\n";
 					out.println(req);
@@ -266,7 +262,7 @@ public class CancellaSchedaRiparazionePanel extends JPanel{
 						line = in.readLine();
 						if (line.length()>0) {
 							String delimitatore = "[,]";
-							String[] arrayCampi = line.split(delimitatore);
+							String[] arrayCampi = line.split(delimitatore);	//Creo un array di campi separati da "delimitatore" (virgola)
 							
 							marca_veicolo.setText(arrayCampi[0].replaceAll("^\\s+", ""));
 							modello_veicolo.setText(arrayCampi[1].replaceAll("^\\s+", ""));

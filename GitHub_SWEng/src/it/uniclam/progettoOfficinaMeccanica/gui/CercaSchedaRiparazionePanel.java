@@ -227,20 +227,19 @@ public class CercaSchedaRiparazionePanel extends JPanel {
 					/*Viene adesso riportata la query sql che che avvierà la 
 					 * ricerca dei dati desiderati all'interno della tabella*/
 
-					String req = 
-							Server.QUERY_SCHEDA + "\n" + 
-									"marca_veicolo:" + marca_veicolo.getText() + "\n" +
-									"modello_veicolo:" + modello_veicolo.getText() + "\n" +
-									"data_entrata:" + data_entrata.getText() + "\n" +
-									"data_immatricolazione:" + data_immatricolazione.getText() + "\n" +
-									"descrizione_intervento:" + descrizione_intervento.getText() + "\n" +
-									"data_evasione:" + data_evasione.getText() + "\n" +
-									"nome_cliente:" + nome_cliente.getText() + "\n" +
-									"cognome_cliente:" + cognome_cliente.getText() + "\n" +
-									"tel_cliente:" + tel_cliente.getText() + "\n" +
-									"email_cliente:" + email_cliente.getText() + "\n" +
-									"id_meccanico:" + id_meccanico.getText() + "\n" + 
-									"\n";
+					String req = Server.QUERY_SCHEDA + "\n" + 
+							"marca_veicolo:" + marca_veicolo.getText() + "\n" +
+							"modello_veicolo:" + modello_veicolo.getText() + "\n" +
+							"data_entrata:" + data_entrata.getText() + "\n" +
+							"data_immatricolazione:" + data_immatricolazione.getText() + "\n" +
+							"descrizione_intervento:" + descrizione_intervento.getText() + "\n" +
+							"data_evasione:" + data_evasione.getText() + "\n" +
+							"nome_cliente:" + nome_cliente.getText() + "\n" +
+							"cognome_cliente:" + cognome_cliente.getText() + "\n" +
+							"tel_cliente:" + tel_cliente.getText() + "\n" +
+							"email_cliente:" + email_cliente.getText() + "\n" +
+							"id_meccanico:" + id_meccanico.getText() + "\n" + 
+							"\n";
 
 					out.println(req);
 					System.out.println("DEBUG: req Inviata: " + req);

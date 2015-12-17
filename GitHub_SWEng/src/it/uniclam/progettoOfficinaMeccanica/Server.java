@@ -49,11 +49,10 @@ public class Server {
 			BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
 			PrintWriter out = new PrintWriter(s.getOutputStream(), true);
 
-			String command = in.readLine();
+			String command = in.readLine();	//Usato per gestire i comandi del Client
 
 			//inizio sessione DIPENDENTE
 			if (command.equals(QUERY_DIPENDENTI)){
-
 				String nome = in.readLine().replace("nome:", "").replace("\n", "");
 				String cognome = in.readLine().replace("cognome:", "").replace("\n", "");		
 				String telefono = in.readLine().replace("telefono:", "").replace("\n", "");
@@ -67,7 +66,7 @@ public class Server {
 
 					response = "Ok\n";
 
-					for(Dipendente item: lista){
+					for(Dipendente item: lista){	//Per ogni oggetto "Dipendente" presente nell'Array lista
 						response += item.getNome() + ", ";
 						response += item.getCognome() + ", ";						
 						response += item.getTelefono() + ", ";
@@ -77,13 +76,13 @@ public class Server {
 					}
 
 					response += "\n";					
-					out.println(response);
+					out.println(response);	//Usato per inviare al Client i dati
 
 				} catch (DAOException daoe){
 					System.out.println("Exception in connection (Query)");
-					out.println(response + " -> " + daoe);
 				}				
-				s.close();				
+				s.close();
+				
 			} else if (command.equals(INSERT_DIPENDENTI)){
 				String nome = in.readLine().replace("nome:", "").replace("\n", "");
 				String cognome = in.readLine().replace("cognome:", "").replace("\n", "");		
@@ -95,7 +94,7 @@ public class Server {
 				System.out.println("Debug insert dipendenti: " + nome + " " + cognome + " " + telefono + " " + email + " " + data_assunzione + " " + scadenza_contratto);
 				try{	
 					Dipendente nuovoDipendente = new Dipendente(nome, cognome, telefono, email, data_assunzione, scadenza_contratto);
-					System.out.println("oggetto: " + nuovoDipendente);
+					System.out.println("Debug oggetto creato: " + nuovoDipendente);
 					DipendenteDAOImpl.getInstance().insertDipendente(nuovoDipendente);
 
 					response = "Ok\n";				
@@ -103,7 +102,7 @@ public class Server {
 
 				} catch (DAOException daoe){
 					System.out.println("Exception in connection (Insert) " + daoe);
-					out.println(response + " " + daoe);
+					// out.println(response + " " + daoe);
 				}
 				s.close();
 
@@ -116,10 +115,8 @@ public class Server {
 				String scadenza_contratto = in.readLine().replace("scadenza_contratto:", "").replace("\n", "");
 
 				try{	
-					Dipendente cancellaDipendente = new Dipendente(nome, cognome, telefono, email, data_assunzione, scadenza_contratto);
-					
-					System.out.println("cancellaDipendente: " + cancellaDipendente);
-					
+					Dipendente cancellaDipendente = new Dipendente(nome, cognome, telefono, email, data_assunzione, scadenza_contratto);			
+					System.out.println("Debug cancellaDipendente: " + cancellaDipendente);					
 					DipendenteDAOImpl.getInstance().deleteDipendente(cancellaDipendente);
 
 					response = "Ok\n";				
@@ -127,7 +124,7 @@ public class Server {
 
 				} catch (DAOException daoe){
 					System.out.println("Exception in connection (Delete)");
-					out.println(response + " " + daoe);
+					// out.println(response + " " + daoe);
 				}				
 				s.close();
 
@@ -148,12 +145,13 @@ public class Server {
 
 				} catch (DAOException daoe){
 					System.out.println("Exception in connection (Update)");
-					out.println(response + " " + daoe);
+					// out.println(response + " " + daoe);
 				}				
 				s.close();
 				//fine sessione DIPENDENTE
 				
-				// Inizio sessione SCHEDA RIPARAZIONE
+			// Inizio sessione SCHEDA RIPARAZIONE
+			
 			} else if (command.equals(INSERT_SCHEDA)){
 				String marca_veicolo = in.readLine().replace("marca_veicolo:", "").replace("\n", "");
 				String modello_veicolo = in.readLine().replace("modello_veicolo:", "").replace("\n", "");
@@ -167,16 +165,11 @@ public class Server {
 				String email_cliente = in.readLine().replace("email_cliente:", "").replace("\n", "");
 				String id_meccanico = in.readLine().replace("id_meccanico:", "").replace("\n", "");
 
-				System.out.println("Debug insert SCHEDA: " + marca_veicolo + " " + modello_veicolo + 
-						" " + data_entrata + " " + data_immatricolazione + " " + descrizione_intervento + 
-						" " + data_evasione + " " + nome_cliente + " " + cognome_cliente + " " + tel_cliente +
-						" " + email_cliente + " " + id_meccanico);
-
 				try{	
 					SchedaRiparazione nuovaSchedaRiparazione = new SchedaRiparazione(marca_veicolo,modello_veicolo,
 							data_entrata, data_immatricolazione,descrizione_intervento,data_evasione,nome_cliente,
 							cognome_cliente,tel_cliente,email_cliente,Integer.parseInt(id_meccanico));
-					System.out.println("Debug oggetto: " + nuovaSchedaRiparazione);
+					System.out.println("Debug oggetto Scheda: " + nuovaSchedaRiparazione);
 
 					SchedaRiparazioneDAOImpl.getInstance().insertSchedaRiparazione(nuovaSchedaRiparazione);
 
@@ -185,7 +178,7 @@ public class Server {
 
 				} catch (DAOException daoe){
 					System.out.println("Exception in connection (Insert) " + daoe);
-					out.println(response + " " + daoe);
+					// out.println(response + " " + daoe);
 				}
 				s.close();	
 
@@ -202,11 +195,6 @@ public class Server {
 				String email_cliente = in.readLine().replace("email_cliente:", "").replace("\n", "");
 				String id_meccanico = in.readLine().replace("id_meccanico:", "").replace("\n", "");
 				
-				System.out.println("Debug QUERY SCHEDA: " + marca_veicolo + "," + modello_veicolo + 
-						"," + data_entrata + "," + data_immatricolazione + "," + descrizione_intervento + 
-						"," + data_evasione + "," + nome_cliente + "," + cognome_cliente + "," + tel_cliente +
-						"," + email_cliente + "," + id_meccanico);
-
 				try{	
 					SchedaRiparazione nuovaSchedaRiparazione = new SchedaRiparazione(marca_veicolo,modello_veicolo, data_entrata,
 							data_immatricolazione,descrizione_intervento,data_evasione,nome_cliente,
@@ -234,7 +222,7 @@ public class Server {
 
 				} catch (DAOException daoe){
 					System.out.println("Exception in connection (Query)");
-					out.println(response + " -> " + daoe);
+					// out.println(response + " -> " + daoe);
 				}		
 				s.close();
 				
@@ -245,9 +233,8 @@ public class Server {
 					List<SchedaRiparazione> lista = SchedaRiparazioneDAOImpl.getInstance().findSchedaRiparazioneByEmail(email_cliente);
 
 					response = "Ok\n";				
-					//out.println(response);
 					
-					for(SchedaRiparazione item: lista){
+					for(SchedaRiparazione item: lista){ 
 						response += item.getMarcaVeicolo() + ", ";
 						response += item.getModelloVeicolo() + ", ";						
 						response += item.getDataEntrataInOfficina() + ", ";
@@ -260,13 +247,13 @@ public class Server {
 						response += item.getEmailCliente() + ", ";
 						response += item.getIdMeccanico() + "\n";
 					}
-					System.out.println("Response: " + response);
+
 					response += "\n";					
 					out.println(response);
 
 				} catch (DAOException daoe){
 					System.out.println("Exception in connection (Find by email) " + daoe);
-					out.println(response + " " + daoe);
+					// out.println(response + " " + daoe);
 				}
 				s.close();		
 				
@@ -282,7 +269,7 @@ public class Server {
 
 				} catch (DAOException daoe){
 					System.out.println("Exception in connection (Delete)");
-					out.println(response + " " + daoe);
+					// out.println(response + " " + daoe);
 				}				
 				s.close();
 				
@@ -303,7 +290,7 @@ public class Server {
 						SchedaRiparazione aggiornaSchedaRiparazione = new SchedaRiparazione(marca_veicolo,modello_veicolo, data_entrata,
 								data_immatricolazione,descrizione_intervento,data_evasione,nome_cliente,
 								cognome_cliente,tel_cliente,email_cliente,Integer.parseInt(id_meccanico));
-						System.out.println("aggiornamento:" + aggiornaSchedaRiparazione);
+						System.out.println("Debug aggiornamento scheda: " + aggiornaSchedaRiparazione);
 						SchedaRiparazioneDAOImpl.getInstance().updateSchedaRiparazione(aggiornaSchedaRiparazione);
 
 						response = "Ok\n";				
@@ -311,7 +298,7 @@ public class Server {
 
 					} catch (DAOException daoe){
 						System.out.println("Exception in connection (Update)");
-						out.println(response + " " + daoe);
+						// out.println(response + " " + daoe);
 					}				
 					s.close();
 				// Fine sessione SCHEDA RIPARAZIONE

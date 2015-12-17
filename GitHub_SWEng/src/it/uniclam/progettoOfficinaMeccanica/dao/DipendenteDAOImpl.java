@@ -11,15 +11,15 @@ import it.uniclam.progettoOfficinaMeccanica.entity.Dipendente;
 
 public class DipendenteDAOImpl implements DipendenteDAO{
 
-	private DipendenteDAOImpl(){}
+	private DipendenteDAOImpl(){}	// Costruttore che non fa nulla
 	
 	private static DipendenteDAO dao = null;
 	
 	public static DipendenteDAO getInstance(){
-		if (dao == null){
+		if (dao == null){					// se non c'è un ogg. di tipo dao lo creo
 			dao = new DipendenteDAOImpl();
 		}
-		return dao;
+		return dao;							// altrimenti lo restituisco
 	}
 	
 	@Override
@@ -36,13 +36,14 @@ public class DipendenteDAOImpl implements DipendenteDAO{
 				
 			Statement stm = DAOSettings.getStatement();
 			
+			// Query My-SQL
 			String sql_insert = "INSERT INTO meccanico (nome, cognome, telefono, email, data_assunzione, scadenza_contratto) VALUES ('";
 					sql_insert += d.getNome() + "', '" + d.getCognome() + "', '";
 					sql_insert += d.getTelefono() + "', '" + d.getEmail() + "', '";
 					sql_insert += d.getDataAssunzione() + "', '" + d.getScadenzaContratto() + "')";
 							
 			int t = stm.executeUpdate(sql_insert);
-			DAOSettings.closeStatement(stm);
+			DAOSettings.closeStatement(stm);			
 			
 		} catch (SQLException sqle) {
 			throw new DAOException("In insertDipendente: " + sqle);
@@ -62,7 +63,7 @@ public class DipendenteDAOImpl implements DipendenteDAO{
 			}
 				
 			Statement stm = DAOSettings.getStatement();
-			System.out.println("UPDATE: " + d);
+			System.out.println("Debug UPDATE: " + d);
 			
 			String sql_update = "UPDATE meccanico SET ";
 					sql_update += "nome='" + d.getNome() + "',";
@@ -73,7 +74,6 @@ public class DipendenteDAOImpl implements DipendenteDAO{
 					sql_update += " WHERE email='" + d.getEmail() + "'";
 			
 			System.out.println("DEBUG Query Update: " + sql_update);
-			//ResultSet rs = stm.executeQuery(sql_update);
 			int t = stm.executeUpdate(sql_update);
 
 			DAOSettings.closeStatement(stm);

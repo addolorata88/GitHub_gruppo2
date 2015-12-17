@@ -44,7 +44,7 @@ public class ClientGUI extends JFrame{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		pack();
 		setVisible(true);
-		setSize(800,600);		//aggiunto 04-12-2015
+		setSize(800,600);
 	}
 
 	public void changePanel(String panelName){
@@ -66,7 +66,8 @@ public class ClientGUI extends JFrame{
 			settingsPanel = new SettingsPanel(this);
 			lastPanel = settingsPanel;
 		}
-
+		
+		// Usato per gestire i pulsanti di navigazione dei pannelli
 		navigationPanel = new NavigationPanel(this);
 
 		getContentPane().add(lastPanel, BorderLayout.CENTER);

@@ -26,19 +26,18 @@ import it.uniclam.progettoOfficinaMeccanica.Server;
  * della tabella "dipendenti"*/
 
 public class InserisciDipendentiPanel extends JPanel{
-	private JTextField nome = 			    new JTextField("n", 20);
-	private JTextField cognome = 			new JTextField("c", 20);	
-	private JTextField telefono =		    new JTextField("t", 20);
-	private JTextField email = 				new JTextField("e", 20);
-	private JTextField data_assunzione = 	new JTextField("1970-01-01", 20);
-	private JTextField scadenza_contratto = new JTextField("xxxx-xx-xx", 20);
+	private JTextField nome 				= new JTextField("n", 20);
+	private JTextField cognome 				= new JTextField("c", 20);	
+	private JTextField telefono 			= new JTextField("t", 20);
+	private JTextField email 				= new JTextField("e", 20);
+	private JTextField data_assunzione 		= new JTextField("1970-01-01", 20);
+	private JTextField scadenza_contratto 	= new JTextField("xxxx-xx-xx", 20);
 	
 	private JButton invia = new JButton("Inserisci");//Pulsante per completare l'inserimento in tabella
 	private JButton clear = new JButton("Clear");    //Pulsante che permette di pulire la textArea
 	
 	private JTextArea ta = new JTextArea(12, 12);    //Area di testo che visualizza l'esito 
 	               									 //dell'operazione effettuata
-	
 	public InserisciDipendentiPanel(ClientGUI clientGUI){
 	
 		// Definisci un oggetto gridbagconstraints per la specifica 

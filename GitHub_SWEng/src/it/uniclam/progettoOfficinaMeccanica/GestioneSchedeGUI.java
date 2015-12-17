@@ -30,11 +30,13 @@ public class GestioneSchedeGUI extends JFrame{
 	public GestioneSchedeGUI(){
 		super();
 	
+		//Creo gli oggetti di tipo Panel per ogni pannello utilizzato
 		cercaSchedaRiparazionePanel = new CercaSchedaRiparazionePanel(this);
 		inserisciSchedaRiparazionePanel = new InserisciSchedaRiparazionePanel(this);
 		updateSchedaRiparazionePanel = new UpdateSchedaRiparazionePanel(this);
 		cancellaSchedaRiparazionePanel = new CancellaSchedaRiparazionePanel(this);
 		
+		//Di dafault uso il Pannello di inserimento
 		changePanel(GestioneSchedeGUI.INSERISCI_SCHEDA_PANEL);
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -43,6 +45,7 @@ public class GestioneSchedeGUI extends JFrame{
 		setSize(800,600);
 	}
 	
+	//Routine utilizzata per cambio pannello.
 	public void changePanel(String panelName){
 		getContentPane().removeAll();
 		

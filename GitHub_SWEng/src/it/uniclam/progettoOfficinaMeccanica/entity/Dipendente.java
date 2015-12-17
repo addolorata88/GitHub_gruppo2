@@ -70,6 +70,7 @@ public class Dipendente {
 		this.scadenzaContratto = scadenzaContratto;
 	}
 	
+	// Usato per stampre l'oggetto direttamente con metodo println
 	public String toString(){
 		return "Dipendente: " + this.getNome() + "," + this.getCognome() + "," + 
 				this.getTelefono() + "," + this.getEmail() + "," + 

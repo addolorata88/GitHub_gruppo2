@@ -22,7 +22,7 @@ import it.uniclam.progettoOfficinaMeccanica.GestioneSchedeGUI;
 import it.uniclam.progettoOfficinaMeccanica.Server;
 
 public class UpdateSchedaRiparazionePanel extends JPanel {
-
+	// Campo usato per cercare la scheda in modo univoco (email cliente chiave primaria)
 	private JTextField emailClienteDaModificare = new JTextField("", 20);
 
 	private JTextField marca_veicolo		 	= new JTextField("", 20);
@@ -237,11 +237,10 @@ public class UpdateSchedaRiparazionePanel extends JPanel {
 					BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
 					PrintWriter out = new PrintWriter(s.getOutputStream(), true);
 
-					String req = 
-							Server.FIND_BY_EMAIL_SCHEDA + "\n" + 
-									"email_cliente:" + emailClienteDaModificare.getText() + "\n" +
-									"\n";
-					
+					String req = Server.FIND_BY_EMAIL_SCHEDA + "\n" + 
+							"email_cliente:" + emailClienteDaModificare.getText() + "\n" +
+							"\n";
+
 					out.println(req);
 					System.out.println("DEBUG: req Cerca scheda by email Inviata: " + req);
 					String line = in.readLine();
@@ -266,7 +265,6 @@ public class UpdateSchedaRiparazionePanel extends JPanel {
 							email_cliente.setText(arrayCampi[9].replaceAll("^\\s+", ""));
 							id_meccanico.setText(arrayCampi[10].replaceAll("^\\s+", ""));
 						}
-						//ta.append("\n");
 					} else {
 						ta.append("CERCA scheda da Update: Si è verificato un errore nel server!" + "\n");
 					}
