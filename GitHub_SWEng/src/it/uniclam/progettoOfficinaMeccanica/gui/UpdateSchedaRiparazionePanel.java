@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.stream.Stream;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -22,10 +20,10 @@ import javax.swing.JTextField;
 
 import it.uniclam.progettoOfficinaMeccanica.GestioneSchedeGUI;
 import it.uniclam.progettoOfficinaMeccanica.Server;
-import it.uniclam.progettoOfficinaMeccanica.entity.SchedaRiparazione;
 
-public class CancellaSchedaRiparazionePanel extends JPanel{
-	private JTextField emailSchedaDaCancellare 	= new JTextField("", 20);
+public class UpdateSchedaRiparazionePanel extends JPanel {
+
+	private JTextField emailClienteDaModificare = new JTextField("", 20);
 
 	private JTextField marca_veicolo		 	= new JTextField("", 20);
 	private JTextField modello_veicolo		 	= new JTextField("", 20);
@@ -39,44 +37,38 @@ public class CancellaSchedaRiparazionePanel extends JPanel{
 	private JTextField email_cliente			= new JTextField("", 20);
 	private JTextField id_meccanico			 	= new JTextField("", 20);
 
-	private JButton cancella = new JButton("Cancella");//Pulsante che permette di Cancellare
-
-	private JButton clear = new JButton("Clear");    //Pulsante che ha la funzionalità di 'pulire' la ta
+	private JButton modifica = new JButton("Modifica");//Pulsante per modificare i dati
 	private JButton cerca = new JButton("Cerca");
+	private JButton clear = new JButton("Clear");
 
-	private JTextArea ta = new JTextArea(12, 12);    //In questa parte del pannello verrà visualizzato 
-	//l'eventuale esito positivo dell'operazione 
-	//appena effettuata, o, in caso contrario, 
-	//il corrispondente messaggio di errore.
+	private JTextArea ta = new JTextArea(12, 12);
 
-	/**
-	 * @param gestioneSchedeGUI
-	 */
-	public CancellaSchedaRiparazionePanel(GestioneSchedeGUI gestioneSchedeGUI){
+	public UpdateSchedaRiparazionePanel (GestioneSchedeGUI gestioneSchedeGUI){ 
 
-		// Si definisce un oggetto gridbagconstraints per  
-		// la specifica dei vincoli dell'interfaccia
+		// Definisci un oggetto gridbagconstraints per la specifica 
+		// dei vincoli dell'interfaccia
 		GridBagConstraints c = new GridBagConstraints();
 		this.setLayout(new GridBagLayout());
 
-		// Campo email Cliente Scheda da Cancellare
+		// Campo email da modificare
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 0;
-		this.add(new JLabel("email Cliente scheda:"), c);
+		this.add(new JLabel("email Cliente da Modificare:"), c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
-		c.gridx = 2;
+		c.gridx = 3;
 		c.gridy = 0;
-		this.add(emailSchedaDaCancellare, c);
+		this.add(emailClienteDaModificare, c);
 
-		// Pulsante Cerca Scheda da Cancellare
+		// Campo cerca
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 4;
 		c.gridy = 0;
-		c.gridwidth = 4;
-		this.add(cerca, c);
-//***********************************************************************//
+		c.gridwidth = 4;   //2 columns wide
+		this.add(cerca, c);		
+
+		// ********************************
 		// Campo marca_veicolo
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
@@ -87,7 +79,6 @@ public class CancellaSchedaRiparazionePanel extends JPanel{
 		c.gridx = 2;
 		c.gridy = 1;
 		this.add(marca_veicolo, c);
-		marca_veicolo.setEnabled(false);
 
 		// Campo modello_veicolo
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -99,7 +90,6 @@ public class CancellaSchedaRiparazionePanel extends JPanel{
 		c.gridx = 2;
 		c.gridy = 2;
 		this.add(modello_veicolo, c);
-		modello_veicolo.setEnabled(false);
 
 		// Campo data_entrata
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -111,7 +101,6 @@ public class CancellaSchedaRiparazionePanel extends JPanel{
 		c.gridx = 2;
 		c.gridy = 3;
 		this.add(data_entrata, c);
-		data_entrata.setEnabled(false);
 
 		// Campo data_immatricolazione
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -123,7 +112,6 @@ public class CancellaSchedaRiparazionePanel extends JPanel{
 		c.gridx = 2;
 		c.gridy = 4;
 		this.add(data_immatricolazione, c);
-		data_immatricolazione.setEnabled(false);
 
 		// Campo descrizione_intervento
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -135,7 +123,6 @@ public class CancellaSchedaRiparazionePanel extends JPanel{
 		c.gridx = 2;
 		c.gridy = 5;
 		this.add(descrizione_intervento, c);
-		descrizione_intervento.setEnabled(false);
 
 		// Campo data_evasione
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -147,7 +134,6 @@ public class CancellaSchedaRiparazionePanel extends JPanel{
 		c.gridx = 2;
 		c.gridy = 6;
 		this.add(data_evasione, c);
-		data_evasione.setEnabled(false);
 
 		// Campo nome_cliente
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -159,7 +145,6 @@ public class CancellaSchedaRiparazionePanel extends JPanel{
 		c.gridx = 2;
 		c.gridy = 7;
 		this.add(nome_cliente, c);
-		nome_cliente.setEnabled(false);
 
 		// Campo cognome_cliente
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -171,7 +156,6 @@ public class CancellaSchedaRiparazionePanel extends JPanel{
 		c.gridx = 2;
 		c.gridy = 8;
 		this.add(cognome_cliente, c);
-		cognome_cliente.setEnabled(false);
 
 		// Campo tel_cliente
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -183,7 +167,6 @@ public class CancellaSchedaRiparazionePanel extends JPanel{
 		c.gridx = 2;
 		c.gridy = 9;
 		this.add(tel_cliente, c);
-		tel_cliente.setEnabled(false);
 
 		// Campo email_cliente
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -207,14 +190,14 @@ public class CancellaSchedaRiparazionePanel extends JPanel{
 		c.gridx = 2;
 		c.gridy = 11;
 		this.add(id_meccanico, c);
-		id_meccanico.setEnabled(false);
 
-		// Campo Cancella
+
+		// Campo modifica
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 1;
 		c.gridy = 12;
 		c.gridwidth = 4;   //2 columns wide
-		this.add(cancella, c);
+		this.add(modifica, c);	
 
 		// Campo clear
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -256,18 +239,21 @@ public class CancellaSchedaRiparazionePanel extends JPanel{
 
 					String req = 
 							Server.FIND_BY_EMAIL_SCHEDA + "\n" + 
-									"email_cliente:" + emailSchedaDaCancellare.getText() + "\n" +
+									"email_cliente:" + emailClienteDaModificare.getText() + "\n" +
 									"\n";
+					
 					out.println(req);
-					System.out.println("DEBUG: req cerca by email Inviata: " + req);
-
+					System.out.println("DEBUG: req Cerca scheda by email Inviata: " + req);
 					String line = in.readLine();
 					if (line.equalsIgnoreCase(Server.OK)){
 						line = in.readLine();
-						if (line.length()>0) {
-							String delimitatore = "[,]";
-							String[] arrayCampi = line.split(delimitatore);
-							
+						//Se ho trovato almeno un elemento popolo i campi
+						if (line.length() > 0) {
+							// Separo tutti i campi in un array, e successivamente popolo le JTextField
+							String delims = "[,]";
+							String[] arrayCampi = line.split(delims);
+
+							// Uso il metodo .replaceAll("^\\s+", "") per eliminare eventuali spazi ad inizio stringa
 							marca_veicolo.setText(arrayCampi[0].replaceAll("^\\s+", ""));
 							modello_veicolo.setText(arrayCampi[1].replaceAll("^\\s+", ""));
 							data_entrata.setText(arrayCampi[2].replaceAll("^\\s+", ""));
@@ -280,44 +266,56 @@ public class CancellaSchedaRiparazionePanel extends JPanel{
 							email_cliente.setText(arrayCampi[9].replaceAll("^\\s+", ""));
 							id_meccanico.setText(arrayCampi[10].replaceAll("^\\s+", ""));
 						}
+						//ta.append("\n");
 					} else {
-						ta.append("RICERCA SCHEDA: Si è verificato un errore nel server!" + "\n");
+						ta.append("CERCA scheda da Update: Si è verificato un errore nel server!" + "\n");
 					}
 					s.close();
 				} catch (IOException ioe){
-					JOptionPane.showMessageDialog(CancellaSchedaRiparazionePanel.this, "CancellaSchedaRiparazione: Error in communication with server!", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(UpdateSchedaRiparazionePanel.this, "Error in communication with server!", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
-		cancella.addActionListener(new ActionListener() {			
+
+		modifica.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try{
 					Socket s = new Socket(Server.HOST, Server.PORT);
+
 					BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
 					PrintWriter out = new PrintWriter(s.getOutputStream(), true);
 
-					/*Viene adesso riportata la query sql che che permetterà l'inserimento dei dati nella tabella*/
-
-					String req = Server.DELETE_SCHEDA + "\n" + 
+					String req = Server.UPDATE_SCHEDA + "\n" + 
+							"marca_veicolo:" + marca_veicolo.getText() + "\n" +
+							"modello_veicolo:" + modello_veicolo.getText() + "\n" +
+							"data_entrata:" + data_entrata.getText() + "\n" +
+							"data_immatricolazione:" + data_immatricolazione.getText() + "\n" +
+							"descrizione_intervento:" + descrizione_intervento.getText() + "\n" +
+							"data_evasione:" + data_evasione.getText() + "\n" +
+							"nome_cliente:" + nome_cliente.getText() + "\n" +
+							"cognome_cliente:" + cognome_cliente.getText() + "\n" +
+							"tel_cliente:" + tel_cliente.getText() + "\n" +
 							"email_cliente:" + email_cliente.getText() + "\n" +
+							"id_meccanico:" + id_meccanico.getText() + "\n" + 
 							"\n";
 
 					out.println(req);
-					System.out.println("DEBUG: Inviato dal Pannello: " + req);
+					System.out.println("DEBUG: req Update Inviata: " + req);
 					String line = in.readLine();
 					if (line.equalsIgnoreCase(Server.OK)){
-						ta.append("Scheda cancellata correttamente!");
-					} else {
-						ta.append("Si è verificato un errore nel server!" + "\n");
+						ta.append("Modifica Effettuata con Successo:\n");
+						line = in.readLine();
 						ta.append(line);
+						ta.append("\n");
+					} else {
+						ta.append("CHIAMATA UPDATE: Si è verificato un errore nel server!" + "\n");
 					}
 					s.close();
 				} catch (IOException ioe){
-					JOptionPane.showMessageDialog(CancellaSchedaRiparazionePanel.this, "Error in communication with server!", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(UpdateSchedaRiparazionePanel.this, "Error in communication with server!", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
-		});	
+		});
 	}
-
 }

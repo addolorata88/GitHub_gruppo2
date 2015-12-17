@@ -10,6 +10,6 @@ public interface SchedaRiparazioneDAO {
 	public void updateSchedaRiparazione(SchedaRiparazione i)  throws DAOException;
 	public List<SchedaRiparazione> showSchedaRiparazione(SchedaRiparazione i)  throws DAOException;
 	public List<SchedaRiparazione> showAllSchedeRiparazione()  throws DAOException;
-	public void deleteSchedaRiparazione(SchedaRiparazione i)  throws DAOException;
 	public List<SchedaRiparazione> findSchedaRiparazioneByEmail(String email_cliente) throws DAOException;
+	void deleteSchedaRiparazione(String email_cliente) throws DAOException;
 }

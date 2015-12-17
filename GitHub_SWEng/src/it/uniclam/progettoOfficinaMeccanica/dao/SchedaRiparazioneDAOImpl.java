@@ -77,20 +77,22 @@ public class SchedaRiparazioneDAOImpl implements SchedaRiparazioneDAO{
 
 			Statement stm = DAOSettings.getStatement();
 
-			String sql_update = "UPDATE scheda_riparazione SET";
+			String sql_update = "UPDATE scheda_riparazione SET ";
 			sql_update += "marca_veicolo='" + i.getMarcaVeicolo() + "',";
 			sql_update += "modello_veicolo='" + i.getModelloVeicolo() + "',";
 			sql_update += "data_entrata_officina='" + i.getDataEntrataInOfficina() + "',";
 			sql_update += "data_immatricolazione='" + i.getDataImmatricolazione() + "',";
 			sql_update += "descrizione_intervento='" + i.getDescrizioneIntervento() + "',";
-			sql_update += "data_evasione_richiesta='" + i.getDataEvasioneRichiesta() + "'";
-			sql_update += "nome_cliente='" + i.getNomeCliente() + "'";
-			sql_update += "cognome_cliente='" + i.getCognomeCliente() + "'";
-			sql_update += "tel_cliente='" + i.getTelCliente() + "'";
-			sql_update += "email_cliente='" + i.getEmailCliente() + "'";
-			sql_update += "id_meccanico='" + i.getIdMeccanico() + "'";
+			sql_update += "data_evasione_richiesta='" + i.getDataEvasioneRichiesta() + "',";
+			sql_update += "nome_cliente='" + i.getNomeCliente() + "',";
+			sql_update += "cognome_cliente='" + i.getCognomeCliente() + "',";
+			sql_update += "tel_cliente='" + i.getTelCliente() + "',";
+			sql_update += "email_cliente='" + i.getEmailCliente() + "',";
+			sql_update += "id_meccanico='" + i.getIdMeccanico() + "' ";
+			sql_update += "WHERE email_cliente = '" + i.getEmailCliente() + "'";
 
-			int aggiornamento = stm.executeUpdate(sql_update);  //come in insert. Modificare anche in DipDAOImpl(ResultSet->int)
+			System.out.println("Sql:" + sql_update);
+			int aggiornamento = stm.executeUpdate(sql_update);  //come in insert. Modificare anche in SchedaRiparazioneDAOImpl(ResultSet->int)
 			DAOSettings.closeStatement(stm);
 
 		} catch (SQLException sqle) {
@@ -228,15 +230,14 @@ public class SchedaRiparazioneDAOImpl implements SchedaRiparazioneDAO{
 	}
 
 	@Override
-	public void deleteSchedaRiparazione(SchedaRiparazione i)  throws DAOException{
+	public void deleteSchedaRiparazione(String email_cliente)  throws DAOException{
 		try {
-			if (i.getCognomeCliente() == null) {
-				throw new DAOException("In deleteSchedaRip: cognomeCliente field can not be empty");
+			if (email_cliente.isEmpty()) {
+				throw new DAOException("In deleteSchedaRip: email_cliente field can not be empty");
 			}
 
 			Statement stm = DAOSettings.getStatement();
-			String sql_delete = "DELETE FROM scheda_riparazione WHERE cognome_cliente LIKE '";
-			sql_delete +=  i.getCognomeCliente() + "%'";
+			String sql_delete = "DELETE FROM scheda_riparazione WHERE email_cliente LIKE '" + email_cliente + "'";
 
 			int del = stm.executeUpdate(sql_delete);
 			DAOSettings.closeStatement(stm);

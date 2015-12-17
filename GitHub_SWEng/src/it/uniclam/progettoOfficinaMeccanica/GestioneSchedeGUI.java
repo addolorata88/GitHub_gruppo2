@@ -23,7 +23,7 @@ public class GestioneSchedeGUI extends JFrame{
 	
 	private CercaSchedaRiparazionePanel cercaSchedaRiparazionePanel;
 	private InserisciSchedaRiparazionePanel inserisciSchedaRiparazionePanel;
-	//private UpdateSchedaRiparazionePanel updateSchedaRiparazionePanel;
+	private UpdateSchedaRiparazionePanel updateSchedaRiparazionePanel;
 	private CancellaSchedaRiparazionePanel cancellaSchedaRiparazionePanel;
 	private NavigationPanel navigationPanel;
 
@@ -32,7 +32,7 @@ public class GestioneSchedeGUI extends JFrame{
 	
 		cercaSchedaRiparazionePanel = new CercaSchedaRiparazionePanel(this);
 		inserisciSchedaRiparazionePanel = new InserisciSchedaRiparazionePanel(this);
-		//updateSchedaRiparazionePanel = new UpdateSchedaRiparazionePanel(this);
+		updateSchedaRiparazionePanel = new UpdateSchedaRiparazionePanel(this);
 		cancellaSchedaRiparazionePanel = new CancellaSchedaRiparazionePanel(this);
 		
 		changePanel(GestioneSchedeGUI.INSERISCI_SCHEDA_PANEL);
@@ -52,10 +52,9 @@ public class GestioneSchedeGUI extends JFrame{
 		} else if (panelName.equals(GestioneSchedeGUI.CERCA_SCHEDA_PANEL)){
 			cercaSchedaRiparazionePanel = new CercaSchedaRiparazionePanel(this);
 			lastPanel = cercaSchedaRiparazionePanel;
-		/*} else if (panelName.equals(AmmGestSchedeGUI.UPDATE_SCHEDA_PANEL)){
-			updateSchedaRipPanel = new UpdateSchedaRipPanel(this);
+		} else if (panelName.equals(GestioneSchedeGUI.UPDATE_SCHEDA_PANEL)){
+			updateSchedaRiparazionePanel = new UpdateSchedaRiparazionePanel(this);
 			lastPanel = updateSchedaRiparazionePanel;
-		}*/
 		} else if (panelName.equals(GestioneSchedeGUI.DELETE_SCHEDA_PANEL)){
 			cancellaSchedaRiparazionePanel = new CancellaSchedaRiparazionePanel(this);
 			lastPanel = cancellaSchedaRiparazionePanel;

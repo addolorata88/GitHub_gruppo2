@@ -30,6 +30,7 @@ public class Server {
 	public static String INSERT_SCHEDA			= "req_insert_scheda_rip";
 	public static String UPDATE_SCHEDA			= "req_update_scheda_rip";
 	public static String FIND_BY_EMAIL_SCHEDA 	= "req_find_by_email_scheda_rip";
+	public static String DELETE_SCHEDA 			= "req_delete_scheda";
 
 	public static String LIST_DIPENDENTI 	= "res_list_dipendenti";
 
@@ -267,7 +268,52 @@ public class Server {
 					System.out.println("Exception in connection (Find by email) " + daoe);
 					out.println(response + " " + daoe);
 				}
-				s.close();					
+				s.close();		
+				
+				}else if (command.equals(DELETE_SCHEDA)){			
+				String email_cliente = in.readLine().replace("email_cliente:", "").replace("\n", "");
+				System.out.println("Debug Find by email scheda: " + email_cliente );
+				try{	
+					
+					SchedaRiparazioneDAOImpl.getInstance().deleteSchedaRiparazione(email_cliente);
+
+					response = "Ok\n";				
+					out.println(response);
+
+				} catch (DAOException daoe){
+					System.out.println("Exception in connection (Delete)");
+					out.println(response + " " + daoe);
+				}				
+				s.close();
+				
+				} else if (command.equals(UPDATE_SCHEDA)){
+					String marca_veicolo = in.readLine().replace("marca_veicolo:", "").replace("\n", "");
+					String modello_veicolo = in.readLine().replace("modello_veicolo:", "").replace("\n", "");
+					String data_entrata = in.readLine().replace("data_entrata:", "").replace("\n", "");
+					String data_immatricolazione = in.readLine().replace("data_immatricolazione:", "").replace("\n", "");
+					String descrizione_intervento = in.readLine().replace("descrizione_intervento:", "").replace("\n", "");
+					String data_evasione = in.readLine().replace("data_evasione:", "").replace("\n", "");
+					String nome_cliente = in.readLine().replace("nome_cliente:", "").replace("\n", "");
+					String cognome_cliente = in.readLine().replace("cognome_cliente:", "").replace("\n", "");		
+					String tel_cliente = in.readLine().replace("tel_cliente:", "").replace("\n", "");
+					String email_cliente = in.readLine().replace("email_cliente:", "").replace("\n", "");
+					String id_meccanico = in.readLine().replace("id_meccanico:", "").replace("\n", "");
+				
+					try{	
+						SchedaRiparazione aggiornaSchedaRiparazione = new SchedaRiparazione(marca_veicolo,modello_veicolo, data_entrata,
+								data_immatricolazione,descrizione_intervento,data_evasione,nome_cliente,
+								cognome_cliente,tel_cliente,email_cliente,Integer.parseInt(id_meccanico));
+						System.out.println("aggiornamento:" + aggiornaSchedaRiparazione);
+						SchedaRiparazioneDAOImpl.getInstance().updateSchedaRiparazione(aggiornaSchedaRiparazione);
+
+						response = "Ok\n";				
+						out.println(response);
+
+					} catch (DAOException daoe){
+						System.out.println("Exception in connection (Update)");
+						out.println(response + " " + daoe);
+					}				
+					s.close();
 				// Fine sessione SCHEDA RIPARAZIONE
 
 			} else {

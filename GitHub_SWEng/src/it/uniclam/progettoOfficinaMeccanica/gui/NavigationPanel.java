@@ -24,8 +24,10 @@ public class NavigationPanel extends JPanel {
 	private JButton inserisciSchedaRiparazione = new JButton(GestioneSchedeGUI.INSERISCI_SCHEDA_PANEL);
 	private JButton cercaSchedaRiparazione = new JButton(GestioneSchedeGUI.CERCA_SCHEDA_PANEL);
 	private JButton cancellaSchedaRiparazione = new JButton(GestioneSchedeGUI.DELETE_SCHEDA_PANEL);
+	private JButton updateSchedaRiparazione = new JButton(GestioneSchedeGUI.UPDATE_SCHEDA_PANEL);
 	
-	private GestioneSchedeGUI ammGestSchedeGUI = null;
+	
+	private GestioneSchedeGUI gestioneSchedeGUI = null;
 	
 	/*A questo punto si gestisce la navcigazione fra i pannelli riferiti alle operazioni sui dipendenti*/
 	
@@ -81,7 +83,8 @@ public class NavigationPanel extends JPanel {
 		add(inserisciSchedaRiparazione);
 		add(cercaSchedaRiparazione);
 		add(cancellaSchedaRiparazione);
-		this.ammGestSchedeGUI = gestioneSchedeGUI;
+		add(updateSchedaRiparazione);
+		this.gestioneSchedeGUI = gestioneSchedeGUI;
 		
 		inserisciSchedaRiparazione.addActionListener(new ActionListener() {
 			@Override
@@ -101,6 +104,13 @@ public class NavigationPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				gestioneSchedeGUI.changePanel(GestioneSchedeGUI.DELETE_SCHEDA_PANEL);
+			}
+		});
+		
+		updateSchedaRiparazione.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				gestioneSchedeGUI.changePanel(GestioneSchedeGUI.UPDATE_SCHEDA_PANEL);
 			}
 		});
 	}
