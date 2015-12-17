@@ -26,9 +26,10 @@ public class Server {
 	public static String UPDATE_DIPENDENTI 	= "req_update_dipendenti";
 	//public static String FIND_DIPENDENTE	= "req_find_by_email_dipendenti";
 
-	public static String QUERY_SCHEDA		= "req_query_scheda_rip";
-	public static String INSERT_SCHEDA		= "req_insert_scheda_rip";
-	public static String UPDATE_SCHEDA		= "req_update_scheda_rip";
+	public static String QUERY_SCHEDA			= "req_query_scheda_rip";
+	public static String INSERT_SCHEDA			= "req_insert_scheda_rip";
+	public static String UPDATE_SCHEDA			= "req_update_scheda_rip";
+	public static String FIND_BY_EMAIL_SCHEDA 	= "req_find_by_email_scheda_rip";
 
 	public static String LIST_DIPENDENTI 	= "res_list_dipendenti";
 
@@ -81,8 +82,7 @@ public class Server {
 					System.out.println("Exception in connection (Query)");
 					out.println(response + " -> " + daoe);
 				}				
-				s.close();
-
+				s.close();				
 			} else if (command.equals(INSERT_DIPENDENTI)){
 				String nome = in.readLine().replace("nome:", "").replace("\n", "");
 				String cognome = in.readLine().replace("cognome:", "").replace("\n", "");		
@@ -115,8 +115,11 @@ public class Server {
 				String scadenza_contratto = in.readLine().replace("scadenza_contratto:", "").replace("\n", "");
 
 				try{	
-					Dipendente nuovoDipendente = new Dipendente(nome, cognome, telefono, email, data_assunzione, scadenza_contratto);
-					DipendenteDAOImpl.getInstance().deleteDipendente(nuovoDipendente);
+					Dipendente cancellaDipendente = new Dipendente(nome, cognome, telefono, email, data_assunzione, scadenza_contratto);
+					
+					System.out.println("cancellaDipendente: " + cancellaDipendente);
+					
+					DipendenteDAOImpl.getInstance().deleteDipendente(cancellaDipendente);
 
 					response = "Ok\n";				
 					out.println(response);
@@ -198,10 +201,10 @@ public class Server {
 				String email_cliente = in.readLine().replace("email_cliente:", "").replace("\n", "");
 				String id_meccanico = in.readLine().replace("id_meccanico:", "").replace("\n", "");
 				
-				System.out.println("Debug QUERY SCHEDA: " + marca_veicolo + " " + modello_veicolo + 
-						" " + data_entrata + " " + data_immatricolazione + " " + descrizione_intervento + 
-						" " + data_evasione + " " + nome_cliente + " " + cognome_cliente + " " + tel_cliente +
-						" " + email_cliente + " " + id_meccanico);
+				System.out.println("Debug QUERY SCHEDA: " + marca_veicolo + "," + modello_veicolo + 
+						"," + data_entrata + "," + data_immatricolazione + "," + descrizione_intervento + 
+						"," + data_evasione + "," + nome_cliente + "," + cognome_cliente + "," + tel_cliente +
+						"," + email_cliente + "," + id_meccanico);
 
 				try{	
 					SchedaRiparazione nuovaSchedaRiparazione = new SchedaRiparazione(marca_veicolo,modello_veicolo, data_entrata,
@@ -217,10 +220,11 @@ public class Server {
 						response += item.getDataEntrataInOfficina() + ", ";
 						response += item.getDataImmatricolazione() + ", ";
 						response += item.getDescrizioneIntervento() + ", ";
-						response += item.getDataEvasioneRichiesta() + "\n";
-						response += item.getNomeCliente() + "\n";
-						response += item.getCognomeCliente() + "\n";
-						response += item.getTelCliente() + "\n";
+						response += item.getDataEvasioneRichiesta() + ", ";
+						response += item.getNomeCliente() + ", ";
+						response += item.getCognomeCliente() + ", ";
+						response += item.getTelCliente() + ", ";
+						response += item.getEmailCliente() + ", ";
 						response += item.getIdMeccanico() + "\n";
 					}
 
@@ -233,6 +237,37 @@ public class Server {
 				}		
 				s.close();
 				
+			} else if (command.equals(FIND_BY_EMAIL_SCHEDA )) {
+				String email_cliente = in.readLine().replace("email_cliente:", "").replace("\n", "");
+				System.out.println("Debug Find by email scheda: " + email_cliente );
+				try{	
+					List<SchedaRiparazione> lista = SchedaRiparazioneDAOImpl.getInstance().findSchedaRiparazioneByEmail(email_cliente);
+
+					response = "Ok\n";				
+					//out.println(response);
+					
+					for(SchedaRiparazione item: lista){
+						response += item.getMarcaVeicolo() + ", ";
+						response += item.getModelloVeicolo() + ", ";						
+						response += item.getDataEntrataInOfficina() + ", ";
+						response += item.getDataImmatricolazione() + ", ";
+						response += item.getDescrizioneIntervento() + ", ";
+						response += item.getDataEvasioneRichiesta() + ", ";
+						response += item.getNomeCliente() + ", ";
+						response += item.getCognomeCliente() + ", ";
+						response += item.getTelCliente() + ", ";
+						response += item.getEmailCliente() + ", ";
+						response += item.getIdMeccanico() + "\n";
+					}
+					System.out.println("Response: " + response);
+					response += "\n";					
+					out.println(response);
+
+				} catch (DAOException daoe){
+					System.out.println("Exception in connection (Find by email) " + daoe);
+					out.println(response + " " + daoe);
+				}
+				s.close();					
 				// Fine sessione SCHEDA RIPARAZIONE
 
 			} else {

@@ -28,16 +28,17 @@ import it.uniclam.progettoOfficinaMeccanica.interfaces.getDataPanel;
 
 
 public class CercaSchedaRiparazionePanel extends JPanel {
-	private JTextField marca_veicolo		= new JTextField("", 20);
-	private JTextField modello_veicolo		= new JTextField("", 20);
-	private JTextField data_entrata			= new JTextField("", 20);
-	private JTextField data_immatricolazione= new JTextField("", 20);
-	private JTextField descrizione_intervento		= new JTextField("", 20);
-	private JTextField data_evasione		= new JTextField("", 20);
-	private JTextField nome_cliente			= new JTextField("", 20);
-	private JTextField cognome_cliente		= new JTextField("", 20);
-	private JTextField tel_cliente			= new JTextField("", 20);
-	private JTextField id_meccanico			= new JTextField("", 20);
+	private JTextField marca_veicolo			= new JTextField("", 20);
+	private JTextField modello_veicolo			= new JTextField("", 20);
+	private JTextField data_entrata				= new JTextField("", 20);
+	private JTextField data_immatricolazione	= new JTextField("", 20);
+	private JTextField descrizione_intervento	= new JTextField("", 20);
+	private JTextField data_evasione			= new JTextField("", 20);
+	private JTextField nome_cliente				= new JTextField("", 20);
+	private JTextField cognome_cliente			= new JTextField("", 20);
+	private JTextField tel_cliente				= new JTextField("", 20);
+	private JTextField email_cliente			= new JTextField("", 20);
+	private JTextField id_meccanico				= new JTextField("1", 20);
 
 	private JButton cerca = new JButton("Cerca");//Pulsante che permette di avviare 
 	//l'operazione di ricerca dei valori 
@@ -157,42 +158,52 @@ public class CercaSchedaRiparazionePanel extends JPanel {
 		c.gridy = 8;
 		this.add(tel_cliente, c);
 
-		// Campo id_meccanico
+		// Campo emeil_cliente
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 9;
-		this.add(new JLabel("id_meccanico:"), c);
+		this.add(new JLabel("email_cliente:"), c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 2;
 		c.gridy = 9;
-		this.add(id_meccanico, c);
+		this.add(email_cliente, c);
 
+		// Campo id_meccanico
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 0;
+		c.gridy = 10;
+		this.add(new JLabel("id_meccanico:"), c);
+
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 2;
+		c.gridy = 10;
+		this.add(id_meccanico, c);
 		// Campo cerca
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 1;
-		c.gridy = 10;
+		c.gridy = 11;
 		c.gridwidth = 4;   //2 columns wide
 		this.add(cerca, c);
 
 		// Campo clear
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 4;
-		c.gridy = 10;
+		c.gridy = 11;
 		c.gridwidth = 4;   //2 columns wide
 		this.add(clear, c);
 
 		// Campo risposta (label)
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
-		c.gridy = 11;
+		c.gridy = 12;
 		c.gridwidth = 4;   //2 columns wide
 		this.add(new JLabel("Risposta:"), c);
 
 		// Campo risposta text area
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 1;
-		c.gridy = 	11;
+		c.gridy = 	12;
 		c.gridwidth = 4;   //2 columns wide  era 8
 		JScrollPane jp = new JScrollPane(ta);
 		this.add(jp, c);
@@ -227,6 +238,7 @@ public class CercaSchedaRiparazionePanel extends JPanel {
 									"nome_cliente:" + nome_cliente.getText() + "\n" +
 									"cognome_cliente:" + cognome_cliente.getText() + "\n" +
 									"tel_cliente:" + tel_cliente.getText() + "\n" +
+									"email_cliente:" + email_cliente.getText() + "\n" +
 									"id_meccanico:" + id_meccanico.getText() + "\n" + 
 									"\n";
 

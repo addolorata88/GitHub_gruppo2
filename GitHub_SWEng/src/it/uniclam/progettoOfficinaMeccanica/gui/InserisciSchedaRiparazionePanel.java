@@ -12,7 +12,9 @@ import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -44,7 +46,7 @@ public class InserisciSchedaRiparazionePanel extends JPanel{
 	private JTextField cognome_cliente		 	= new JTextField("", 20);
 	private JTextField tel_cliente			 	= new JTextField("", 20);
 	private JTextField email_cliente			= new JTextField("", 20);
-	private JTextField id_meccanico				= new JTextField("", 20);
+	private JTextField id_meccanico				= new JTextField("1", 20);
 
 	//Date today = new Date();
 	//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -168,54 +170,70 @@ public class InserisciSchedaRiparazionePanel extends JPanel{
 		c.gridx = 2;
 		c.gridy = 8;
 		this.add(tel_cliente, c);
-
-		// Campo id_meccanico
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.gridx = 0;
-		c.gridy = 9;
-		this.add(new JLabel("id_meccanico:"), c);
-
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.gridx = 2;
-		c.gridy = 9;
-		this.add(id_meccanico, c);
-
+		
 		// Campo email_cliente
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
-		c.gridy = 10;
+		c.gridy = 9;
 		this.add(new JLabel("email_cliente:"), c);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 2;
-		c.gridy = 10;
+		c.gridy = 9;
 		this.add(email_cliente, c);
 		
+		// Campo id_meccanico
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 0;
+		c.gridy = 10;
+		this.add(new JLabel("id_meccanico:"), c);
+
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 2;
+		c.gridy = 10;
+		this.add(id_meccanico, c);
+
+		// Campo id_meccanico
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 0;
+		c.gridy = 11;
+		this.add(new JLabel("Sel. Meccanico:"), c);
+	
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        model.addElement("Meccanico 1");
+        model.addElement("Meccanico 2");
+        model.addElement("Meccanico 3");
+        JComboBox comboBox = new JComboBox(model);
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 2;
+		c.gridy = 11;
+        this.add(comboBox, c);
+	
 		// Campo inserisci
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 1;
-		c.gridy = 11;
+		c.gridy = 12;
 		c.gridwidth = 4;   //2 columns wide
 		this.add(invia, c);
 
 		// Campo clear
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 4;
-		c.gridy = 11;
+		c.gridy = 12;
 		c.gridwidth = 4;   //2 columns wide
 		this.add(clear, c);
 
 		// Campo risposta (label)
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
-		c.gridy = 12;
+		c.gridy = 13;
 		c.gridwidth = 4;   //2 columns wide          
 		this.add(new JLabel("Risposta:"), c);
 
 		// Campo risposta text area
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 1;
-		c.gridy = 	12;
+		c.gridy = 	13;
 		c.gridwidth = 4;   //2 columns wide  era 8
 		JScrollPane jp = new JScrollPane(ta);
 		this.add(jp, c);

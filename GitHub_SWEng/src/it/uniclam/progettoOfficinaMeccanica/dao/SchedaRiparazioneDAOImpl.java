@@ -158,6 +158,45 @@ public class SchedaRiparazioneDAOImpl implements SchedaRiparazioneDAO{
 	}
 
 	@Override
+	public List<SchedaRiparazione> findSchedaRiparazioneByEmail(String email_cliente)  throws DAOException{
+		ArrayList<SchedaRiparazione> elenco = new ArrayList<SchedaRiparazione>();
+		
+		try {
+			if (email_cliente.isEmpty()) {
+				throw new DAOException("In findSchedaRiparazioneByEmail: email_cliente can NOT be empty");
+			}
+
+			Statement stm = DAOSettings.getStatement();
+			
+			String sql_find = "SELECT * FROM scheda_riparazione WHERE email_cliente LIKE '" + email_cliente + "%'";
+			
+			System.out.println("Query Generata: " + sql_find);
+			ResultSet rs = stm.executeQuery(sql_find);			
+			while(rs.next()){
+				elenco.add(new SchedaRiparazione(
+						rs.getString("marca_veicolo"),
+						rs.getString("modello_veicolo"),
+						rs.getString("data_entrata_officina"),
+						rs.getString("data_immatricolazione"),
+						rs.getString("descrizione_intervento"),
+						rs.getString("data_evasione_richiesta"),
+						rs.getString("nome_cliente"),
+						rs.getString("cognome_cliente"),
+						rs.getString("tel_cliente"),
+						rs.getString("email_cliente"),
+						rs.getInt("id_meccanico"))
+						);
+			}
+			DAOSettings.closeStatement(stm);
+
+		} catch (SQLException sqle) {
+			throw new DAOException("In showSchedaRiparazione: " + sqle);
+		}
+		System.out.println("Elenco: " + elenco);
+		return elenco;
+	}
+	
+	@Override
 	public List<SchedaRiparazione> showAllSchedeRiparazione()  throws DAOException{
 		ArrayList<SchedaRiparazione> elenco = new ArrayList<SchedaRiparazione>();
 
@@ -167,7 +206,8 @@ public class SchedaRiparazioneDAOImpl implements SchedaRiparazioneDAO{
 			ResultSet rs=stm.executeQuery(sql);
 
 			while(rs.next()){
-				SchedaRiparazione i = new SchedaRiparazione(rs.getString("marca_veicolo"),
+				SchedaRiparazione i = new SchedaRiparazione(
+						rs.getString("marca_veicolo"),
 						rs.getString("modello_veicolo"),
 						rs.getString("data_entrata"),
 						rs.getString("data_immatricolazione"),
@@ -175,8 +215,8 @@ public class SchedaRiparazioneDAOImpl implements SchedaRiparazioneDAO{
 						rs.getString("data_evasione_richiesta"),
 						rs.getString("nome_cliente"),
 						rs.getString("cognome_cliente"),
-						rs.getString("tel_cognome"),
-						rs.getString("email_cognome"),
+						rs.getString("tel_cliente"),
+						rs.getString("email_cliente"),
 						rs.getInt("id_meccanico"));
 				elenco.add(i);
 			}	
@@ -198,7 +238,7 @@ public class SchedaRiparazioneDAOImpl implements SchedaRiparazioneDAO{
 			String sql_delete = "DELETE FROM scheda_riparazione WHERE cognome_cliente LIKE '";
 			sql_delete +=  i.getCognomeCliente() + "%'";
 
-			ResultSet rs = stm.executeQuery(sql_delete);
+			int del = stm.executeUpdate(sql_delete);
 			DAOSettings.closeStatement(stm);
 
 		} catch (SQLException sqle) {

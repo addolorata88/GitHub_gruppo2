@@ -175,9 +175,10 @@ public class DipendenteDAOImpl implements DipendenteDAO{
 				
 			Statement stm = DAOSettings.getStatement();
 			String sql_delete = "DELETE FROM meccanico WHERE email LIKE '";
-				sql_delete +=  d.getEmail() + "%'";
+				sql_delete +=  d.getEmail() + "'";
 			
-			ResultSet rs = stm.executeQuery(sql_delete);
+			System.out.println("Query di cancellazione: " + sql_delete);
+			int del = stm.executeUpdate(sql_delete);
 			DAOSettings.closeStatement(stm);
 			
 		} catch (SQLException sqle) {

@@ -174,6 +174,12 @@ public class DeleteDipendentiPanel extends JPanel{
 		cerca.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				nome.setText("");
+				cognome.setText("");
+				telefono.setText("");
+				email.setText("");
+				data_assunzione.setText("");
+				scadenza_contratto.setText("");
 				try{
 					Socket s = new Socket(Server.HOST, Server.PORT);
 					

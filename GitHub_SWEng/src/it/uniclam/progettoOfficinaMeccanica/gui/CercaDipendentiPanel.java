@@ -22,12 +22,12 @@ import it.uniclam.progettoOfficinaMeccanica.*;
 
 public class CercaDipendentiPanel extends JPanel {
 	
-	private JTextField nome = new JTextField("n", 20);
-	private JTextField cognome = new JTextField("c", 20);	
-	private JTextField telefono = new JTextField("t", 20);
-	private JTextField email = new JTextField("e", 20);
-	private JTextField data_assunzione = new JTextField("1970-01-01", 20);
-	private JTextField scadenza_contratto = new JTextField("xxxx-xx-xx", 20);
+	private JTextField nome = new JTextField("", 20);
+	private JTextField cognome = new JTextField("", 20);	
+	private JTextField telefono = new JTextField("", 20);
+	private JTextField email = new JTextField("", 20);
+	private JTextField data_assunzione = new JTextField("", 20);
+	private JTextField scadenza_contratto = new JTextField("", 20);
 	
 	private JButton cerca = new JButton("Cerca");
 	private JButton clear = new JButton("Clear");
